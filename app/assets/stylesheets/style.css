@@ -19,7 +19,7 @@ Text Domain: flusk
 * 03.0 - Drawer with menu
 * 04.0 - Parallax styles
 * 05.0 - Recent works
-* 06.0 - Services
+* 06.0 - howtos
 * 07.0 - Blog
 * 08.0 - Testimonials
 * 09.0 - Contact
@@ -167,6 +167,12 @@ header.top-header {
   color: white;
 }
 
+.logo-img {
+  height: 25px;
+  margin: auto;
+  padding-right: 7px;
+}
+
 h1.logo {
   margin-top: 11px;
   color: white;
@@ -309,7 +315,7 @@ h1.logo {
   padding: 60px 0;
 }
 .parallax{
-  padding: 80px 0;
+  padding: 80px 20px;
 }
 
 .block-body {
@@ -317,10 +323,10 @@ h1.logo {
 }
 
 #header {
-  background: url("/images/header-bg.jpg");
-  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.8);
+  background: url("/images/cover-bg.jpg") no-repeat center center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
 }
-#services {
+#howtos {
   background:white;
 }
 #parallax {
@@ -394,14 +400,15 @@ h1.logo {
 
 
 /*////////////////////////////////////////////////////////////////////////
-//  06 - Services
+//  06 - howtos
 ///////////////////////////////////////////////////////////////////////*/
 
 
-.service i {
+.howto i {
     font-size: 23px;
     padding: 0 5px;
 }
+
 .bar:before{
   font-family: 'Raleway', sans-serif;
   content: "||| " ;
@@ -415,15 +422,30 @@ h1.logo {
   font-size: 23px;
   font-weight: 100;
 }
-.service h2.service-head{
+.howto h4.howto-head{
   font-family: 'Raleway', sans-serif;
-  margin-top: 15px;
-  font-weight: 100;
+  margin-top: 23px;
+  font-weight: 300;
+  font-size: 22px;
 }
+
+i.howto-icon {
+  border: 3px solid rgb(106, 106, 106);
+  border-radius: 20%;
+  display: inline-block;
+  font-size: 56px;
+  width: 140px;
+  height: 140px;
+  line-height: 136px;
+  vertical-align: middle; 
+  text-align: center;
+  color: rgb(106, 106, 106);
+}
+
 /*////////////////////////////////////////////////////////////////////////
 //  About us
 ///////////////////////////////////////////////////////////////////////*/
-.portfolio-sec ,.services-sec ,.blog-sec , .testimonial-sec{
+.portfolio-sec ,.howtos-sec ,.blog-sec , .testimonial-sec{
   margin-top: 60px;
 }
 .about-sec {
@@ -444,12 +466,12 @@ h1.logo {
     }
 }
 
-.aboutus-item {
+.about-item {
   margin-bottom: 15px;
   margin-top: 60px;
 }
 
-i.aboutus-icon {
+i.about-icon {
   border: 3px solid rgb(106, 106, 106);
   border-radius: 50%;
   display: inline-block;
@@ -462,14 +484,14 @@ i.aboutus-icon {
   color: rgb(106, 106, 106);
 }
 
-h4.aboutus-title {
+h4.about-title {
   font-family: 'Raleway', sans-serif;
   margin-top: 23px;
   font-weight: 300;
   font-size: 22px;
 }
 
-p.aboutus-desc {
+p.about-desc {
   font-size: 16px;
   line-height: 29px;
   letter-spacing: 0.4px;
@@ -485,6 +507,15 @@ p.aboutus-desc {
 h3.call-action.pull-left {
   /*width: 90%; */
   font-size: 27px;
+  color: white;
+}
+ .parallax {
+  padding: 61px 0 55px;
+}
+
+h4.call-action.pull-left {
+  /*width: 90%; */
+  font-size: 20px;
   color: white;
 }
  .parallax {
@@ -566,7 +597,17 @@ ol.carousel-indicators {
 ///////////////////////////////////////////////////////////////////////*/
 
 
-#footer{ background: #2B3E51; color: white; border-top: 1px solid rgba(255, 255, 255, 0.24);}
+#footer{ background: rgba(43, 62, 81, 0.77); color: white; border-top: 1px solid rgba(255, 255, 255, 0.24);}
+
+#footer a{
+  font-size: 20px;
+  color: #fff;
+  margin: 0 50px;
+}
+
+#footer a i{
+  margin-right: 0 3px;
+}
 
 h2.footer-block {
     color: white;
@@ -628,7 +669,7 @@ h2.footer-block {
   transition: all .6s;
 }
 .social {
-  margin-left: 40px;
+  margin: 0 10px;
 }
 .social a i{
   color: #fff;
@@ -680,10 +721,52 @@ h2.footer-block {
   #header {
     background-size: cover;
   }
-  .service {
+  .howto {
   text-align: center;
   }
 }
 button.navbar-toggle.collapsed {
   margin-top: 40px;
+}
+
+
+/*////////////////////////////////////////////////////////////////////////
+//  12 - Recruit message
+///////////////////////////////////////////////////////////////////////*/
+
+#recruit {
+  text-align: center;
+  background: url("/images/recruit-bg.jpg") no-repeat center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  -webkit-background-size:100%;
+  -moz-background-size:100%;
+  -o-background-size:100%;
+  background-size:100%;
+  background-size:cover;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  overflow:hidden;
+  padding: 120px 0;
+}
+
+#recruit .recruit-message{
+  font-size: 2em;
+  margin-bottom: 15px;
+  line-height: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  font-weight: bold;
+}
+
+#recruit .secondary-recruit-message{
+  font-size: 1em;
+  color: rgba(255,255,255,1);
+  line-height: 1em;
+  font-family: 'Raleway', sans-serif;
+  margin-bottom: 20px;
+}
+
+.img-center {
+  margin-bottom: 20px;
 }
