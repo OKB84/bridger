@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h1>マイページ</h1>
+
+<ul>
+  <li>
+    <strong>名前：</strong>
+    <%= @user.name %>
+  </li>
+  <li>
+    <strong>メールアドレス：</strong>
+    <%= @user.email %>
+  </li>
+</ul>
+
+<%= link_to 'メッセージ', messages_path %>
+
+<%= link_to '編集', edit_user_path(@user) %> |
+<%= link_to '戻る', :back %>

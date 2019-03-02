@@ -1,0 +1,19 @@
+<h1>メッセージ詳細</h1>
+<table>
+  <thead>
+    <tr>
+      <th>送信元</th>
+      <th>宛先</th>
+      <th>内容</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @message.send_user.name %></td>
+      <td><%= @message.receive_user.name %></td>
+      <td><%= @message.content %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to '戻る', :back %>

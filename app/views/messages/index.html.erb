@@ -1,0 +1,44 @@
+<h1>メッセージ</h1>
+
+<h2>受信済み</h2>
+<table>
+  <thead>
+    <tr>
+      <th>差出人</th>
+      <th>内容</th>
+      <th>受信日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @received_messages.each do |message| %>
+      <tr>
+        <td><%= message.send_user.name %></td>
+        <td><%= link_to message.content, message %></td>
+        <td><%= message.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>送信済み</h2>
+<table>
+  <thead>
+    <tr>
+      <th>宛先</th>
+      <th>内容</th>
+      <th>送信日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sended_messages.each do |message| %>
+      <tr>
+        <td><%= message.receive_user.name %></td>
+        <td><%= link_to message.content, message %></td>
+        <td><%= message.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'メッセージを送る', new_message_path %>
+<%= link_to '戻る', :back %>
