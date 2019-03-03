@@ -1,0 +1,15 @@
+<h1>講師詳細</h1>
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/<%= @url1 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2>Biography | 略歴</h2>
+<%= @lesson.biography %>
+
+<h2>What you can learn | レッスンで学べること</h2>
+<%= @lesson.advantage %>
+
+<h3>その他参考演奏</h3>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url2 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<%= link_to '戻る', :back %>

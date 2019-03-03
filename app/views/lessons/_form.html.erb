@@ -1,0 +1,36 @@
+<%= form_for(lesson) do |f| %>
+  <div class="form-group">
+    <%= f.label :youtube_url1, 'メイン参考動画URL' %>
+    <%= f.text_field :youtube_url1, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :youtube_url2, 'サブ参考動画URL(1)' %>
+    <%= f.text_field :youtube_url2, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :youtube_url3, 'サブ参考動画URL(2)' %>
+    <%= f.text_field :youtube_url3, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :biography, '自己紹介' %>
+    <%= f.text_area :biography, class:'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :advantage, 'レッスンで学べること' %>
+    <%= f.text_area :advantage, class:'form-control' %>
+  </div>
+  <%= f.hidden_field :instructor_id, value: current_user.id %>
+
+  <h4>レッスンプラン詳細（複数設定可）</h4>
+  <%= f.fields_for :lesson_plans do |l| %>
+    <%= render 'lesson_plan_fields', f: l %>
+  <% end %>
+  
+  <div class="text-right">
+    <%= link_to_add_association '明細を追加', f, :lesson_plans,
+    class: 'btn btn-default'
+    %>
+  </div>
+  
+  <%= f.submit '登録', class: 'btn' %>
+<% end %>

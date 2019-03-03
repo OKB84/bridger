@@ -1,0 +1,13 @@
+<h1>講師一覧</h1>
+
+<ul>
+  <% @lessons.each do |lesson| %>
+    <div>
+     <li>
+       <h4><%= link_to lesson.instructor.name, lesson %></h4>
+     </li> 
+    </div>
+  <% end %>
+</ul>
+
+<%= link_to '戻る', :back %>

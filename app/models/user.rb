@@ -10,17 +10,11 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   
-  has_many :messages, foreign_key: 'send_user_id'
-  has_many :receivers, through: :messages, source: :receive_user
-  # has_many :sended_messages, through: :messages, source: :content
-  has_many :reverses_of_message, class_name: 'Message', foreign_key: 'receive_user_id'
-  has_many :senders, through: :reverses_of_message, source: :send_user
-  # has_many :received_messages, through: :reverses_of_message, source: :content
-  
-  # def send(receive_user, content)
-  #   unless self == receive_user
-  #     self.messages.create(send_user_id: self.id, receive_user_id: receive_user.id, content: content)
-  #   end
-  # end
+  has_many :messages, foreign_key: 'send_user_id', dependent: :destroy
+  has_many :receivers, through: :messages, source: :receive_user, dependent: :destroy
+  has_many :reverses_of_message, class_name: 'Message', foreign_key: 'receive_user_id', dependent: :destroy
+  has_many :senders, through: :reverses_of_message, source: :send_user, dependent: :destroy
+
+  has_one :lesson, foreign_key: 'instructor_id', dependent: :destroy
   
 end

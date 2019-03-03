@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190302061646) do
+ActiveRecord::Schema.define(version: 20190303094109) do
+
+  create_table "lesson_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "lesson_id"
+    t.integer  "minute"
+    t.string   "location_broad"
+    t.string   "location_narrow"
+    t.integer  "price_yen"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["lesson_id"], name: "index_lesson_plans_on_lesson_id", using: :btree
+  end
+
+  create_table "lessons", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "instructor_id"
+    t.string   "youtube_url1"
+    t.string   "youtube_url2"
+    t.string   "youtube_url3"
+    t.text     "biography",     limit: 65535
+    t.text     "advantage",     limit: 65535
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.index ["instructor_id"], name: "index_lessons_on_instructor_id", using: :btree
+  end
 
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "send_user_id"
@@ -32,6 +55,8 @@ ActiveRecord::Schema.define(version: 20190302061646) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "lesson_plans", "lessons"
+  add_foreign_key "lessons", "users", column: "instructor_id"
   add_foreign_key "messages", "users", column: "receive_user_id"
   add_foreign_key "messages", "users", column: "send_user_id"
 end
