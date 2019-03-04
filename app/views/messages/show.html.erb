@@ -9,8 +9,20 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= @message.send_user.name %></td>
-      <td><%= @message.receive_user.name %></td>
+      <td>
+        <% if @message.send_user_id == current_user.id %>
+          <%= @message.send_user.name %>
+        <% else %>
+          <%= link_to @message.send_user.name, new_message_path(user_id: @message.send_user_id) %>
+        <% end %>
+      </td>
+      <td>
+        <% if @message.receive_user_id == current_user.id %>
+          <%= @message.receive_user.name %>
+        <% else %>
+          <%= link_to @message.receive_user.name, new_message_path(user_id: @message.receive_user_id) %>
+        <% end %>
+      </td>
       <td><%= @message.content %></td>
     </tr>
   </tbody>

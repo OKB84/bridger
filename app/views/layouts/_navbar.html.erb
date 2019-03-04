@@ -29,7 +29,9 @@
 									<a href="#wrapper"><i class="fa fa-bookmark"></i> 利用方法</a>
 								</li>
 								<li>
-									<a href="#about"><i class="fa fa-users"></i> 講師一覧</a>
+									<%= link_to lessons_path do %>
+										<i class="fa fa-users"></i> 講師一覧</a>
+									<% end %>
 								</li>
 								<% if current_user %>
 									<li>

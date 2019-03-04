@@ -1,15 +1,48 @@
 <h1>講師詳細</h1>
-
-<iframe width="800" height="450" src="https://www.youtube.com/embed/<%= @url1 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<h2>Biography | 略歴</h2>
-<%= @lesson.biography %>
-
-<h2>What you can learn | レッスンで学べること</h2>
-<%= @lesson.advantage %>
-
-<h3>その他参考演奏</h3>
-<iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url2 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3><%= @lesson.instructor.name %></h3>
+      <ul>
+        <li>楽器：</li>
+        <li>分野：</li>
+        <li>言語：</li>
+      </ul>
+      <% @lesson.lesson_plans.each_with_index do |plan, index| %>
+        <div class="panel panel-default">
+          <div class="panel-heading text-center">
+            <h4>レッスンプラン <%= index + 1 %></h4>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% if plan.location_narrow == ''%>
+                <li>@<%= plan.location_broad %></li>
+              <% else %>
+                <li>@<%= plan.location_broad %> (<%= plan.location_narrow %>)</li>
+              <% end %>
+              <li>1回 <%= plan.minute %> 分</li>
+              <li>料金：<%= plan.price_yen %> 円</li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-sm-8">
+      <iframe width="800" height="450" src="https://www.youtube.com/embed/<%= @url1 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
+      <h2>Biography | 略歴</h2>
+      <%= @lesson.biography %>
+      
+      <h2>What you can learn | レッスンで学べること</h2>
+      <%= @lesson.advantage %>
+      
+      <h3>その他参考演奏</h3>
+      <iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url2 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 <%= link_to '戻る', :back %>

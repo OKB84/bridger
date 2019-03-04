@@ -1,18 +1,16 @@
-<h1>新規メッセージ</h1>
+<h1>新規メッセージ作成</h1>
+
+<h2>宛先：<%= @receive_user.name %> さん</h2>
 
 <%= form_for(@message) do |f| %>
 
-  <div class="form-group">
-    <%= f.label :receive_user_id, '宛先id' %>
-    <%= f.text_field :receive_user_id %>
-  </div>
-  
   <div class="form-group">  
     <%= f.label :content, '内容' %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, value: @default_message , class: "form-control" %>
   </div>
   
   <%= f.submit '送信', class: 'btn' %>
+  <%= hidden_field_tag :receive_user_id, @receive_user.id %>
 <% end %>
 
 <%= link_to '戻る', :back %>
