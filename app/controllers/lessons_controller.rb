@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  before_action :set_lesson, only: [:show, :edit]
   skip_before_action :require_login, only: [:index, :show]
   
   def index
@@ -6,7 +7,6 @@ class LessonsController < ApplicationController
   end
 
   def show
-    @lesson = Lesson.find(params[:id])
     @url1 = @lesson.youtube_url1.gsub('https://www.youtube.com/watch?v=', '')
     @url2 = @lesson.youtube_url2.gsub('https://www.youtube.com/watch?v=', '')
     @url3 = @lesson.youtube_url3.gsub('https://www.youtube.com/watch?v=', '')
@@ -33,13 +33,16 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    @lesson = Lesson.find(params[:id])
     unless @lesson == Lesson.find_by(instructor_id: current_user.id)
       redirect_to user_path(current_user)
     end
   end
   
   private
+  
+  def set_lesson
+    @lesson = Lesson.find(params[:id])
+  end
   
   def lesson_params
     params.require(:lesson).permit(:youtube_url1, :youtube_url2, :youtube_url3, :biography, :advantage, :instructor_id, lesson_plans_attributes: [:id, :minute, :location_broad, :location_narrow, :price_yen, :destroy])
