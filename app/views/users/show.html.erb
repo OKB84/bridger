@@ -5,15 +5,40 @@
 <ul>
   <li>
     <strong>名前：</strong>
-    <%= @user.name %>
+    <%= current_user.name %>
   </li>
   <li>
     <strong>メールアドレス：</strong>
-    <%= @user.email %>
+    <%= current_user.email %>
   </li>
 </ul>
 
-<%= link_to 'メッセージ', messages_path %>
+<% if @user.lesson %>
+  <h3>講師として開催中のレッスンプラン</h3>
+  <% @user.lesson.lesson_plans.each_with_index do |plan, index| %>
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <h4>レッスンプラン <%= index + 1 %></h4>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% if plan.location_narrow == ''%>
+            <li>@<%= plan.location_broad %></li>
+          <% else %>
+            <li>@<%= plan.location_broad %> (<%= plan.location_narrow %>)</li>
+          <% end %>
+          <li>1回 <%= plan.minute %> 分</li>
+          <li>料金：<%= plan.price_yen.to_s(:delimited) %> 円</li>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <%= link_to 'レッスンを開催する', new_lesson_path %>
+<% end %>
 
-<%= link_to '編集', edit_user_path(@user) %> |
+<%= link_to 'メッセージ', messages_path %>
+<%= link_to 'ユーザー情報編集', edit_user_path(current_user) %>
+
+<%= link_to '編集', edit_user_path(current_user) %> |
 <%= link_to '戻る', :back %>

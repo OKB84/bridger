@@ -12,6 +12,7 @@
         <div class="panel panel-default">
           <div class="panel-heading text-center">
             <h4>レッスンプラン <%= index + 1 %></h4>
+            <%= link_to 'レッスン情報編集', edit_lesson(@lesson) %>
           </div>
           <div class="panel-body">
             <ul>
@@ -21,7 +22,7 @@
                 <li>@<%= plan.location_broad %> (<%= plan.location_narrow %>)</li>
               <% end %>
               <li>1回 <%= plan.minute %> 分</li>
-              <li>料金：<%= plan.price_yen %> 円</li>
+              <li>料金：<%= plan.price_yen.to_s(:delimited) %> 円</li>
             </ul>
           </div>
           <div class="text-center">

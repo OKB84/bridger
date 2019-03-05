@@ -1,7 +1,7 @@
 <%= form_for(lesson) do |f| %>
   <div class="form-group">
     <%= f.label :youtube_url1, 'メイン参考動画URL' %>
-    <%= f.text_field :youtube_url1, class:'form-control' %>
+    <%= f.text_field :youtube_url1, value:@lesson.youtube_url1 ,class:'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :youtube_url2, 'サブ参考動画URL(1)' %>

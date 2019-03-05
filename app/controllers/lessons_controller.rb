@@ -1,4 +1,6 @@
 class LessonsController < ApplicationController
+  skip_before_action :require_login, only: [:index, :show]
+  
   def index
     @lessons = Lesson.all
   end
@@ -11,8 +13,12 @@ class LessonsController < ApplicationController
   end
 
   def new
-    @lesson = Lesson.new
-    @lesson.lesson_plans.build
+    if lesson = Lesson.find_by(instructor_id: current_user.id)
+      redirect_to lesson_path(lesson) #editアクションが完成したらそちらに飛ばす
+    else
+      @lesson = Lesson.new
+      @lesson.lesson_plans.build
+    end
   end
 
   def create
@@ -27,6 +33,10 @@ class LessonsController < ApplicationController
   end
 
   def edit
+    @lesson = Lesson.find(params[:id])
+    unless @lesson == Lesson.find_by(instructor_id: current_user.id)
+      redirect_to user_path(current_user)
+    end
   end
   
   private

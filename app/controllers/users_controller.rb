@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     unless @user == current_user
-      redirect_to root_path
+      redirect_to user_path(current_user)
     end
   end
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     unless @user == current_user
-      redirect_to root_path
+      redirect_to user_path(current_user)
     end
   end
 
