@@ -11,27 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name, '名前' %><br />
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, '名前' %>
+    <%= f.text_field :name, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :email, 'メールアドレス' %><br />
-    <%= f.text_field :email %>
+  <div class="from-group">
+    <%= f.label :email, 'メールアドレス' %>
+    <%= f.text_field :email, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password, 'パスワード' %><br />
-    <%= f.password_field :password %>
+  <div class="form-group">
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password, class:'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, 'パスワード確認' %><br />
-    <%= f.password_field :password_confirmation %>
+  <div class="form-group">
+    <%= f.label :password_confirmation, 'パスワード確認' %>
+    <%= f.password_field :password_confirmation, class:'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :instrument_ids, '使用楽器' %><br />
+    <%= f.collection_check_boxes :instrument_ids, @instruments, :id, :ins_name_ja, class:'checkbox' %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '登録' %>
   </div>
 <% end %>
