@@ -3,9 +3,9 @@
 		<div class="row">
 			<div class="col-md-3 col-xs-5 col-sm-4 header-logo">
 				<br>
-				<a href="/"> 
+				<%= link_to root_path do %>
 					<h1 class="logo"><img src="/images/logo.png" class="logo-img" alt="">Bridger</h1>
-				</a>
+				<% end %>
 			</div>
 
 			<div class="col-md-8 col-md-offset-1 col-xs-7">
@@ -30,7 +30,7 @@
 								</li>
 								<li>
 									<%= link_to lessons_path do %>
-										<i class="fa fa-users"></i> 講師一覧</a>
+										<i class="fa fa-users"></i> 講師一覧
 									<% end %>
 								</li>
 								<% if current_user %>

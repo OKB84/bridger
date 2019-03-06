@@ -54,7 +54,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'font-awesome-rails'
 
-gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.7'
 
 gem 'rename'
