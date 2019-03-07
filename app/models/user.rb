@@ -17,8 +17,8 @@ class User < ApplicationRecord
 
   has_one :lesson, foreign_key: 'instructor_id', dependent: :destroy
   
-  has_many :interested_instruments
-  has_many :instruments, through: :interested_instruments
+  has_many :interested_instruments, dependent: :destroy
+  has_many :instruments, through: :interested_instruments, dependent: :destroy
   accepts_nested_attributes_for :interested_instruments, allow_destroy: true
   
 end

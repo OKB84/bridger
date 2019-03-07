@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190306164142) do
+ActiveRecord::Schema.define(version: 20190307120244) do
+
+  create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "lesson_id"
+    t.integer  "instrument_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["instrument_id"], name: "index_available_instruments_on_instrument_id", using: :btree
+    t.index ["lesson_id", "instrument_id"], name: "index_available_instruments_on_lesson_id_and_instrument_id", unique: true, using: :btree
+    t.index ["lesson_id"], name: "index_available_instruments_on_lesson_id", using: :btree
+  end
 
   create_table "instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "ins_name_ja"
@@ -72,6 +82,8 @@ ActiveRecord::Schema.define(version: 20190306164142) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "available_instruments", "instruments"
+  add_foreign_key "available_instruments", "lessons"
   add_foreign_key "interested_instruments", "instruments"
   add_foreign_key "interested_instruments", "users"
   add_foreign_key "lesson_plans", "lessons"

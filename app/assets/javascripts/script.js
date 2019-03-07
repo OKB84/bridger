@@ -75,11 +75,11 @@
 	//setHeaderBackground();
 
 	//Resize events
-	jQuery(window).smartresize(function(){
-		setHomeBannerHeight();
-		centerHomeBannerText();
-		//setHeaderBackground();
-	});
+	// jQuery(window).smartresize(function(){
+	// 	setHomeBannerHeight();
+	// 	centerHomeBannerText();
+	// 	//setHeaderBackground();
+	// });
 
 
 	//Set Down Arrow Button

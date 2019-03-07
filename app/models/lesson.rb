@@ -10,4 +10,9 @@ class Lesson < ApplicationRecord
 
   has_many :lesson_plans, dependent: :destroy
   accepts_nested_attributes_for :lesson_plans, allow_destroy: true
+  
+  has_many :available_instruments, dependent: :destroy
+  has_many :instruments, through: :available_instruments, dependent: :destroy
+  accepts_nested_attributes_for :available_instruments, allow_destroy: true
+  
 end
