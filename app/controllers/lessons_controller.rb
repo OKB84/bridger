@@ -10,6 +10,11 @@ class LessonsController < ApplicationController
     @url1 = @lesson.youtube_url1.gsub('https://www.youtube.com/watch?v=', '')
     @url2 = @lesson.youtube_url2.gsub('https://www.youtube.com/watch?v=', '')
     @url3 = @lesson.youtube_url3.gsub('https://www.youtube.com/watch?v=', '')
+    instruments = []
+    @lesson.instrument_ids.each do |id|
+      instruments << Instrument.find(id).ins_name_ja
+    end
+    @instrument_names = instruments.join('、')
   end
 
   def new
@@ -45,6 +50,10 @@ class LessonsController < ApplicationController
   end
   
   def lesson_params
-    params.require(:lesson).permit(:youtube_url1, :youtube_url2, :youtube_url3, :biography, :advantage, :instructor_id, lesson_plans_attributes: [:id, :minute, :location_broad, :location_narrow, :price_yen, :destroy])
+    params.require(:lesson).permit(:youtube_url1, :youtube_url2, :youtube_url3, :biography, :advantage, :instructor_id, lesson_plans_attributes: [:id, :minute, :location_broad, :location_narrow, :price_yen, :destroy], instrument_ids: [])
+  end
+  
+  def correct_user
+    
   end
 end

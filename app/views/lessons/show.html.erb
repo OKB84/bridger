@@ -4,7 +4,7 @@
     <div class="col-sm-4">
       <h3><%= @lesson.instructor.name %></h3>
       <ul>
-        <li>楽器：</li>
+        <li>楽器：<%= @instrument_names %></li>
         <li>分野：</li>
         <li>言語：</li>
       </ul>
@@ -12,7 +12,6 @@
         <div class="panel panel-default">
           <div class="panel-heading text-center">
             <h4>レッスンプラン <%= index + 1 %></h4>
-            <%= link_to 'レッスン情報編集', edit_lesson(@lesson) %>
           </div>
           <div class="panel-body">
             <ul>
@@ -26,7 +25,11 @@
             </ul>
           </div>
           <div class="text-center">
-            <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' %>
+            <% if current_user.lesson == Lesson.find_by(id: params[:id]) %>
+              <%= link_to 'レッスン情報編集', edit_lesson_path(@lesson), class:'btn btn-default' %>
+            <% else %>
+              <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' %>
+            <% end %>
           </div>
         </div>
       <% end %>

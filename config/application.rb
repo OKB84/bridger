@@ -23,3 +23,7 @@ module Bridger
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+Rails.application.configure do
+  config.action_view.field_error_proc = proc { |html_tag, instance| html_tag }
+end

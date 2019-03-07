@@ -14,12 +14,16 @@ class UsersController < ApplicationController
     unless @user == current_user
       redirect_to user_path(current_user)
     end
+    instruments = []
+    @user.instrument_ids.each do |id|
+      instruments << Instrument.find(id).ins_name_ja
+    end
+    @instrument_names = instruments.join('、')
   end
 
   # GET /users/new
   def new
     @user = User.new
-    @instruments = Instrument.all
   end
 
   # GET /users/1/edit

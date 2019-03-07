@@ -33,7 +33,7 @@
   
   <div class="form-group">
     <%= f.label :instrument_ids, '使用楽器' %><br />
-    <%= f.collection_check_boxes :instrument_ids, @instruments, :id, :ins_name_ja, class:'checkbox' %>
+    <%= f.collection_check_boxes :instrument_ids, Instrument.all , :id, :ins_name_ja, class:'checkbox' %>
   </div>
 
   <div class="actions">
