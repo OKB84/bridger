@@ -5,7 +5,7 @@
       <h3><%= @lesson.instructor.name %></h3>
       <ul>
         <li>楽器：<%= @instrument_names %></li>
-        <li>分野：</li>
+        <li>分野：<%= @subject_names %></li>
         <li>言語：</li>
       </ul>
       <% @lesson.lesson_plans.each_with_index do |plan, index| %>

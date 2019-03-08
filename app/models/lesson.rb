@@ -16,4 +16,11 @@ class Lesson < ApplicationRecord
   accepts_nested_attributes_for :available_instruments, allow_destroy: true
 
   validates :instrument_ids, presence: true
+  
+  has_many :available_subjects, dependent: :destroy
+  has_many :subjects, through: :available_subjects, dependent: :destroy
+  accepts_nested_attributes_for :available_instruments, allow_destroy: true
+  
+  validates :subject_ids, presence: true
+  
 end

@@ -15,6 +15,10 @@
     <strong>楽器：</strong>
     <%= @instrument_names %>
   </li>
+  <li>
+    <strong>気になる分野：</strong>
+    <%= @subject_names %>
+  </li>
 </ul>
 
 <% if @user.lesson %>
@@ -44,5 +48,5 @@
 <%= link_to 'メッセージ', messages_path %>
 <%= link_to 'ユーザー情報編集', edit_user_path(current_user) %>
 
-<%= link_to '編集', edit_user_path(current_user) %> |
+<%= link_to '編集', edit_user_path(current_user) %>
 <%= link_to '戻る', :back %>

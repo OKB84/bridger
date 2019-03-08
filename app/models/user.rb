@@ -21,4 +21,8 @@ class User < ApplicationRecord
   has_many :instruments, through: :interested_instruments, dependent: :destroy
   accepts_nested_attributes_for :interested_instruments, allow_destroy: true
   
+  has_many :interested_subjects, dependent: :destroy
+  has_many :subjects, through: :interested_subjects, dependent: :destroy
+  accepts_nested_attributes_for :interested_subjects, allow_destroy: true
+  
 end
