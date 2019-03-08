@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   post 'logout' => 'user_sessions#destroy', :as => :logout
   
   resources :messages, only: [:index, :show, :new, :create]
-  resources :lessons, only: [:index, :show, :new, :create, :edit]
+  resources :lessons, only: [:index, :show, :new, :create, :edit, :update]
 end
 

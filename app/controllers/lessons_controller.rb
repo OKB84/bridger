@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: [:show, :edit]
+  before_action :set_lesson, only: [:show, :edit, :update]
   skip_before_action :require_login, only: [:index, :show]
   
   def index
@@ -47,6 +47,16 @@ class LessonsController < ApplicationController
   def edit
     unless @lesson == Lesson.find_by(instructor_id: current_user.id)
       redirect_to user_path(current_user)
+    end
+  end
+  
+  def update
+    if @lesson.update(lesson_params)
+      flash[:success] = 'レッスン情報を更新しました。'
+      redirect_to @lesson
+    else
+      flash.now[:danger] = 'レッスン情報の更新に失敗しました。'
+      render :edit
     end
   end
   

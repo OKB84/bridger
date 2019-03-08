@@ -15,7 +15,7 @@
           </div>
           <div class="panel-body">
             <ul>
-              <% if plan.location_narrow == ''%>
+              <% if plan.location_narrow.blank? %>
                 <li>@<%= plan.location_broad %></li>
               <% else %>
                 <li>@<%= plan.location_broad %> (<%= plan.location_narrow %>)</li>
