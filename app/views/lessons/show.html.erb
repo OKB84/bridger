@@ -1,52 +1,86 @@
-<h1>講師詳細</h1>
-<div class="container">
+<%= stylesheet_link_tag 'lesson_show', media: 'all' %>
+
+<div id="title" class="lesson_show">
+  <div class="slogans">
+		<div class="slogan">
+			Instructor Details
+		</div>
+		<div class="secondary-slogan">
+			講師詳細
+		</div>
+	</div>
+</div>
+<div class="content">
+  <div class="contents container">
   <div class="row">
-    <div class="col-sm-4">
-      <h3><%= @lesson.instructor.name %></h3>
-      <ul>
-        <li>楽器：<%= @instrument_names %></li>
-        <li>分野：<%= @subject_names %></li>
-        <li>言語：</li>
-      </ul>
-      <% @lesson.lesson_plans.each_with_index do |plan, index| %>
+    <div class="col-md-8">
+      <div class="movie-wrap">
+        <iframe width="854" height="480" src="https://www.youtube.com/embed/<%= @url1 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="explanation">
+        <h3>Biography ||| 略歴</h3>
+        <p><%= @lesson.biography %></p>
+      </div>
+      <div class="explanation">
+        <h3>What you can learn ||| レッスンで学べること</h3>
+        <p><%= @lesson.advantage %></p>
+      </div>
+      <h3>その他参考演奏</h3>
+      <div class="col-sm-6">
+        <div class="movie-wrap">
+          <iframe width="426" height="240" src="https://www.youtube.com/embed/<%= @url2 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="movie-wrap">
+          <iframe width="426" height="240" src="https://www.youtube.com/embed/<%= @url3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="instructor">
+        <div class="text-center">
+          <img class="img-circle circular-img" src="/images/latest1.jpg">
+    			<h4 class="instructor-head"><%= @lesson.instructor.name %></h4>
+    		</div>
+        <ul>
+          <li>楽器：<%= @instruments.pluck(:ins_name_ja).join('、') %></li>
+          <li>分野：<%= @subjects.pluck(:subj_name_ja).join('、') %></li>
+          <li>言語：<%= @languages.pluck(:lang_name).join('、') %></li>
+        </ul>
+      </div>
+      
+      <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
         <div class="panel panel-default">
           <div class="panel-heading text-center">
-            <h4>レッスンプラン <%= index + 1 %></h4>
+            <h3 class="panel-title">レッスンプラン <%= index %></h3>
           </div>
           <div class="panel-body">
             <ul>
               <% if plan.location_narrow.blank? %>
-                <li>@<%= plan.location_broad %></li>
+                <li>場所： <%= plan.location_broad %></li>
               <% else %>
-                <li>@<%= plan.location_broad %> (<%= plan.location_narrow %>)</li>
+                <li>場所： <%= plan.location_broad %> ( <%= plan.location_narrow %> )</li>
               <% end %>
-              <li>1回 <%= plan.minute %> 分</li>
-              <li>料金：<%= plan.price_yen.to_s(:delimited) %> 円</li>
+              <li>時間： <%= plan.minute %> 分</li>
+              <li>料金： <%= plan.price_yen.to_s(:delimited) %> 円</li>
             </ul>
           </div>
           <div class="text-center">
-            <% if current_user.lesson == Lesson.find_by(id: params[:id]) %>
-              <%= link_to 'レッスン情報編集', edit_lesson_path(@lesson), class:'btn btn-default' %>
+            <% if logged_in? %>
+              <% if current_user.lesson == @lesson %>
+                <%= link_to 'レッスン情報編集', edit_lesson_path(@lesson), class:'btn btn-o' %>
+              <% else %>
+                <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-o' %>
+              <% end %>
             <% else %>
-              <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' %>
+              <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-o' %>
             <% end %>
           </div>
         </div>
       <% end %>
     </div>
-    <div class="col-sm-8">
-      <iframe width="800" height="450" src="https://www.youtube.com/embed/<%= @url1 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      
-      <h2>Biography | 略歴</h2>
-      <%= @lesson.biography %>
-      
-      <h2>What you can learn | レッスンで学べること</h2>
-      <%= @lesson.advantage %>
-      
-      <h3>その他参考演奏</h3>
-      <iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url2 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <iframe width="400" height="225" src="https://www.youtube.com/embed/<%= @url3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+
   </div>
 </div>
-<%= link_to '戻る', :back %>
+</div>

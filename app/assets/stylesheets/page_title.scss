@@ -1,0 +1,31 @@
+#title {
+  position: relative;     
+}
+
+#title .slogans {
+  text-align: center;
+  padding-top: 120px;
+}
+
+#title .slogan {
+  font-size: 3em;
+  margin-bottom: 10px;
+  line-height: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  font-weight: bold;
+}
+
+#title .secondary-slogan {
+  font-size: 1.6em;
+  color: rgba(255,255,255,0.7);
+  line-height: 1em;
+  font-family: 'Raleway', sans-serif;
+}
+
+#title {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+  height: 280px;
+  margin-bottom: 60px;
+}
+

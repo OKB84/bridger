@@ -1,0 +1,25 @@
+.lesson_index {
+  background: url("/images/lesson_index.jpg") center center fixed;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  padding-top: 60px;
+  background: #fcfcfc;
+}
+
+.instructor h4.instructor-head{
+  font-family: 'Raleway', sans-serif;
+  margin-top: 23px;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.instructor a:hover {
+  color: #5dc9f4;
+}
+
+.instructor p {
+  margin-bottom: 50px;
+}
+

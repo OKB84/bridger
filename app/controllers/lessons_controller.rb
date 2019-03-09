@@ -11,22 +11,14 @@ class LessonsController < ApplicationController
     @url2 = @lesson.youtube_url2.gsub('https://www.youtube.com/watch?v=', '')
     @url3 = @lesson.youtube_url3.gsub('https://www.youtube.com/watch?v=', '')
     
-    instruments = []
-    @lesson.instrument_ids.each do |id|
-      instruments << Instrument.find(id).ins_name_ja
-    end
-    @instrument_names = instruments.join('、')
-    
-    subjects = []
-    @lesson.subject_ids.each do |id|
-      subjects << Subject.find(id).subj_name_ja
-    end
-    @subject_names = subjects.join('、')    
+    @instruments = @lesson.instruments
+    @subjects = @lesson.subjects
+    @languages = @lesson.instructor.languages
   end
 
   def new
     if lesson = Lesson.find_by(instructor_id: current_user.id)
-      redirect_to lesson_path(lesson) #editアクションが完成したらそちらに飛ばす
+      redirect_to edit_lesson_url(lesson)
     else
       @lesson = Lesson.new
       @lesson.lesson_plans.build

@@ -11,3 +11,5 @@ Rails.application.config.assets.version = '1.0'
 # Rails.application.config.assets.precompile += %w( search.js )
 
 Rails.application.config.assets.precompile += %w( magister.css )
+
+Rails.application.config.assets.precompile += %w( bootstrap.min.css style.css toppage.css lesson_index.css lesson_show.css user_new.css)

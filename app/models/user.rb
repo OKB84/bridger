@@ -25,4 +25,9 @@ class User < ApplicationRecord
   has_many :subjects, through: :interested_subjects, dependent: :destroy
   accepts_nested_attributes_for :interested_subjects, allow_destroy: true
   
+  has_many :users_languages, dependent: :destroy
+  has_many :languages, through: :users_languages, dependent: :destroy
+  accepts_nested_attributes_for :users_languages, allow_destroy: true
+  
+  validates :languages, presence: true
 end

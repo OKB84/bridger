@@ -11,11 +11,15 @@
   </li>
   <li>
     <strong>楽器：</strong>
-    <%= @instrument_names %>
+    <%= @instruments.pluck(:ins_name_ja).join('、') %>
   </li>
   <li>
     <strong>気になる分野：</strong>
-    <%= @subject_names %>
+    <%= @subjects.pluck(:subj_name_ja).join('、') %>
+  </li>
+  <li>
+    <strong>使用言語：</strong>
+    <%= @languages.pluck(:lang_name).join('、') %>
   </li>
 </ul>
 

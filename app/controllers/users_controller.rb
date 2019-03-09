@@ -15,17 +15,9 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
     
-    instruments = []
-    @user.instrument_ids.each do |id|
-      instruments << Instrument.find(id).ins_name_ja
-    end
-    @instrument_names = instruments.join('、')
-
-    subjects = []
-    @user.subject_ids.each do |id|
-      subjects << Subject.find(id).subj_name_ja
-    end
-    @subject_names = subjects.join('、')
+    @instruments = @user.instruments
+    @subjects = @user.subjects
+    @languages = @user.instructor.languages
   end
 
   # GET /users/new
@@ -88,6 +80,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, instrument_ids: [], subject_ids: [])
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, instrument_ids: [], subject_ids: [], language_ids: [])
     end
 end

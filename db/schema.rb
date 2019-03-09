@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190308094306) do
+ActiveRecord::Schema.define(version: 20190308114213) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -57,6 +57,12 @@ ActiveRecord::Schema.define(version: 20190308094306) do
     t.index ["subject_id"], name: "index_interested_subjects_on_subject_id", using: :btree
     t.index ["user_id", "subject_id"], name: "index_interested_subjects_on_user_id_and_subject_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_interested_subjects_on_user_id", using: :btree
+  end
+
+  create_table "languages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "lang_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lesson_plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -109,6 +115,16 @@ ActiveRecord::Schema.define(version: 20190308094306) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  create_table "users_languages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["language_id"], name: "index_users_languages_on_language_id", using: :btree
+    t.index ["user_id", "language_id"], name: "index_users_languages_on_user_id_and_language_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_users_languages_on_user_id", using: :btree
+  end
+
   add_foreign_key "available_instruments", "instruments"
   add_foreign_key "available_instruments", "lessons"
   add_foreign_key "available_subjects", "lessons"
@@ -121,4 +137,6 @@ ActiveRecord::Schema.define(version: 20190308094306) do
   add_foreign_key "lessons", "users", column: "instructor_id"
   add_foreign_key "messages", "users", column: "receive_user_id"
   add_foreign_key "messages", "users", column: "send_user_id"
+  add_foreign_key "users_languages", "languages"
+  add_foreign_key "users_languages", "users"
 end
