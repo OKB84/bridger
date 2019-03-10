@@ -12,47 +12,53 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :instrument_ids, '楽器' %><br />
-    <%= f.collection_check_boxes :instrument_ids, Instrument.all, :id, :ins_name_ja, class:'checkbox' %>
+    <%= f.label :instrument_ids, '楽器', class:'mini-title necessary' %><br />
+    <%= f.collection_check_boxes :instrument_ids, Instrument.all, :id, :ins_name_ja, class:'checkbox' do |b| %>
+      <%= b.check_box %>
+      <%= b.label { b.text } %>&nbsp;&nbsp;
+    <% end %>
   </div>
 
   <div class="form-group">
-    <%= f.label :subject_ids, '分野' %><br />
-    <%= f.collection_check_boxes :subject_ids, Subject.all, :id, :subj_name_ja, class:'checkbox' %>
+    <%= f.label :subject_ids, '分野', class:'mini-title necessary' %><br />
+    <%= f.collection_check_boxes :subject_ids, Subject.all, :id, :subj_name_ja, class:'checkbox' do |b| %>
+      <%= b.check_box %>
+      <%= b.label { b.text } %>&nbsp;&nbsp;
+    <% end %>
   </div>
 
   <div class="form-group">
-    <%= f.label :youtube_url1, 'メイン参考動画URL' %>
+    <%= f.label :youtube_url1, 'メイン参考動画URL', class:'mini-title necessary' %>
     <%= f.text_field :youtube_url1, value:@lesson.youtube_url1 ,class:'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :youtube_url2, 'サブ参考動画URL(1)' %>
+    <%= f.label :youtube_url2, 'サブ参考動画URL(1)', class:'mini-title' %>
     <%= f.text_field :youtube_url2, class:'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :youtube_url3, 'サブ参考動画URL(2)' %>
+    <%= f.label :youtube_url3, 'サブ参考動画URL(2)', class:'mini-title' %>
     <%= f.text_field :youtube_url3, class:'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :biography, '自己紹介' %>
-    <%= f.text_area :biography, class:'form-control' %>
+    <%= f.label :biography, '自己紹介', class:'mini-title necessary' %>
+    <%= f.text_area :biography, size:'8x8',class:'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :advantage, 'レッスンで学べること' %>
-    <%= f.text_area :advantage, class:'form-control' %>
+    <%= f.label :advantage, 'レッスンで学べること', class:'mini-title necessary' %>
+    <%= f.text_area :advantage, size:'8x8', class:'form-control' %>
   </div>
   <%= f.hidden_field :instructor_id, value: current_user.id %>
 
-  <h4>レッスンプラン詳細（複数設定可）</h4>
+  <h4 class="mini-title necessary plan-head">レッスンプラン詳細（複数設定可）</h4>
   <%= f.fields_for :lesson_plans do |l| %>
     <%= render 'lesson_plan_fields', f: l %>
   <% end %>
   
   <div class="text-right">
-    <%= link_to_add_association '明細を追加', f, :lesson_plans,
-    class: 'btn btn-default'
-    %>
+    <%= link_to_add_association '明細を追加', f, :lesson_plans, class: 'btn btn-default' %>
   </div>
-  
-  <%= f.submit '登録', class: 'btn' %>
+
+  <div class="actions text-center">
+    <%= f.submit submit_name, class: 'btn btn-default btn-lg' %>
+  </div>
 <% end %>

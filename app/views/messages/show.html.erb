@@ -1,31 +1,43 @@
-<h1>メッセージ詳細</h1>
-<table>
-  <thead>
-    <tr>
-      <th>送信元</th>
-      <th>宛先</th>
-      <th>内容</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <% if @message.send_user_id == current_user.id %>
-          <%= @message.send_user.name %>
-        <% else %>
-          <%= link_to @message.send_user.name, new_message_path(user_id: @message.send_user_id) %>
-        <% end %>
-      </td>
-      <td>
-        <% if @message.receive_user_id == current_user.id %>
-          <%= @message.receive_user.name %>
-        <% else %>
-          <%= link_to @message.receive_user.name, new_message_path(user_id: @message.receive_user_id) %>
-        <% end %>
-      </td>
-      <td><%= @message.content %></td>
-    </tr>
-  </tbody>
-</table>
+<%= stylesheet_link_tag 'message_show', media: 'all' %>
 
-<%= link_to '戻る', :back %>
+<div id="title" class="message_show">
+  <div class="slogans">
+		<div class="slogan">
+		  Message Content
+		</div>
+		<div class="secondary-slogan">
+			メッセージ詳細
+		</div>
+	</div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <div class="message-info">
+          <% if @message.send_user == current_user %>
+            <h4>送信元：<%= @message.send_user.name %></h4>
+            <h4 class="notme">宛　先：<%= link_to @message.receive_user.name, new_message_path(user_id: @message.receive_user_id) %></h4>
+            <p class="time">送信日時：<%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
+          <% else %>
+            <h4>送信元：<%= link_to @message.send_user.name, new_message_path(user_id: @message.send_user_id) %></h4>
+            <h4 class="notme">宛　先：<%= @message.receive_user.name %></h4>
+            <p class="time">受信日時：<%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
+          <% end %>
+        </div>
+        <div class="message-box">
+          <div class="message-content">
+            <%= simple_format(@message.content) %>
+          </div>
+        </div>
+        <div class="action">
+          <% if @message.receive_user == current_user %>
+            <%= link_to '返信', new_message_path(user_id: @message.receive_user_id), class: 'btn btn-default' %>
+          <% end %>
+          <%= link_to '戻る', :back, class:'btn btn-default' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

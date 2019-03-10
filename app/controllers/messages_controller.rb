@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    receiver = User.find_by(name: message_params[:receive_user_name])
+    receiver = User.find(params[:receive_user_id])
     content = message_params[:content]
     @message = Message.new(send_user: current_user, receive_user: receiver, content: content)
     if @message.save
@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
   private
   
   def message_params
-    params.require(:message).permit(:receive_user_name, :content)
+    params.require(:message).permit(:content)
   end
   
 end

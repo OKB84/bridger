@@ -9,6 +9,32 @@
 }
 
 h3 {
-  text-align: center;
-  margin-bottom: 30px;
+     text-align: center;
+     margin-bottom: 30px;
+}
+ 
+h3 span {
+     position: relative;
+     display: inline-block;
+     padding: 0 0.5em;
+}
+      
+h3 span::before, h3 span::after{
+     position: absolute;
+     top: 50%;
+     content: '';
+     width: 1.5em;
+     height: 1px;
+     background-color: black;
+}
+ 
+h3 span::before {left: 100%;}
+h3 span::after { right: 100%;}
+
+.message-content {
+  /* 文の行数を2行に保ち、最後に ... を追加するスタイル */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
