@@ -36,12 +36,12 @@
 								<% if current_user %>
 									<li>
 										<%= link_to user_path(current_user) do %>
-											<i class="fa fa-user-edit"></i> マイページ
+											<i class="fa fa-user"></i> マイページ
 										<% end %>
 									</li>
 									<li>
 										<%= link_to :logout, method: :post do %>
-											<i class="fa fa-sign-out-alt"></i> ログアウト
+											<i class="fa fa-sign-out"></i> ログアウト
 										<% end %>
 									</li>
 								<% else %>

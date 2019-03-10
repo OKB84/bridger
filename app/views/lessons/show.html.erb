@@ -25,17 +25,23 @@
           <h3>What you can learn - レッスンで学べること</h3>
           <p><%= @lesson.advantage %></p>
         </div>
-        <h3>More Videos - 参考演奏</h3>
-        <div class="col-sm-6">
-          <div class="movie-wrap">
-            <iframe width="426" height="240" src="https://www.youtube.com/embed/<%= @url2 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <% unless @url2.blank? && @url3.blank? %>
+          <h3>More Videos - 参考演奏</h3>
+        <% end %> 
+        <% unless @url2.blank? %>
+          <div class="col-sm-6">
+            <div class="movie-wrap">
+              <iframe width="426" height="240" src="https://www.youtube.com/embed/<%= @url2 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
           </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="movie-wrap">
-            <iframe width="426" height="240" src="https://www.youtube.com/embed/<%= @url3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <% end %>
+        <% unless @url3.blank? %>
+          <div class="col-sm-6">
+            <div class="movie-wrap">
+              <iframe width="426" height="240" src="https://www.youtube.com/embed/<%= @url3 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
       <div class="col-md-4">
         <div class="instructor">
