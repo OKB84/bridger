@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
     @receive_user = User.find(params[:user_id])
-    unless @receive_user.lesson.present?
+    if !(@receive_user.lesson.present?) || @receive_user == current_user
       redirect_to messages_url
     end
     @chosen_plan = LessonPlan.find_by(id: params[:plan_id])

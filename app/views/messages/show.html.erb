@@ -33,7 +33,7 @@
         </div>
         <div class="action">
           <% if @message.receive_user == current_user %>
-            <%= link_to '返信', new_message_path(user_id: @message.receive_user_id, reply_message: @message.content), class: 'btn btn-default' %>
+            <%= link_to '返信', new_message_path(user_id: @message.send_user_id, reply_message: @message.content), class: 'btn btn-default' %>
           <% end %>
           <%= link_to '戻る', :back, class:'btn btn-default' %>
         </div>
