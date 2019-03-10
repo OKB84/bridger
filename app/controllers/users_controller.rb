@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     
     @instruments = @user.instruments
     @subjects = @user.subjects
-    @languages = @user.instructor.languages
+    @languages = @user.languages
   end
 
   # GET /users/new

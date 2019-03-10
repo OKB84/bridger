@@ -1,43 +1,63 @@
-<h1>メッセージ</h1>
+<%= stylesheet_link_tag 'message_index', media: 'all' %>
 
-<h2>受信済み</h2>
-<table>
-  <thead>
-    <tr>
-      <th>差出人</th>
-      <th>内容</th>
-      <th>受信日時</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @received_messages.each do |message| %>
-      <tr>
-        <td><%= link_to message.send_user.name, new_message_path(user_id: message.send_user_id) %></td>
-        <td><%= link_to message.content, message %></td>
-        <td><%= message.created_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="title" class="message_index">
+  <div class="slogans">
+		<div class="slogan">
+		  Messages
+		</div>
+		<div class="secondary-slogan">
+			メッセージ
+		</div>
+	</div>
+</div>
 
-<h2>送信済み</h2>
-<table>
-  <thead>
-    <tr>
-      <th>宛先</th>
-      <th>内容</th>
-      <th>送信日時</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @sended_messages.each do |message| %>
-      <tr>
-        <td><%= link_to message.receive_user.name, new_message_path(user_id: message.receive_user_id) %></td>
-        <td><%= link_to message.content, message %></td>
-        <td><%= message.created_at %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="mailbox col-sm-6">
+        <h3>受信済み</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>差出人</th>
+              <th>内容</th>
+              <th>受信日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @received_messages.each do |message| %>
+              <tr>
+                <td><%= link_to message.send_user.name, new_message_path(user_id: message.send_user_id) %></td>
+                <td><%= link_to message.content, message %></td>
+                <td><%= message.created_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="mailbox col-sm-6">
+        <h3>送信済み</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>宛先</th>
+              <th>内容</th>
+              <th>送信日時</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sended_messages.each do |message| %>
+              <tr>
+                <td><%= link_to message.receive_user.name, new_message_path(user_id: message.receive_user_id) %></td>
+                <td><%= link_to message.content, message %></td>
+                <td><%= message.created_at %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to '戻る', :back %>
+

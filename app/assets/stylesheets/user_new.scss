@@ -7,7 +7,21 @@
   padding-top: 60px;
 }
 
+.notice {
+  color: red;
+  text-align: right;
+}
+
 .mini-title {
   font-size: 15px;
   color: #2b4055;
+}
+
+.necessary:after {
+  content: ' *';
+  color: red;
+}
+
+.actions {
+  margin: 30px 0 60px 0;
 }

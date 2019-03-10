@@ -1,55 +1,104 @@
-<h1>マイページ</h1>
+<%= stylesheet_link_tag 'user_show', media: 'all' %>
 
-<ul>
-  <li>
-    <strong>名前：</strong>
-    <%= current_user.name %>
-  </li>
-  <li>
-    <strong>メールアドレス：</strong>
-    <%= current_user.email %>
-  </li>
-  <li>
-    <strong>楽器：</strong>
-    <%= @instruments.pluck(:ins_name_ja).join('、') %>
-  </li>
-  <li>
-    <strong>気になる分野：</strong>
-    <%= @subjects.pluck(:subj_name_ja).join('、') %>
-  </li>
-  <li>
-    <strong>使用言語：</strong>
-    <%= @languages.pluck(:lang_name).join('、') %>
-  </li>
-</ul>
+<div id="title" class="user_show">
+  <div class="slogans">
+		<div class="slogan">
+		  My Account
+		</div>
+		<div class="secondary-slogan">
+			マイページ
+		</div>
+	</div>
+</div>
 
-<% if @user.lesson %>
-  <h3>講師として開催中のレッスンプラン</h3>
-  <% @user.lesson.lesson_plans.each_with_index do |plan, index| %>
-    <div class="panel panel-default">
-      <div class="panel-heading text-center">
-        <h4>レッスンプラン <%= index + 1 %></h4>
-      </div>
-      <div class="panel-body">
+
+<div class="content">
+  <div class="container">
+    <div class="row">
+      <div class="myinfo">
+        <div class="text-center">
+          <img class="img-circle circular-img" src="/images/latest1.jpg">
+    	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
+    	  </div>
+    	</div>
+
+      <div class="col-sm-4 col-sm-offset-4">
         <ul>
-          <% if plan.location_narrow.blank? %>
-            <li>@<%= plan.location_broad %></li>
-          <% else %>
-            <li>@<%= plan.location_broad %> (<%= plan.location_narrow %>)</li>
-          <% end %>
-          <li>1回 <%= plan.minute %> 分</li>
-          <li>料金：<%= plan.price_yen.to_s(:delimited) %> 円</li>
+          <li>
+            <strong>メールアドレス：</strong>
+            <%= current_user.email %>
+          </li>
+          <li>
+            <strong>楽器：</strong>
+            <%= @instruments.pluck(:ins_name_ja).join('、') %>
+          </li>
+          <li>
+            <strong>気になる分野：</strong>
+            <%= @subjects.pluck(:subj_name_ja).join('、') %>
+          </li>
+          <li>
+            <strong>使用言語：</strong>
+            <%= @languages.pluck(:lang_name).join('、') %>
+          </li>
         </ul>
       </div>
+
     </div>
-  <% end %>
-  <%= link_to 'レッスン情報編集', edit_lesson_path(@user.lesson), class:'btn btn-default' %>
-<% else %>
-  <%= link_to 'レッスンを開催する', new_lesson_path %>
-<% end %>
+    <div class="row menu text-center">
+      <div class="col-sm-2 col-sm-offset-3 col-xs-4">
+        <a href="#">
+          <i class="fa fa-search"></i>
+        </a>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <%= link_to edit_user_path(current_user) do %>
+          <i class="fa fa-edit"></i>
+        <% end %>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <%= link_to messages_path do %>
+          <i class="fa fa-envelope"></i>
+        <% end %>
+      </div>
+    </div>
 
-<%= link_to 'メッセージ', messages_path %>
-<%= link_to 'ユーザー情報編集', edit_user_path(current_user) %>
 
-<%= link_to '編集', edit_user_path(current_user) %>
-<%= link_to '戻る', :back %>
+    <% if @user.lesson %>
+      <div class="row">
+        <h3>開催中のレッスン</h3>
+        <% @user.lesson.lesson_plans.each.with_index(1) do |plan, index| %>
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h4 class="panel-title">レッスンプラン <%= index %></h4>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <% if plan.location_narrow.blank? %>
+                    <li>場所： <%= plan.location_broad %></li>
+                  <% else %>
+                    <li>場所： <%= plan.location_broad %>  ( <%= plan.location_narrow %> )</li>
+                  <% end %>
+                  <li>時間： <%= plan.minute %> 分</li>
+                  <li>料金： <%= plan.price_yen.to_s(:delimited) %> 円</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="text-center lesson-button">
+        <%= link_to @user.lesson, class:'btn btn-default' do %>
+          <i class="fa fa-paperclip"></i> レッスン詳細
+        <% end %>
+        <%= link_to edit_lesson_path(@user.lesson), class:'btn btn-default' do %>
+          <i class="fa fa-edit"></i> レッスン編集
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center lesson-button">
+        <%= link_to 'レッスンを開催する', new_lesson_path, class:'btn btn-default'  %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -26,6 +26,13 @@
 
 }
 
+h3 {
+  padding: 0.25em 0.5em;/*上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: transparent;/*背景透明に*/
+  border-left: solid 5px #3a6287;/*左線*/
+}
+
 .explanation {
   margin-bottom: 50px;
 }
@@ -38,6 +45,10 @@
   font-size: 22px;
 }
 
+.instructor img {
+  box-shadow: 3px 3px 4px gray;
+}
+
 .instructor ul {
   margin-bottom: 50px;
   position: relative;
@@ -45,9 +56,13 @@
 
 .panel {
   width: 80%;
-  margin: auto;
+  margin: 30px auto;
 }
 
 .btn {
   margin: -5px 0 20px 0;
+}
+
+.panel a {
+  font-size: 12px;
 }
