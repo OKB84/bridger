@@ -17,10 +17,10 @@ class MessagesController < ApplicationController
     @chosen_plan = LessonPlan.find_by(id: params[:plan_id])
     if @chosen_plan
       @default_message = 
-      "はじめまして。\r#{current_user.name}と申します。\r\r以下の内容でレッスンを受講させていただきたいのですが、ご都合はいかがでしょうか。\r\r・場所：#{@chosen_plan.location_broad}\r・時間：#{@chosen_plan.minute}分\r・金額：#{@chosen_plan.price_yen.to_s(:delimited)}円\r・第一希望日時：●月●日（●）●●：●●開始\r・第二希望日時：●月●日（●）●●：●●開始\r・第三希望日時：●月●日（●）●●：●●開始"
+      "#{@receive_user.name} さん、はじめまして。\r#{current_user.name} と申します。\r\r以下の内容でレッスンを受講させていただきたいのですが、ご都合はいかがでしょうか。\r\r・場所：#{@chosen_plan.location_broad}\r・時間：#{@chosen_plan.minute}分\r・金額：#{@chosen_plan.price_yen.to_s(:delimited)}円\r・第一希望日時：●月●日（●）●●：●●開始\r・第二希望日時：●月●日（●）●●：●●開始\r・第三希望日時：●月●日（●）●●：●●開始"
     end
     if params[:reply_message]
-      @default_message = "\r\r>#{params[:reply_message]}"
+      @default_message = "\r\r---------- original message ----------\r\r#{params[:reply_message]}"
     end
   end
 
