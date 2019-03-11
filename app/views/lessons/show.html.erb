@@ -50,9 +50,9 @@
       			<h4 class="instructor-head"><%= @lesson.instructor.name %></h4>
       		</div>
           <ul>
-            <li>楽器：<%= @instruments.pluck(:ins_name_ja).join('、') %></li>
-            <li>分野：<%= @subjects.pluck(:subj_name_ja).join('、') %></li>
-            <li>言語：<%= @languages.pluck(:lang_name).join('、') %></li>
+            <li><strong>楽器：</strong><%= @instruments.pluck(:ins_name_ja).join('、') %></li>
+            <li><strong>分野：</strong><%= @subjects.pluck(:subj_name_ja).join('、') %></li>
+            <li><strong>言語：</strong><%= @languages.pluck(:lang_name).join('、') %></li>
           </ul>
         </div>
         
