@@ -52,8 +52,15 @@
 }
 
 h3 {
-  /*線の種類（実線） 太さ 色*/
-  border-bottom: solid 3px rgba(55, 78, 142, 0.5);
+  position: relative;
+  padding: 0.25em 0;
+}
+h3:after {
+  content: "";
+  display: block;
+  height: 4px;
+  background: -webkit-linear-gradient(to right, black, transparent);
+  background: linear-gradient(to right, black, transparent);
 }
 
 .lesson-button {

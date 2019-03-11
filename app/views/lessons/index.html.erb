@@ -18,7 +18,7 @@
 			<div class="col-md-3 col-sm-6">
 				<div class="instructor">
 					<div class="text-center">
-			      <img class="img-circle circular-img" src="/images/latest1.jpg">
+			      <img class="img-circle circular-img" src="<%= gravatar_url(lesson.instructor, { size: 180 }) %>">
 						<h4 class="instructor-head"><%= link_to lesson.instructor.name, lesson %></h4>
 					</div>
 					<ul>

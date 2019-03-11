@@ -14,10 +14,11 @@
 
 <div class="content">
   <div class="container">
+    <%= render 'layouts/flash_messages' %>
     <div class="row">
       <div class="myinfo">
         <div class="text-center">
-          <img class="img-circle circular-img" src="/images/latest1.jpg">
+          <img class="img-circle circular-img" src="<%= gravatar_url(@user, { size: 180 }) %>">
     	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
     	  </div>
     	</div>
@@ -65,7 +66,9 @@
 
     <% if @user.lesson %>
       <div class="row">
-        <h3>開催中のレッスン</h3>
+        <div class="col-lg-12">
+          <h3>&nbsp;&nbsp;開催中のレッスン</h3>
+        </div>
         <% @user.lesson.lesson_plans.each.with_index(1) do |plan, index| %>
           <div class="col-sm-4 col-md-3">
             <div class="panel panel-default">

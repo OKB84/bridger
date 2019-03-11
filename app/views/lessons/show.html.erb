@@ -12,8 +12,9 @@
 </div>
 <div class="content">
   <div class="container">
+    <%= render 'layouts/flash_messages' %>
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-12">
         <div class="movie-wrap">
           <iframe width="854" height="480" src="https://www.youtube.com/embed/<%= @url1 %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -43,10 +44,10 @@
           </div>
         <% end %>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12">
         <div class="instructor">
           <div class="text-center">
-            <img class="img-circle circular-img" src="/images/latest1.jpg">
+            <img class="img-circle circular-img" src="<%= gravatar_url(@lesson.instructor, { size: 180 }) %>">
       			<h4 class="instructor-head"><%= @lesson.instructor.name %></h4>
       		</div>
           <ul>

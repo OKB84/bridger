@@ -29,7 +29,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
     if @lesson.save
       flash[:success] = 'レッスン情報を登録しました'
-      redirect_to lesson_url(@lesson.id)
+      redirect_to @lesson
     else
       flash.now[:danger] = 'レッスン情報の登録に失敗しました'
       render :new

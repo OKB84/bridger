@@ -37,6 +37,10 @@ h3 {
   margin-bottom: 50px;
 }
 
+.explanation p {
+  margin-left: 3%;
+}
+
 
 .instructor h4.instructor-head{
   font-family: 'Raleway', sans-serif;
@@ -52,6 +56,8 @@ h3 {
 .instructor ul {
   margin-bottom: 50px;
   position: relative;
+  padding-inline-start: 0;
+  padding: 0 10%;
 }
 
 .panel {

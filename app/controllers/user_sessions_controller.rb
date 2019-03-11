@@ -9,7 +9,8 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
     
     if @user
-      redirect_back_or_to(user_path(@user), notice: 'ログインに成功しました')
+      flash[:success] = 'ログインに成功しました'
+      redirect_back_or_to(user_path(@user))
     else
       flash.now[:alert] = 'ログインに失敗しました'
       render action: 'new'
@@ -18,6 +19,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(root_path, notice: 'ログアウトしました')
+    flash[:success] = 'ログアウトしました'
+    redirect_to login_url
   end
 end
