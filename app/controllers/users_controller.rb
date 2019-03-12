@@ -41,9 +41,11 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        flash[:warning] = 'メールアドレス認証を行なってください'
+        format.html { redirect_to login_url }
         format.json { render :show, status: :created, location: @user }
       else
+        flash.now[:danger] = 'ユーザー登録に失敗しました'
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -55,9 +57,11 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        flash[:success] = '編集が完了しました'
+        format.html { redirect_to @user }
         format.json { render :show, status: :ok, location: @user }
       else
+        flash.now[:danger] = '編集に失敗しました'
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

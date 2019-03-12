@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def index
-    @sended_messages = current_user.messages
-    @received_messages = current_user.reverses_of_message
+    @sended_messages = current_user.messages.order(created_at: 'DESC')
+    @received_messages = current_user.reverses_of_message.order(created_at: 'DESC')
   end
 
   def show

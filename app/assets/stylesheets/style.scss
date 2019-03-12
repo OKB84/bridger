@@ -139,6 +139,10 @@ li{
   margin-top: -20px;
 }
 
+.each-checkbox {
+  display: inline-block;
+}
+
 /*////////////////////////////////////////////////////////////////////////
 //  02 - Header
 ///////////////////////////////////////////////////////////////////////*/
@@ -241,13 +245,9 @@ h1.logo {
 ///////////////////////////////////////////////////////////////////////*/
 
 .content-block{
-  background:transparent no-repeat center center fixed;
-  -webkit-background-size:100%;
-  -moz-background-size:100%;
-  -o-background-size:100%;
-  background-size:100%;
-  background-size:cover;
-  overflow:hidden;
+  background: transparent no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
   padding: 60px 0;
 }
 .parallax{
