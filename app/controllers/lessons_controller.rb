@@ -3,7 +3,12 @@ class LessonsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   
   def index
-    @lessons = Lesson.all
+    if params[:lesson_search_form].present?
+      search_form = Form::LessonSearchForm.new(lesson_search_form_params)
+      @lessons = search_form.search
+    else
+      @lessons = Lesson.all
+    end
   end
 
   def show
@@ -62,7 +67,7 @@ class LessonsController < ApplicationController
     params.require(:lesson).permit(:youtube_url1, :youtube_url2, :youtube_url3, :biography, :advantage, :instructor_id, lesson_plans_attributes: [:id, :minute, :location_broad, :location_narrow, :price_yen, :destroy], instrument_ids: [], subject_ids: [])
   end
   
-  def correct_user
-    
+  def lesson_search_form_params
+    params.require(:lesson_search_form).permit(:name, :location_broad_id, language_ids: [], instrument_ids: [], subject_ids: [])
   end
 end
