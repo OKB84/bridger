@@ -12,32 +12,16 @@
 </div>
 <div class="content">
 	<div class="container">
-		
 		<%= form_for @search_form, as: 'search', url: :lessons, html: {method: :get} do |f| %>
-	
-			<%= f.label :name, "名前", class:'mini-title'%>
-			<%= f.text_field :name %>
-			<%= f.label :language_ids, '言語', class:'mini-title necessary' %><br />
-	    <%= f.collection_check_boxes :language_ids, Language.all, :id, :lang_name, class:'checkbox' do |b| %>
+		<%= f.label :name, "名前", class:'mini-title'%>
+		<%= f.text_field :name %>
+		<%= f.label :language_ids, '言語', class:'mini-title necessary' %><br />
+	    <%= f.collection_check_boxes :language_ids, Language.all, :id, :lang_name, class:'checkbox', include_hidden: false do |b| %>
 	      <div class="each-checkbox">
 	        <%= b.check_box %>
 	        <%= b.label { b.text } %>&nbsp;&nbsp;
 	      </div>
 	    <% end %>
-			<!--<%= f.label :instrument_ids, '楽器', class:'mini-title' %><br />-->
-	  <!--  <%= f.collection_check_boxes :instrument_ids, Instrument.all, :id, :ins_name_ja, class:'checkbox' do |b| %>-->
-	  <!--    <div class="each-checkbox">-->
-	  <!--      <%= b.check_box %>-->
-	  <!--      <%= b.label { b.text } %>&nbsp;&nbsp;-->
-	  <!--    </div>-->
-	  <!--  <% end %>-->
-	  <!--  <%= f.label :subject_ids, '分野', class:'mini-title' %><br />-->
-	  <!--  <%= f.collection_check_boxes :subject_ids, Subject.all, :id, :subj_name_ja, class:'checkbox' do |b| %>-->
-	  <!--    <div class="each-checkbox">-->
-	  <!--      <%= b.check_box %>-->
-	  <!--      <%= b.label { b.text } %>&nbsp;&nbsp;-->
-	  <!--    </div>-->
-	  <!--  <% end %>-->
 			<%= f.submit "検索" %>
 		<% end %>
 		
