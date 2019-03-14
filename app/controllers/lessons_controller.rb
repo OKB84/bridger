@@ -3,10 +3,20 @@ class LessonsController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   
   def index
-    @search_form = Form::LessonSearchForm.new(lesson_search_form_params)
-    @lessons = []
-    @search_form.search.ids.each do |id|
-      @lessons << Lesson.find(id)
+    if params[:search].present?
+      @search_form = Form::LessonSearchForm.new(lesson_search_form_params)
+      if @search_form.search == Lesson
+        @search_form = Form::LessonSearchForm.new
+        @lessons = Lesson.all
+      else
+        @lessons = []
+        @search_form.search.ids.each do |id|
+          @lessons << Lesson.find(id)
+        end
+      end
+    else
+      @search_form = Form::LessonSearchForm.new
+      @lessons = Lesson.all
     end
   end
 
@@ -67,6 +77,6 @@ class LessonsController < ApplicationController
   end
   
   def lesson_search_form_params
-    params.require(:search).permit(:name, language_ids: [])
+    params.require(:search).permit(:name, instrument_ids: [], language_ids: [])
   end
 end
