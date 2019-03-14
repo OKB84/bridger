@@ -16,7 +16,7 @@
 		<%= f.label :name, "名前", class:'mini-title'%>
 		<%= f.text_field :name %>
 		<%= f.label :language_ids, '言語', class:'mini-title necessary' %><br />
-	    <%= f.collection_check_boxes :language_ids, Language.all, :id, :lang_name, class:'checkbox', include_hidden: false do |b| %>
+	    <%= f.collection_check_boxes :language_ids, Language.all, :id, :lang_name, checked: @search_form.language_ids, class:'checkbox', include_hidden: false do |b| %>
 	      <div class="each-checkbox">
 	        <%= b.check_box %>
 	        <%= b.label { b.text } %>&nbsp;&nbsp;

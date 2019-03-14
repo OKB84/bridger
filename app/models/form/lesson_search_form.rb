@@ -6,7 +6,7 @@ class Form::LessonSearchForm
   def search
     rel = Lesson
     rel = Lesson.joins(:instructor).where(users: { name: name }) if name.present?
-    rel = rel.joins(instructor: :users_languages).where(users_languages: { language_id: language_ids }) unless language_ids.blank?
+    rel = rel.joins(instructor: :users_languages).where(users_languages: { language_id: language_ids }) if language_ids.present?
     rel
   end
 end
