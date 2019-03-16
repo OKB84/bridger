@@ -12,6 +12,7 @@
 </div>
 <div class="content">
 	<div class="container">
+    <%= render 'layouts/flash_messages' %>
 		<div class="row">
 			<div class="col-xs-10 col-xs-offset-1">
 				<div class="panel panel-default">
@@ -20,7 +21,7 @@
 							<a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="fa fa-plus"></i>  絞り込み</a>
 						</h4>
 					</div>
-					<div id="collapse1" class="panel-collapse collapse<% if params[:search].present? %><%= ' in' %><% end %>" >
+					<div id="collapse1" class="panel-collapse collapse<%= ' in' if params[:search].present? %>" >
 						<div class="panel-body">
 						<%= form_for @search_form, as: 'search', url: :lessons, html: {method: :get} do |f| %>
 							
@@ -80,20 +81,18 @@
 		
 		<div class="row">
 		  <% @lessons.each do |lesson| %>
-		
-			<div class="col-md-3 col-sm-6">
-				<div class="instructor">
-					<div class="text-center">
-			      <img class="img-circle circular-img" src="<%= gravatar_url(lesson.instructor, { size: 180 }) %>">
-						<h4 class="instructor-head"><%= link_to lesson.instructor.name, lesson %></h4>
+				<div class="col-md-3 col-sm-6">
+					<div class="instructor">
+						<div class="text-center">
+				      <img class="img-circle circular-img" src="<%= gravatar_url(lesson.instructor, { size: 180 }) %>">
+							<h4 class="instructor-head"><%= link_to lesson.instructor.name, lesson %></h4>
+						</div>
+						<ul>
+						  <li><strong>楽器：</strong><%= lesson.instruments.pluck(:ins_name_ja).join('、') %></li>
+						  <li><strong>分野：</strong><%= lesson.subjects.pluck(:subj_name_ja).join('、') %></li>
+						</ul>
 					</div>
-					<ul>
-					  <li><strong>楽器：</strong><%= lesson.instruments.pluck(:ins_name_ja).join('、') %></li>
-					  <li><strong>分野：</strong><%= lesson.subjects.pluck(:subj_name_ja).join('、') %></li>
-					</ul>
 				</div>
-			</div>
-			
 			<% end %>
 		</div>
 	</div>

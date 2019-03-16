@@ -5,18 +5,17 @@ class LessonsController < ApplicationController
   def index
     if params[:search].present?
       @search_form = Form::LessonSearchForm.new(lesson_search_form_params)
-      if @search_form.search == Lesson
-        @search_form = Form::LessonSearchForm.new
+      if @search_form.search == Lesson.all
         @lessons = Lesson.all
       else
-        @lessons = []
-        @search_form.search.ids.each do |id|
-          @lessons << Lesson.find(id)
-        end
+        @lessons = Lesson.find(@search_form.search.ids)
       end
     else
       @search_form = Form::LessonSearchForm.new
       @lessons = Lesson.all
+    end
+    unless @lessons.present?
+      flash.now[:danger] = '条件に合う講師が見つかりませんでした'
     end
   end
 
