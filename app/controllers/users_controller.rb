@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     @instruments = @user.instruments
     @subjects = @user.subjects
     @languages = @user.languages
+    
+    @point = Point.where(user_id: @user.id).last
   end
 
   # GET /users/new

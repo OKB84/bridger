@@ -8,5 +8,11 @@ Rails.application.routes.draw do
   
   resources :messages, only: [:index, :show, :new, :create]
   resources :lessons, only: [:index, :show, :new, :create, :edit, :update]
+  
+  resources :points, only: [:index, :new, :create] do
+    collection do
+      post 'purchase'
+    end
+  end
 end
 

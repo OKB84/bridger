@@ -17,14 +17,12 @@
     <%= render 'layouts/flash_messages' %>
     <div class="row">
       <div class="myinfo">
-        <div class="text-center">
-          <img class="img-circle circular-img" src="<%= gravatar_url(@user, { size: 180 }) %>">
-    	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
-    	  </div>
-    	</div>
-
-      <div class="col-sm-4 col-sm-offset-4">
-        <ul>
+        <div class="col-sm-4 col-sm-offset-2">
+          <div class="text-center">
+            <img class="img-circle circular-img" src="<%= gravatar_url(@user, { size: 180 }) %>">
+      	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
+      	  </div>
+    	  	<ul>
           <li>
             <strong>メールアドレス：</strong>
             <%= current_user.email %>
@@ -42,9 +40,25 @@
             <%= @languages.pluck(:lang_name).join('、') %>
           </li>
         </ul>
-      </div>
-
+    	  </div>
+    	  <div class="col-sm-4">
+    	    <h3>保有ポイント：</h3>
+    	    <div class="text-center">
+    	      <% if @point %>
+      	      <%= @point.current_point %>
+            <% else %>
+              0
+            <% end %>
+    	      <div class="action">
+    	        <%= link_to new_point_path, class: 'btn btn-default' do %>
+    	          <i class="fa fa-credit-card"> ポイント購入</i>
+    	        <% end %>
+    	      </div>
+    	    </div>
+    	  </div>
+    	</div>
     </div>
+    
     <div class="row menu text-center">
       <div class="col-sm-2 col-sm-offset-3 col-xs-4">
         <a href="#">

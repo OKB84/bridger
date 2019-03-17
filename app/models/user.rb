@@ -30,4 +30,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :users_languages, allow_destroy: true
   
   validates :languages, presence: true
+  
+  has_many :points, dependent: :destroy
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190308114213) do
+ActiveRecord::Schema.define(version: 20190317141502) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -98,6 +98,14 @@ ActiveRecord::Schema.define(version: 20190308114213) do
     t.index ["send_user_id"], name: "index_messages_on_send_user_id", using: :btree
   end
 
+  create_table "points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "current_point"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["user_id"], name: "index_points_on_user_id", using: :btree
+  end
+
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "subj_name_ja"
     t.string   "subj_name_en"
@@ -137,6 +145,7 @@ ActiveRecord::Schema.define(version: 20190308114213) do
   add_foreign_key "lessons", "users", column: "instructor_id"
   add_foreign_key "messages", "users", column: "receive_user_id"
   add_foreign_key "messages", "users", column: "send_user_id"
+  add_foreign_key "points", "users"
   add_foreign_key "users_languages", "languages"
   add_foreign_key "users_languages", "users"
 end
