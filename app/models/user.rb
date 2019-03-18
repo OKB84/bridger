@@ -32,4 +32,9 @@ class User < ApplicationRecord
   validates :languages, presence: true
   
   has_many :points, dependent: :destroy
+  
+  has_many :point_histories, dependent: :destroy
+  has_many :point_receivers, through: :point_histories, source: :other_user, dependent: :destroy
+  has_many :reverse_of_point_histories, class_name: 'PointHistory', foreign_key: 'other_user_id', dependent: :destroy
+  has_many :point_senders, through: :reverse_of_point_histories, source: :user, dependent: :destroy
 end
