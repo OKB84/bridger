@@ -17,9 +17,8 @@
     <div class="row">
       <div class="point-price">
         <%= form_tag(action: :purchase, method: :post) do %>
-          <%= label_tag :price, '購入ポイント数（1ポイント = 1円）' %>
-          <%= number_field_tag :price, nil, min: 1 %>
           <script class="payjp-button" data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>" src="https://checkout.pay.jp" type="text/javascript"></script>
+          <% hidden_field_tag :price, 1000 %>
         <% end %>
       </div>
     </div>
