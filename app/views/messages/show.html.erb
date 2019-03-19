@@ -39,9 +39,9 @@
         </div>
         <div class="apply">
           <% if @message.send_user == current_user && @message.receive_user.lesson.present? %>
-            <%= link_to 'レッスンポイント支払いへ', new_point_history_path(other_user_id: @message.receive_user_id), class:'btn btn-default' %>
+            <%= link_to 'レッスンポイント支払いへ', new_point_history_path(to_user_id: @message.receive_user_id), class:'btn btn-default' %>
           <% elsif @message.receive_user == current_user && @message.send_user.lesson.present? %>
-            <%= link_to 'レッスンポイント支払いへ', new_point_history_path(other_user_id: @message.send_user_id), class:'btn btn-default' %>
+            <%= link_to 'レッスンポイント支払いへ', new_point_history_path(to_user_id: @message.send_user_id), class:'btn btn-default' %>
           <% end %>
         </div>
       </div>

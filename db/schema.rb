@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190318133319) do
+ActiveRecord::Schema.define(version: 20190319171356) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -99,13 +99,13 @@ ActiveRecord::Schema.define(version: 20190318133319) do
   end
 
   create_table "point_histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "other_user_id"
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
     t.integer  "amount"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["other_user_id"], name: "index_point_histories_on_other_user_id", using: :btree
-    t.index ["user_id"], name: "index_point_histories_on_user_id", using: :btree
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["from_user_id"], name: "index_point_histories_on_from_user_id", using: :btree
+    t.index ["to_user_id"], name: "index_point_histories_on_to_user_id", using: :btree
   end
 
   create_table "points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -155,8 +155,8 @@ ActiveRecord::Schema.define(version: 20190318133319) do
   add_foreign_key "lessons", "users", column: "instructor_id"
   add_foreign_key "messages", "users", column: "receive_user_id"
   add_foreign_key "messages", "users", column: "send_user_id"
-  add_foreign_key "point_histories", "users"
-  add_foreign_key "point_histories", "users", column: "other_user_id"
+  add_foreign_key "point_histories", "users", column: "from_user_id"
+  add_foreign_key "point_histories", "users", column: "to_user_id"
   add_foreign_key "points", "users"
   add_foreign_key "users_languages", "languages"
   add_foreign_key "users_languages", "users"

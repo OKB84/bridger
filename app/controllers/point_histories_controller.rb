@@ -5,7 +5,7 @@ class PointHistoriesController < ApplicationController
   end
 
   def new
-    @lesson = Lesson.find_by(instructor_id: params[:other_user_id])
+    @lesson = Lesson.find_by(instructor_id: params[:to_user_id])
   end
 
   def create
@@ -13,18 +13,18 @@ class PointHistoriesController < ApplicationController
     begin
       PointHistory.transaction do
         try += 1
-        PointHistory.create!(user_id: current_user.id, other_user_id: params[:other_user_id], amount: params[:point])
+        PointHistory.create!(from_user_id: current_user.id, to_user_id: params[:to_user_id], amount: params[:point])
         
-        send_sum1 = PointHistory.where(user_id: current_user.id).sum(:amount)
-        receive_sum1 = PointHistory.where(other_user_id: current_user.id).sum(:amount)
+        send_sum1 = PointHistory.where(from_user_id: current_user.id).sum(:amount)
+        receive_sum1 = PointHistory.where(to_user_id: current_user.id).sum(:amount)
         current_point1 = receive_sum1 - send_sum1
         Point.create!(user_id: current_user.id, current_point: current_point1)
         
-        other_user = User.find(params[:other_user_id])
-        send_sum2 = PointHistory.where(user_id: other_user.id).sum(:amount)
-        receive_sum2 = PointHistory.where(other_user_id: other_user.id).sum(:amount)
+        to_user = User.find(params[:to_user_id])
+        send_sum2 = PointHistory.where(from_user_id: to_user.id).sum(:amount)
+        receive_sum2 = PointHistory.where(to_user_id: to_user.id).sum(:amount)
         current_point2 = receive_sum2 - send_sum2
-        Point.create!(user_id: other_user.id, current_point: current_point2)
+        Point.create!(user_id: to_user.id, current_point: current_point2)
       end
       flash[:success] = 'ポイント支払いが完了しました'
     rescue => e
@@ -52,10 +52,10 @@ class PointHistoriesController < ApplicationController
     begin
       PointHistory.transaction do
         try += 1
-        PointHistory.create!(user_id: nil, other_user_id: current_user.id, amount: params[:price])
+        PointHistory.create!(from_user_id: nil, to_user_id: current_user.id, amount: params[:price])
         
-        send_sum = PointHistory.where(user_id: current_user.id).sum(:amount)
-        receive_sum = PointHistory.where(other_user_id: current_user.id).sum(:amount)
+        send_sum = PointHistory.where(from_user_id: current_user.id).sum(:amount)
+        receive_sum = PointHistory.where(to_user_id: current_user.id).sum(:amount)
         current_point = receive_sum - send_sum
         
         Point.create!(user_id: current_user.id, current_point: current_point)
