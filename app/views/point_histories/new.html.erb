@@ -1,2 +1,22 @@
-<h1>PointHistories#new</h1>
-<p>Find me in app/views/point_histories/new.html.erb</p>
+<%= stylesheet_link_tag 'point_histories_new', media: 'all' %>
+
+<div id="title" class="point_histories_new">
+  <div class="slogans">
+		<div class="slogan">
+		  Point Histories New
+		</div>
+		<div class="secondary-slogan">
+			新規ポイント履歴
+		</div>
+	</div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <%= render 'layouts/flash_messages' %>
+    <div class="row">
+      <div class="point-price">
+      </div>
+    </div>
+  </div>
+</div>

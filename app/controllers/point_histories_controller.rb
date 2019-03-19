@@ -19,6 +19,6 @@ class PointHistoriesController < ApplicationController
     )
     Point.create(user_id: current_user.id, current_point: params[:price])
     flash[:success] = 'ポイント購入が完了しました'
-    redirect_to points_url
+    redirect_to point_histories_url
   end
 end

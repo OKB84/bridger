@@ -51,16 +51,9 @@
             <% end %>
     	      <div class="action">
           	  <%= form_tag(action: :purchase, controller: :point_histories, method: :post) do %>
-        	      <div class="field form-group">
-              	  <%= label_tag :price, '1,000ポイント購入', class:'mini-title' %>
-                  <script class="payjp-button" data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>" src="https://checkout.pay.jp" type="text/javascript" data-text="1,000円"></script>
-                  <% hidden_field_tag :price, 1000 %>
-                </div>
-        	      <div class="field form-group">
-              	  <%= label_tag :price, '5,000ポイント購入', class:'mini-title' %>
-                  <script class="payjp-button" data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>" src="https://checkout.pay.jp" type="text/javascript" data-text="5,000円"></script>
-                  <% hidden_field_tag :price, 5000 %>
-                </div>
+            	  <%= label_tag :price, '1,000ポイント購入', class:'mini-title' %>
+                <%= hidden_field_tag :price, 1000 %>
+                <script class="payjp-button" data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>" src="https://checkout.pay.jp" type="text/javascript" data-text="1,000円"></script>
               <% end %>
     	      </div>
     	    </div>
