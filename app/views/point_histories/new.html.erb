@@ -3,10 +3,10 @@
 <div id="title" class="point_histories_new">
   <div class="slogans">
 		<div class="slogan">
-		  Point Histories New
+		  Pay for Lesson
 		</div>
 		<div class="secondary-slogan">
-			新規ポイント履歴
+			レッスンポイント支払い
 		</div>
 	</div>
 </div>
@@ -15,7 +15,33 @@
   <div class="container">
     <%= render 'layouts/flash_messages' %>
     <div class="row">
-      <div class="point-price">
+      <div class="point-price col-md-3 col-sm-4">
+        <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h4 class="panel-title">レッスンプラン <%= index %></h4>
+            </div>
+            <div class="panel-body">
+              <ul>
+                <% if plan.location_narrow.blank? %>
+                  <li>場所： <%= plan.location_broad %></li>
+                <% else %>
+                  <li>場所： <%= plan.location_broad %>  ( <%= plan.location_narrow %> )</li>
+                <% end %>
+                <li>時間： <%= plan.minute %> 分</li>
+                <li>料金： <%= plan.price_yen.to_s(:delimited) %> 円</li>
+              </ul>
+            </div>
+            <div class="text-center">
+          	  <%= form_tag(action: :create, controller: :point_histories, method: :post) do %>
+          	    <%= label_tag :point, "必要ポイント：#{plan.price_yen}" %><br />
+          	    <%= hidden_field_tag :point, plan.price_yen %>
+          	    <%= hidden_field_tag :other_user_id, @lesson.instructor_id %>
+          	    <%= submit_tag '支払いを確定する' %>
+          	  <% end %>
+    	      </div>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>
