@@ -40,13 +40,13 @@ class PointHistoriesController < ApplicationController
     begin
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
       charge = Payjp::Charge.create(        
-        :amount => params[:price],          #レッスンプランごとに変更したいがnumber_fieldから数値を受け取れなかった
+        :amount => params['price'],          #レッスンプランごとに変更したいがnumber_fieldから数値を受け取れなかった
         :card => params['payjp-token'],
         :currency => 'jpy',
       )
     rescue
       #エラー内容ごとにエラー表示を出せるようにする。API参照
-      redirect_to current_user
+      redirect_to current_user and return
     end
     
     begin
@@ -66,6 +66,6 @@ class PointHistoriesController < ApplicationController
       logger.error('purchased but not charged')
       flash.now[:danger] = 'ポイントを購入できませんでした'
     end
-    redirect_to current_user
+    redirect_to current_user and return
   end
 end
