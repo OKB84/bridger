@@ -30,7 +30,7 @@ class PointHistoriesController < ApplicationController
     rescue => e
       retry if try < 10
       logger.error('')
-      flash[:danger] = 'ポイントを支払えませんでした'
+      flash[:danger] = '保有ポイントが不足しています'
     end
     redirect_to current_user
   end

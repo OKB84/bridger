@@ -10,6 +10,12 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
   
+  validates :bank, length: { maximum: 255 }
+  validates :branch, length: { maximum: 255 }
+  validates :account_type, length: { maximum: 255 }
+  validates :account_number, length: { maximum: 255 }
+  validates :account_holder, length: { maximum: 255 }
+  
   has_many :messages, foreign_key: 'send_user_id', dependent: :destroy
   has_many :receivers, through: :messages, source: :receive_user, dependent: :destroy
   has_many :reverses_of_message, class_name: 'Message', foreign_key: 'receive_user_id', dependent: :destroy
