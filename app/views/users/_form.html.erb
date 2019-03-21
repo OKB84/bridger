@@ -15,22 +15,18 @@
     <%= f.label :name, '名前', class:'mini-title necessary' %>
     <%= f.text_field :name, class:'form-control' %>
   </div>
-
   <div class="form-group">
     <%= f.label :email, 'メールアドレス', class:'mini-title necessary' %>
     <%= f.text_field :email, class:'form-control' %>
   </div>
-
   <div class="form-group">
     <%= f.label :password, 'パスワード', class:'mini-title necessary' %>
     <%= f.password_field :password, class:'form-control' %>
   </div>
-
   <div class="form-group">
     <%= f.label :password_confirmation, 'パスワード確認', class:'mini-title necessary' %>
     <%= f.password_field :password_confirmation, class:'form-control' %>
   </div>
-  
   <div class="form-group">
     <%= f.label :instrument_ids, '楽器', class:'mini-title' %><br />
     <%= f.collection_check_boxes :instrument_ids, Instrument.all, :id, :ins_name_ja, class:'checkbox' do |b| %>
@@ -40,7 +36,6 @@
       </div>
     <% end %>
   </div>
-
   <div class="form-group">
     <%= f.label :subject_ids, '気になる分野', class:'mini-title' %><br />
     <%= f.collection_check_boxes :subject_ids, Subject.all, :id, :subj_name_ja, class:'checkbox' do |b| %>
@@ -50,7 +45,6 @@
       </div>
     <% end %>
   </div>
-  
   <div class="form-group">
     <%= f.label :language_ids, '使用可能な言語', class:'mini-title necessary' %><br />
     <%= f.collection_check_boxes :language_ids, Language.all, :id, :lang_name, class:'checkbox' do |b| %>
@@ -60,7 +54,29 @@
       </div>
     <% end %>
   </div>
-
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank-account">ポイント返金先口座</button>
+  <div id="bank-account" class="collapse">
+    <div class="form-group">
+      <%= f.label :bank, '金融機関名', class: 'mini-title' %>
+      <%= f.text_field :bank, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :branch, '支店名', class: 'mini-title' %>
+      <%= f.text_field :branch, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :account_type, '預金種別', class: 'mini-title' %>
+      <%= f.text_field :account_type, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :account_number, '口座番号', class: 'mini-title' %>
+      <%= f.text_field :account_number, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :account_holder, '口座名義', class: 'mini-title' %>
+      <%= f.text_field :account_holder, class: 'form-control' %>
+    </div>
+  </div>
   <div class="actions text-center">
     <%= f.submit submit_name, class:'btn btn-o' %>
   </div>
