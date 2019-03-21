@@ -21,10 +21,11 @@
   			      <th>日付</th>
   			      <th>アクティビティ</th>
   			      <th>ポイント変化量</th>
+  			      <th>ポイント残高</th>
   			     </tr>
 			    </thead>
 			    <tbody>
-			      <% @point_histories.each do |point_history| %>
+			      <% @point_histories.zip(@points) do |point_history, point| %>
   			      <tr>
   			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
   			        <td>
@@ -39,6 +40,7 @@
   			          <% end %>
   			        </td>
   			        <td><%= point_history.amount %></td>
+  			        <td><%= point.current_point %></td>
   			      </tr>
 			      <% end %>
 			    </tbody>

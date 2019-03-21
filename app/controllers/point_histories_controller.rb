@@ -3,6 +3,7 @@ class PointHistoriesController < ApplicationController
 
   def index
     @point_histories = PointHistory.where("(from_user_id = ?) OR (to_user_id = ?)", current_user.id, current_user.id).order(created_at: 'DESC')
+    @points = current_user.points.order(created_at: 'DESC')
   end
 
   def new
