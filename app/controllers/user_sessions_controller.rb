@@ -12,7 +12,7 @@ class UserSessionsController < ApplicationController
       flash[:success] = 'ログインに成功しました'
       redirect_back_or_to(user_path(@user))
     else
-      flash.now[:alert] = 'ログインに失敗しました'
+      flash.now[:danger] = 'ログインに失敗しました'
       render action: 'new'
     end
   end

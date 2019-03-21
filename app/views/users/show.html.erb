@@ -49,12 +49,15 @@
             <% else %>
               0
             <% end %>
-    	      <div class="action">
+    	      <div class="purchase">
           	  <%= form_tag(action: :purchase, controller: :point_histories, method: :post) do %>
             	  <%= label_tag :price, 'ポイント購入', class:'mini-title' %>
                 <%= select_tag :price, options_for_select([['3,000ポイント(3,000円)', 3000], ['5,000ポイント(5,000円)', 5000], ['10,000ポイント(10,000円)', 10000],]) %>
                 <script class="payjp-button" data-key="<%= ENV['PAYJP_PUBLIC_KEY'] %>" src="https://checkout.pay.jp" type="text/javascript" data-text="クレジット支払い"></script>
               <% end %>
+    	      </div>
+    	      <div class="withdraw">
+    	        <%= link_to 'ポイント出金依頼', new_withdraw_path, class: 'btn btn-o' %>
     	      </div>
     	    </div>
     	  </div>
