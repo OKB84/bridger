@@ -17,7 +17,7 @@
       <%= form_tag withdraws_path, :method => :post do %>
         <div class="form-group">
           <%= label_tag :point, '出金ポイント数', class: 'mini-title' %>
-          <%= number_field_tag :point, min: 5000, class: 'form-control' %>
+          <%= number_field_tag :point, params[:point], class: 'form-control' %>
           <%= submit_tag '出金依頼を確定する' %>
         </div>
       <% end %>
