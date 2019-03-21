@@ -15,5 +15,7 @@ Rails.application.routes.draw do
       post 'purchase'
     end
   end
+  
+  resources :withdraws, only: [:new, :create]
 end
 
