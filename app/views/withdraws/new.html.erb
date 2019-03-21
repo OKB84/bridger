@@ -14,13 +14,53 @@
 	<div class="container">
     <%= render 'layouts/flash_messages' %>
 		<div class="row">
-      <%= form_tag withdraws_path, :method => :post do %>
-        <div class="form-group">
-          <%= label_tag :point, '出金ポイント数', class: 'mini-title' %>
-          <%= number_field_tag :point, params[:point], class: 'form-control' %>
+			<div class="col-sm-6 col-sm-offset-3">
+				<%= form_tag withdraws_path, :method => :post do %>
+					<table class="table">
+						<tbody>
+							<tr>
+								<th align="center" valign="middle" width="40%">返金ポイント数</th>
+								<td align="right" valign="middle" width="30%">
+					      	<%= number_field_tag :point, params[:point], value: 5000, style:"text-align: right;" %>
+								</td>
+								<td align="left" valign="middle" width="30%">ポイント</td>
+							</tr>
+							<tr>
+								<th align="center" valign="middle">手数料</th>
+								<td id="fee" align="right" valign="middle">750</td>
+								<td align="left" valign="middle">円</td>
+							</tr>
+							<tr>
+								<th align="center" valign="middle">振込額</th>
+								<td id="result" align="right" valign="middle">4250</td>
+								<td align="left" valign="middle">円</td>
+							</tr>
+						</tbody>
+					</table>
           <%= submit_tag '出金依頼を確定する' %>
-        </div>
-      <% end %>
+	      <% end %>
+	     </div>
 		</div>
 	</div>
 </div>
+
+
+<script>
+	jQuery(function($){
+		$(document).ready(function(){
+	    var total;
+	    $("input[type=number]").on('click keydown keyup keypress change', function() {
+	        total = 0;
+	        var point = $(this).val();
+	        total = Math.round(parseInt(point)*0.85);
+	        fee = parseInt(point)-total;
+	        $('#result').html(total);
+	        $('#fee').html(fee);
+	    });
+		});
+	});
+</script>
+
+
+
+
