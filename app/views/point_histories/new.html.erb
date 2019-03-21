@@ -15,8 +15,8 @@
   <div class="container">
     <%= render 'layouts/flash_messages' %>
     <div class="row">
-      <div class="point-price col-md-3 col-sm-4">
-        <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
+      <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
+        <div class="point-price col-md-3 col-sm-4">
           <div class="panel panel-default">
             <div class="panel-heading text-center">
               <h4 class="panel-title">レッスンプラン <%= index %></h4>
@@ -41,8 +41,8 @@
           	  <% end %>
     	      </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
