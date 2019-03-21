@@ -26,22 +26,35 @@
 			    </thead>
 			    <tbody>
 			      <% @point_histories.zip(@points) do |point_history, point| %>
-  			      <tr>
-  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
-  			        <td>
-  			          <% if point_history.from_user_id == nil %>
-  			            ポイント購入
-  			          <% elsif point_history.from_user == current_user && point_history.to_user_id == nil %>
-  			            出金申請
-  			          <% elsif point_history.from_user == current_user %>
-  			            レッスン申し込み
-  			          <% elsif point_history.to_user == current_user %>
-                    レッスン収入
-  			          <% end %>
-  			        </td>
-  			        <td><%= point_history.amount %></td>
-  			        <td><%= point.current_point %></td>
-  			      </tr>
+  			      <% if point_history.from_user_id == nil %>
+								<tr class="info">
+	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td>ポイント購入</td>
+	  			        <td><%= point_history.amount %></td>
+	  			        <td><%= point.current_point %></td>
+	  			      </tr>
+	  			    <% elsif point_history.from_user == current_user && point_history.to_user_id == nil %>
+								<tr class="danger">
+	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td>出金申請</td>
+	  			        <td><%= point_history.amount %></td>
+	  			        <td><%= point.current_point %></td>
+	  			      </tr>
+	  			    <% elsif point_history.from_user == current_user %>
+								<tr class="warning">
+	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td>レッスン申し込み</td>
+	  			        <td><%= point_history.amount %></td>
+	  			        <td><%= point.current_point %></td>
+	  			      </tr>
+	  			    <% elsif point_history.to_user == current_user %>
+	  			    	<tr class="success">
+	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td>レッスン収入</td>
+	  			        <td><%= point_history.amount %></td>
+	  			        <td><%= point.current_point %></td>
+	  			      </tr>
+			      	<% end %>
 			      <% end %>
 			    </tbody>
 			  </table>
