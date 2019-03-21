@@ -54,7 +54,7 @@
       </div>
     <% end %>
   </div>
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#bank-account">ポイント返金先口座</button>
+  <button type="button" class="btn btn-o btn-sm" data-toggle="collapse" data-target="#bank-account">ポイント返金先口座を入力</button>
   <div id="bank-account" class="collapse">
     <div class="form-group">
       <%= f.label :bank, '金融機関名', class: 'mini-title' %>
@@ -78,6 +78,6 @@
     </div>
   </div>
   <div class="actions text-center">
-    <%= f.submit submit_name, class:'btn btn-o' %>
+    <%= f.submit submit_name, class:'btn btn-info' %>
   </div>
 <% end %>
