@@ -14,7 +14,13 @@
 	<div class="container">
     <%= render 'layouts/flash_messages' %>
 		<div class="row">
-		  
+      <%= form_tag withdraws_path, :method => :post do %>
+        <div class="form-control">
+          <%= label_tag :point, '出金ポイント数', class: 'mini-title' %>
+          <%= number_field_tag :point, min: 5000, class: 'form-control' %>
+          <%= submit_tag '出金依頼を確定する' %>
+        </div>
+      <% end %>
 		</div>
 	</div>
 </div>
