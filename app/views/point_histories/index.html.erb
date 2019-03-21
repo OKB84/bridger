@@ -1,2 +1,49 @@
-<h1>PointHistories#index</h1>
-<p>Find me in app/views/point_histories/index.html.erb</p>
+<%= stylesheet_link_tag 'point_index', media: 'all' %>
+
+<div id="title" class="point_index">
+  <div class="slogans">
+		<div class="slogan">
+			Point History
+		</div>
+		<div class="secondary-slogan">
+			ポイント履歴
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="container">
+    <%= render 'layouts/flash_messages' %>
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+			  <table class="table">
+			    <thead>
+			      <tr>
+  			      <th>日付</th>
+  			      <th>アクティビティ</th>
+  			      <th>ポイント変化量</th>
+  			     </tr>
+			    </thead>
+			    <tbody>
+			      <% @point_histories.each do |point_history| %>
+  			      <tr>
+  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+  			        <td>
+  			          <% if point_history.from_user_id == nil %>
+  			            ポイント購入
+  			          <% elsif point_history.from_user == current_user && point_history.to_user_id == nil %>
+  			            出金申請
+  			          <% elsif point_history.from_user == current_user %>
+  			            レッスン申し込み
+  			          <% elsif point_history.to_user == current_user %>
+                    レッスン収入
+  			          <% end %>
+  			        </td>
+  			        <td><%= point_history.amount %></td>
+  			      </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+			</div>
+		</div>
+	</div>
+</div>

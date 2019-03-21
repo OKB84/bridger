@@ -6,7 +6,7 @@
 			Withdraw Points
 		</div>
 		<div class="secondary-slogan">
-			ポイント出金依頼
+			ポイント出金申請
 		</div>
 	</div>
 </div>
@@ -19,7 +19,7 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<th align="center" valign="middle" width="40%">返金ポイント数</th>
+								<th align="center" valign="middle" width="40%">出金ポイント数</th>
 								<td align="right" valign="middle" width="30%">
 					      	<%= number_field_tag :point, params[:point], value: 5000, style:"text-align: right;" %>
 								</td>
@@ -37,7 +37,7 @@
 							</tr>
 						</tbody>
 					</table>
-          <%= submit_tag '出金依頼を確定する' %>
+          <%= submit_tag '出金申請する', class: 'btn btn-o' %>
 	      <% end %>
 	     </div>
 		</div>
