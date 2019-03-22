@@ -18,46 +18,51 @@
 			  <table class="table">
 			    <thead>
 			      <tr>
-  			      <th>日付</th>
-  			      <th>アクティビティ</th>
-  			      <th>ポイント変化量</th>
-  			      <th>ポイント残高</th>
-  			     </tr>
+  			      <th width="18%">日付</th>
+  			      <th width="38%">アクティビティ</th>
+  			      <th width="22%">変化量</th>
+  			      <th width="22%">残高</th>
+  			    </tr>
 			    </thead>
 			    <tbody>
 			      <% @point_histories.zip(@points) do |point_history, point| %>
   			      <% if point_history.from_user_id == nil %>
 								<tr class="info">
-	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
-	  			        <td>ポイント購入</td>
-	  			        <td><%= point_history.amount %></td>
-	  			        <td><%= point.current_point %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center">ポイント購入</td>
+	  			        <td align="right">+ <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
+	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
 	  			      </tr>
 	  			    <% elsif point_history.from_user == current_user && point_history.to_user_id == nil %>
 								<tr class="danger">
-	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
-	  			        <td>出金申請</td>
-	  			        <td><%= point_history.amount %></td>
-	  			        <td><%= point.current_point %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center">出金申請</td>
+	  			        <td align="right">- <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
+	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
 	  			      </tr>
 	  			    <% elsif point_history.from_user == current_user %>
 								<tr class="warning">
-	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
-	  			        <td>レッスン申し込み</td>
-	  			        <td><%= point_history.amount %></td>
-	  			        <td><%= point.current_point %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center">レッスン申し込み</td>
+	  			        <td align="right">- <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
+	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
 	  			      </tr>
 	  			    <% elsif point_history.to_user == current_user %>
 	  			    	<tr class="success">
-	  			        <td><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
-	  			        <td>レッスン収入</td>
-	  			        <td><%= point_history.amount %></td>
-	  			        <td><%= point.current_point %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center">レッスン収入</td>
+	  			        <td align="right">+ <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
+	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
 	  			      </tr>
 			      	<% end %>
 			      <% end %>
 			    </tbody>
 			  </table>
+				<% unless @point_histories.present? %>
+					<div class="no-info text-center">
+						<p>ポイント履歴はありません</p>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
