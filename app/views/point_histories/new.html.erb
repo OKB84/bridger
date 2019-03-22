@@ -1,6 +1,6 @@
-<%= stylesheet_link_tag 'point_histories_new', media: 'all' %>
+<%= stylesheet_link_tag 'point_new', media: 'all' %>
 
-<div id="title" class="point_histories_new">
+<div id="title" class="point_new">
   <div class="slogans">
 		<div class="slogan">
 		  Pay for Lesson
@@ -15,34 +15,50 @@
   <div class="container">
     <%= render 'layouts/flash_messages' %>
     <div class="row">
-      <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
-        <div class="point-price col-md-3 col-sm-4">
-          <div class="panel panel-default">
-            <div class="panel-heading text-center">
-              <h4 class="panel-title">レッスンプラン <%= index %></h4>
+      <div class="col-md-3 col-sm-4">
+    		<div class="instructor">
+					<div class="text-center">
+			      <img class="img-circle circular-img" src="<%= gravatar_url(@lesson.instructor, { size: 180 }) %>">
+						<h4 class="instructor-head"><%= link_to @lesson.instructor.name, @lesson %></h4>
+					</div>
+					<ul>
+					  <li><strong>楽器：</strong><%= @lesson.instruments.pluck(:ins_name_ja).join('、') %></li>
+					  <li><strong>分野：</strong><%= @lesson.subjects.pluck(:subj_name_ja).join('、') %></li>
+					</ul>
+				</div>        
+      </div>
+
+      <div class="col-md-9 col-sm-8">
+        <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
+          <div class="point-price col-md-4 col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h4 class="panel-title">レッスンプラン <%= index %></h4>
+              </div>
+              <div class="panel-body">
+                <ul>
+                  <% if plan.location_narrow.blank? %>
+                    <li>場所： <%= plan.location_broad %></li>
+                  <% else %>
+                    <li>場所： <%= plan.location_broad %>  ( <%= plan.location_narrow %> )</li>
+                  <% end %>
+                  <li>時間： <%= plan.minute %> 分</li>
+                  <li>料金： <%= plan.price_yen.to_s(:delimited) %> 円</li>
+                </ul>
+              </div>
+              <div class="text-center">
+            	  <%= form_tag(action: :create, controller: :point_histories, method: :post) do %>
+            	    <%= label_tag :point, "必要ポイント：#{plan.price_yen.to_s(:delimited)}" %><br />
+            	    <%= hidden_field_tag :point, plan.price_yen %>
+            	    <%= hidden_field_tag :to_user_id, @lesson.instructor_id %>
+            	    <%= submit_tag 'ポイント支払いを確定', data: { confirm: "支払いを確定しますか？" }, class: 'btn btn-o' %>
+            	  <% end %>
+      	      </div>
             </div>
-            <div class="panel-body">
-              <ul>
-                <% if plan.location_narrow.blank? %>
-                  <li>場所： <%= plan.location_broad %></li>
-                <% else %>
-                  <li>場所： <%= plan.location_broad %>  ( <%= plan.location_narrow %> )</li>
-                <% end %>
-                <li>時間： <%= plan.minute %> 分</li>
-                <li>料金： <%= plan.price_yen.to_s(:delimited) %> 円</li>
-              </ul>
-            </div>
-            <div class="text-center">
-          	  <%= form_tag(action: :create, controller: :point_histories, method: :post) do %>
-          	    <%= label_tag :point, "必要ポイント：#{plan.price_yen}" %><br />
-          	    <%= hidden_field_tag :point, plan.price_yen %>
-          	    <%= hidden_field_tag :to_user_id, @lesson.instructor_id %>
-          	    <%= submit_tag '支払いを確定する' %>
-          	  <% end %>
-    	      </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+      
     </div>
   </div>
 </div>

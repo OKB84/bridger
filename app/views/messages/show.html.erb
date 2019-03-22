@@ -37,7 +37,7 @@
           <% end %>
           <%= link_to '戻る', :back, class:'btn btn-default' %>
         </div>
-        <div class="apply">
+        <div class="apply text-center">
           <% if @message.send_user == current_user && @message.receive_user.lesson.present? %>
             <%= link_to 'レッスンポイント支払いへ', new_point_history_path(to_user_id: @message.receive_user_id), class:'btn btn-default' %>
           <% elsif @message.receive_user == current_user && @message.send_user.lesson.present? %>
