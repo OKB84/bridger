@@ -1,0 +1,33 @@
+.withdraw_new {
+  background: url("/images/withdraw_new.jpg") center center fixed;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.6);
+}
+
+.content {
+  padding-top: 60px;
+  background: #fcfcfc;
+}
+
+th {
+  text-align: center;
+}
+
+span {
+  color: red;
+}
+
+input {
+  width: 120px;
+}
+
+#fee {
+  padding-right: 3.5%;
+}
+
+#result {
+  padding-right: 3.5%;
+}
+
+.action {
+  margin: 20px 0 60px 0;
+}

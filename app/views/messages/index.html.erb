@@ -16,48 +16,53 @@
     <%= render 'layouts/flash_messages' %>
     <div class="row">
       <div class="mailbox col-sm-6">
-        <h3><span>受信済み</span></h3>
+        <h3><span><i class="fa fa-inbox"></i>&nbsp;&nbsp;受信済み</span></h3>
         <table class="table">
           <thead>
             <tr>
-              <th>差出人</th>
-              <th>内容</th>
-              <th>受信日時</th>
+              <th width="20%">差出人</th>
+              <th width="60%">内容</th>
+              <th width="20%">受信日時</th>
             </tr>
           </thead>
           <tbody>
             <% @received_messages.each do |message| %>
               <tr>
-                <td width="20%"><%= link_to message.send_user.name, new_message_path(user_id: message.send_user_id) %></td>
-                <td width="60%"><%= link_to message.content, message, class: 'message-content' %></td>
-                <td width="20%"><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+                <td><%= link_to message.send_user.name, new_message_path(user_id: message.send_user_id) %></td>
+                <td><%= link_to message.content, message, class: 'message-content' %></td>
+                <td><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
       <div class="mailbox col-sm-6">
-        <h3><span>送信済み</span></h3>
+        <h3><span><i class="fa fa-paper-plane"></i>&nbsp;&nbsp;送信済み</span></h3>
         <table class="table">
           <thead>
             <tr>
-              <th>宛先</th>
-              <th>内容</th>
-              <th>送信日時</th>
+              <th width="20%">宛先</th>
+              <th width="60%">内容</th>
+              <th width="20%">送信日時</th>
             </tr>
           </thead>
           <tbody>
             <% @sended_messages.each do |message| %>
               <tr>
-                <td width="20%"><%= link_to message.receive_user.name, new_message_path(user_id: message.receive_user_id) %></td>
-                <td width="60%"><%= link_to message.content, message, class: 'message-content' %></td>
-                <td width="20%"><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+                <td><%= link_to message.receive_user.name, new_message_path(user_id: message.receive_user_id) %></td>
+                <td><%= link_to message.content, message, class: 'message-content' %></td>
+                <td><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
     </div>
+    <% if @received_messages.blank? && @sended_messages.blank? %>
+			<div class="no-info text-center">
+				<p><i class="fa fa-exclamation-circle"></i>  メッセージがありません</p>
+			</div>
+		<% end %>
   </div>
 </div>
 

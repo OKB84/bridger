@@ -28,28 +28,28 @@
 			      <% @point_histories.zip(@points) do |point_history, point| %>
   			      <% if point_history.from_user_id == nil %>
 								<tr class="info">
-	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[point_history.created_at.getlocal("+09:00").wday]}) %H:%M") %></td>
 	  			        <td align="center">ポイント購入</td>
 	  			        <td align="right">+ <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
 	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
 	  			      </tr>
 	  			    <% elsif point_history.from_user == current_user && point_history.to_user_id == nil %>
 								<tr class="danger">
-	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[point_history.created_at.getlocal("+09:00").wday]}) %H:%M") %></td>
 	  			        <td align="center">出金申請</td>
 	  			        <td align="right">- <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
 	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
 	  			      </tr>
 	  			    <% elsif point_history.from_user == current_user %>
 								<tr class="warning">
-	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[point_history.created_at.getlocal("+09:00").wday]}) %H:%M") %></td>
 	  			        <td align="center">レッスン申し込み</td>
 	  			        <td align="right">- <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
 	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
 	  			      </tr>
 	  			    <% elsif point_history.to_user == current_user %>
 	  			    	<tr class="success">
-	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+	  			        <td align="center"><%= point_history.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[point_history.created_at.getlocal("+09:00").wday]}) %H:%M") %></td>
 	  			        <td align="center">レッスン収入</td>
 	  			        <td align="right">+ <%= point_history.amount.to_s(:delimited) %>&nbsp;</td>
 	  			        <td align="right"><%= point.current_point.to_s(:delimited) %>&nbsp;</td>
@@ -60,7 +60,7 @@
 			  </table>
 				<% unless @point_histories.present? %>
 					<div class="no-info text-center">
-						<p>ポイント履歴はありません</p>
+						<p><i class="fa fa-exclamation-circle"></i>  ポイント履歴はありません</p>
 					</div>
 				<% end %>
 			</div>
