@@ -24,6 +24,26 @@
   position: relative;
 }
 
+.number {
+  font-size: 30px;
+  color: #ff8f07;
+}
+
+.point-buttons {
+  margin: 20px 0 40px 0;  
+}
+
+.purchase {
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#payjp_checkout_box {
+  margin: 10px 0 10px 0;
+}
+
 .menu {
   margin: 40px 0 80px 0;
 }
