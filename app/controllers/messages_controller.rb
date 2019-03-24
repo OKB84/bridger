@@ -11,8 +11,9 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
     @receive_user = User.find(params[:user_id])
-    if params[:reply_message]
-      @default_message = "\r\r---------- original message ----------\r\r#{params[:reply_message]}"
+    if params[:reply_message_id]
+      @reply_message = Message.find(params[:reply_message_id])
+      @default_message = "\r\r---------- original message ----------\rFrom: #{@reply_message.send_user.name}\rSent: #{@reply_message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[@reply_message.created_at.getlocal("+09:00").wday]}) %H:%M")}\r\r#{@reply_message.content}"
     elsif !(@receive_user.lesson.present?) || @receive_user == current_user
       redirect_to messages_url
     end

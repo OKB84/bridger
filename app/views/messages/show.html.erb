@@ -18,10 +18,10 @@
         <div class="message-info">
           <% if @message.send_user == current_user %>
             <h4>送信元：<%= @message.send_user.name %></h4>
-            <h4 class="notme">宛　先：<%= link_to @message.receive_user.name, new_message_path(user_id: @message.receive_user_id, reply_message: @message.content) %></h4>
+            <h4 class="notme">宛　先：<%= link_to @message.receive_user.name, new_message_path(user_id: @message.receive_user_id, reply_message_id: @message.id) %></h4>
             <p class="time">送信日時：<%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
           <% else %>
-            <h4 class="notme">送信元：<%= link_to @message.send_user.name, new_message_path(user_id: @message.send_user_id, reply_message: @message.content) %></h4>
+            <h4 class="notme">送信元：<%= link_to @message.send_user.name, new_message_path(user_id: @message.send_user_id, reply_message_id: @message.id) %></h4>
             <h4>宛　先：<%= @message.receive_user.name %></h4>
             <p class="time">受信日時：<%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
           <% end %>
@@ -33,7 +33,7 @@
         </div>
         <div class="action">
           <% if @message.receive_user == current_user %>
-            <%= link_to '返信', new_message_path(user_id: @message.send_user_id, reply_message: @message.content), class: 'btn btn-default' %>
+            <%= link_to '返信', new_message_path(user_id: @message.send_user_id, reply_message_id: @message.id), class: 'btn btn-default' %>
           <% end %>
           <%= link_to '戻る', :back, class:'btn btn-default' %>
         </div>
