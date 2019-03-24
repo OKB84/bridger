@@ -51,6 +51,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: message-board_production
-  username: message-board
-  password: <%= ENV['MESSAGE-BOARD_DATABASE_PASSWORD'] %>
+  database: jazz-bridge_production
+  username: jazz-bridge
+  password: <%= ENV['JAZZ-BRIDGE_DATABASE_PASSWORD'] %>
