@@ -67,34 +67,34 @@
 		<section class="block-body">
 			<div class="row">
 				<div class="col-sm-4">
-					<a href="#" class="instructor" style="background-image:url(/images/eval_instructor1.jpg)">
+					<a href="" class="instructor" style="background-image:url(/images/eval_instructor1.jpg)">
 						<span class="btn btn-o-white">講師詳細へ</span>
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<a href="#" class="instructor" style="background-image:url(/images/eval_instructor2.jpg)">
+					<a href="" class="instructor" style="background-image:url(/images/eval_instructor2.jpg)">
 						<span class="btn btn-o-white">講師詳細へ</span>
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<a href="#" class="instructor" style="background-image:url(/images/eval_instructor3.jpg)">
+					<a href="" class="instructor" style="background-image:url(/images/eval_instructor3.jpg)">
 						<span class="btn btn-o-white">講師詳細へ</span>
 					</a>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-4">
-					<a href="#" class="instructor" style="background-image:url(/images/eval_instructor4.jpg)">
+					<a href="" class="instructor" style="background-image:url(/images/eval_instructor4.jpg)">
 						<span class="btn btn-o-white">講師詳細へ</span>
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<a href="#" class="instructor" style="background-image:url(/images/eval_instructor5.jpg)">
+					<a href="" class="instructor" style="background-image:url(/images/eval_instructor5.jpg)">
 						<span class="btn btn-o-white">講師詳細へ</span>
 					</a>
 				</div>
 				<div class="col-sm-4">
-					<a href="#" class="instructor" style="background-image:url(/images/eval_instructor6.jpg)">
+					<a href="" class="instructor" style="background-image:url(/images/eval_instructor6.jpg)">
 						<span class="btn btn-o-white">講師詳細へ</span>
 					</a>
 				</div>
@@ -162,7 +162,7 @@
 			Bridgerでは講師の募集を行なっております。
 		</div>
 	</section>
-	<a href="#" class="text-center btn btn-o-white btn-lg">詳しくはこちら</a>
+	<a href="" class="text-center btn btn-o-white btn-lg">詳しくはこちら</a>
 </div>
 
 <div class="content-block" id="recent-instructors">
@@ -189,30 +189,27 @@
 				  	<!-- Wrapper for slides -->
 				  	<div class="carousel-inner" role="listbox">
 					    <div class="item active">
-					      	<div class="img-center">	
-					      		<img class="img-circle circular-img" src="/images/latest1.jpg">
-					      	</div>	
-					      	<h4>
-					      		アメリカを拠点に活躍する日本人ジャズ・トランペッター/作曲家。1972年に渡米、バークリー音楽大学を首席で卒業。80年代より自身のフュージョン・バンドを率い、1998年にニューポート・ジャズ・フェスティヴァルに出演。バークリー音楽大学教授。
-					      	</h4>
-					      
+					      <div class="img-center">
+					      	<img class="img-circle circular-img" src="<%= gravatar_url(@latest_lesson.instructor, { size: 200 }) %>">
+					      </div>
+  							<h4 class="instructor-head"><%= link_to @latest_lesson.instructor.name, @latest_lesson %></h4>
+					      <p><%= @latest_lesson.biography %></p>
 					    </div><!-- /.item -->
+					    
 					    <div class="item">
 					    	<div class="img-center">	
-					      		<img class="img-circle circular-img" src="/images/latest2.jpg">
-					      	</div>
-					       	<h4>
-										16歳から神戸や大阪のジャズ・クラブでの演奏活動をスタート。2003 年に渡米し、ニューヨークのニュースクール大学ジャズ課に進学。在学中からニューヨークの有名クラブに出演。 卒業後もニューヨーク・ブルックリンを拠点に国内外で活動。
-					       	</h4>
-					      
+					      	<img class="img-circle circular-img" src="<%= gravatar_url(@second_latest_lesson.instructor, { size: 200 }) %>">
+					      </div>
+  							<h4 class="instructor-head"><%= link_to @second_latest_lesson.instructor.name, @second_latest_lesson %></h4>
+					      <p><%= @second_latest_lesson.biography %></p>
 					    </div><!-- /.item -->
+					    
 					    <div class="item">
 					    	<div class="img-center">	
-					      		<img class="img-circle circular-img" src="/images/latest3.jpg">
-					        </div>
-					       	<h4>
-										17歳の時にチック・コリアと共演。1999年にボストンのバークリー音楽院に入学。在学中にジャズの名門テラークと契約し、2003年にアルバム『Another Mind』で世界デビュー。2008年にはチック・コリアとのアルバム『Duet』を発表。
-					       	</h4>
+					      	<img class="img-circle circular-img" src="<%= gravatar_url(@third_latest_lesson.instructor, { size: 200 }) %>">
+					      </div>
+  							<h4 class="instructor-head"><%= link_to @third_latest_lesson.instructor.name, @third_latest_lesson %></h4>
+					      <p><%= @third_latest_lesson.biography %></p>
 					    </div><!-- /.item -->
 				  	</div><!-- /.carousel-inner -->
 				</div><!-- /.carousel slide -->
