@@ -78,6 +78,8 @@
     </div>
   </div>
   <div class="actions text-center">
-    <%= f.submit submit_name, class:'btn btn-info' %>
+    <%= button_tag type: 'submit', class:'btn btn-info' do %>
+      <i class="fa fa-arrow-circle-right"></i>  <%= submit_name %>
+    <% end %>
   </div>
 <% end %>

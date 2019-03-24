@@ -76,12 +76,18 @@
             <div class="text-center">
               <% if logged_in? %>
                 <% if current_user.lesson == @lesson %>
-                  <%= link_to 'レッスン情報編集', edit_lesson_path(@lesson), class:'btn btn-default' %>
+                  <%= link_to edit_lesson_path(@lesson), class:'btn btn-default' do %>
+                    <i class="fa fa-edit"></i>  レッスン情報編集
+                  <% end %>
                 <% else %>
-                  <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' %>
+                  <%= link_to new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' do %>
+                    <i class="fa fa-envelope"></i>  レッスン申し込みへ
+                  <% end %>
                 <% end %>
               <% else %>
-                <%= link_to 'レッスン申し込みへ', new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' %>
+                <%= link_to new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' do %>
+                  <i class="fa fa-envelope"></i>  レッスン申し込みへ
+                <% end %>
               <% end %>
             </div>
           </div>

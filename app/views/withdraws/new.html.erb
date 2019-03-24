@@ -41,7 +41,9 @@
 						<span>* </span> ポイント出金申請は<span>5,000ポイント</span>から受け付けています。
 					</div>
 					<div class="action text-center">
-	          <%= submit_tag '出金申請する', data: { confirm: "ポイント出金を申請しますか？" }, class: 'btn btn-o' %>
+	          <%= button_tag type: 'submit', data: { confirm: "ポイント出金を申請しますか？" }, class: 'btn btn-o' do %>
+	          	<i class="fa fa-check"></i>  出金申請する
+	          <% end %>
 					</div>
 	      <% end %>
 	     </div>

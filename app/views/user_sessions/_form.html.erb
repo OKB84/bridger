@@ -8,6 +8,8 @@
     <%= password_field_tag :password, '', class:'form-control' %>
   </div>
   <div class="actions text-center">
-    <%= submit_tag 'ログイン', class:'btn btn-o' %>
+    <%= button_tag type: 'submit', class:'btn btn-o' do %>
+      <i class="fa fa-sign-in"></i>  ログイン
+    <% end %>
   </div>
 <% end %>

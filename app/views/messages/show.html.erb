@@ -33,15 +33,23 @@
         </div>
         <div class="action">
           <% if @message.receive_user == current_user %>
-            <%= link_to '返信', new_message_path(user_id: @message.send_user_id, reply_message_id: @message.id), class: 'btn btn-default' %>
+            <%= link_to new_message_path(user_id: @message.send_user_id, reply_message_id: @message.id), class: 'btn btn-info' do %>
+              <i class="fa fa-reply"></i>  返信
+            <% end %>
           <% end %>
-          <%= link_to '戻る', :back, class:'btn btn-default' %>
+          <%= link_to :back, class:'btn btn-default' do %>
+            <i class="fa fa-undo"></i>  戻る
+          <% end %>
         </div>
         <div class="apply text-center">
           <% if @message.send_user == current_user && @message.receive_user.lesson.present? %>
-            <%= link_to 'レッスンポイント支払いへ', new_point_history_path(to_user_id: @message.receive_user_id), class:'btn btn-default' %>
+            <%= link_to new_point_history_path(to_user_id: @message.receive_user_id), class:'btn btn-o' do %>
+              <i class="fa fa-shopping-bag"></i>  レッスンポイント支払いへ
+            <% end %>
           <% elsif @message.receive_user == current_user && @message.send_user.lesson.present? %>
-            <%= link_to 'レッスンポイント支払いへ', new_point_history_path(to_user_id: @message.send_user_id), class:'btn btn-default' %>
+            <%= link_to new_point_history_path(to_user_id: @message.send_user_id), class:'btn btn-o' do %>
+              <i class="fa fa-shopping-bag"></i>  レッスンポイント支払いへ
+            <% end %>
           <% end %>
         </div>
       </div>

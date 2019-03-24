@@ -51,8 +51,12 @@
             <% end %>
           </div>
   	      <div class="point-buttons text-center">
-  	        <%= link_to 'ポイント履歴確認', point_histories_path, class: 'btn btn-success point-history' %>
-  	        <%= link_to 'ポイント出金依頼', new_withdraw_path, class: 'btn btn-o withdraw' %>
+  	        <%= link_to point_histories_path, class: 'btn btn-success point-history' do %>
+  	          <i class="fa fa-history"></i>  ポイント履歴確認
+  	        <% end %>
+  	        <%= link_to new_withdraw_path, class: 'btn btn-o withdraw' do %>
+  	          <i class="fa fa-briefcase"></i>  ポイント出金依頼
+  	        <% end %>
   	      </div>
   	      <div class="purchase">
         	  <%= form_tag(action: :purchase, controller: :point_histories, method: :post) do %>
