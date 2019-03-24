@@ -14,7 +14,9 @@
 		<%= link_to new_user_path, class:'btn btn-o-white btn-lg' do %>
 			Bridgerを始める
 		<% end %>
+		<p class="scroll js-scroll"><a href="">SCROLL</a></p>
 	</section>
+
 </div><!-- header -->
 
 <!-- About us -->
@@ -219,9 +221,17 @@
 	</div>
 </div><!-- /#recent-instructors -->
 
-
-
-
-
-
-
+<script>
+jQuery(function($){
+$(window).on('load resize',function(){
+  //ウィンドウの高さを取得する
+  var targetY = $(window).height();
+  
+  //スクロールをクリックするとウィンドウの高さ分、下にスクロールする
+  $('.js-scroll a').on('click',function(){
+    $("html, body").stop().animate({scrollTop: targetY}, 450, 'swing');
+    return false;
+  });
+});
+	});
+</script>
