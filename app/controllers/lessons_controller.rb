@@ -10,12 +10,12 @@ class LessonsController < ApplicationController
       else
         @lessons = Lesson.find(@search_form.search.ids)
       end
+      unless @lesson.present?
+        flash.now[:danger] = '条件に合う講師が見つかりませんでした'
+      end
     else
       @search_form = Form::LessonSearchForm.new
       @lessons = Lesson.all
-    end
-    unless @lessons.present?
-      flash.now[:danger] = '条件に合う講師が見つかりませんでした'
     end
   end
 
