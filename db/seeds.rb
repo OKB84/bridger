@@ -29,6 +29,8 @@ Subject.create(subj_name_ja: "インプロヴィゼーション", subj_name_en: 
 Subject.create(subj_name_ja: "スケール", subj_name_en: "Scale")
 Subject.create(subj_name_ja: "リック", subj_name_en: "Lick")
 Subject.create(subj_name_ja: "リハーモナイゼ ーション", subj_name_en: "Reharmonization")
+Subject.create(subj_name_ja: "モチーフデベロップメント", subj_name_en: "Reharmonization")
+Subject.create(subj_name_ja: "発声", subj_name_en: "Reharmonization")
 Subject.create(subj_name_ja: "歴史", subj_name_en: "History")
 
 Language.create(lang_name: "日本語")
