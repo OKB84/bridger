@@ -52,7 +52,7 @@
           </div>
   	      <div class="point-buttons text-center">
   	        <%= link_to point_histories_path, class: 'btn btn-success point-history' do %>
-  	          <i class="fa fa-history"></i>  ポイント履歴確認
+  	          <i class="fa fa-bar-chart"></i>  ポイント履歴確認
   	        <% end %>
   	        <%= link_to new_withdraw_path, class: 'btn btn-o withdraw' do %>
   	          <i class="fa fa-briefcase"></i>  ポイント出金依頼
@@ -84,7 +84,7 @@
       </div>
       <div class="col-sm-2 col-xs-4">
         <%= link_to @user, data: {confirm: 'アカウントを削除しますか？'}, method: :delete do %>
-          <i class="fa fa-trash"></i>
+          <i class="fa fa-user-times"></i>
         <% end %>
       </div>
     </div>
