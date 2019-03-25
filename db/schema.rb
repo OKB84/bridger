@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190321025618) do
+ActiveRecord::Schema.define(version: 20190325095115) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -124,17 +124,21 @@ ActiveRecord::Schema.define(version: 20190321025618) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",            null: false
+    t.string   "email",                       null: false
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "name"
     t.string   "bank"
     t.string   "branch"
     t.string   "account_type"
     t.string   "account_number"
     t.string   "account_holder"
+    t.string   "activation_state"
+    t.string   "activation_token"
+    t.datetime "activation_token_expires_at"
+    t.index ["activation_token"], name: "index_users_on_activation_token", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
