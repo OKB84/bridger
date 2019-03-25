@@ -39,7 +39,7 @@ class User < ApplicationRecord
   
   has_many :points, dependent: :destroy
   
-  has_many :point_histories, dependent: :destroy
+  has_many :point_histories, foreign_key: 'from_user_id', dependent: :destroy
   has_many :point_receivers, through: :point_histories, source: :to_user, dependent: :destroy
   has_many :reverse_of_point_histories, class_name: 'PointHistory', foreign_key: 'to_user_id', dependent: :destroy
   has_many :point_senders, through: :reverse_of_point_histories, source: :from_user, dependent: :destroy

@@ -72,12 +72,7 @@
     </div>
     
     <div class="row menu text-center">
-      <!--<div class="col-sm-2 col-sm-offset-3 col-xs-4">-->
-      <!--  <a href="#">-->
-      <!--    <i class="fa fa-search"></i>-->
-      <!--  </a>-->
-      <!--</div>-->
-      <div class="col-sm-2  col-sm-offset-4 col-xs-4">
+      <div class="col-sm-2  col-sm-offset-3 col-xs-4">
         <%= link_to edit_user_path(current_user) do %>
           <i class="fa fa-edit"></i>
         <% end %>
@@ -85,6 +80,11 @@
       <div class="col-sm-2 col-xs-4">
         <%= link_to messages_path do %>
           <i class="fa fa-envelope"></i>
+        <% end %>
+      </div>
+      <div class="col-sm-2 col-xs-4">
+        <%= link_to @user, data: {confirm: 'アカウントを削除しますか？'}, method: :delete do %>
+          <i class="fa fa-trash"></i>
         <% end %>
       </div>
     </div>
