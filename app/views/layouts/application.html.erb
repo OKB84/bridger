@@ -61,8 +61,14 @@
   		 		$('.top-header').addClass('shows');
 	  		} else {
 		   	 	$('.top-header').removeClass('shows');
-		 		};   	
+		 		};
 			});
+    	//queue()で処理を溜めてdequeue()で実行。3秒経ったらfadeOut()
+      $('.alert').fadeIn().queue(function() {
+          setTimeout(function(){$('.alert').dequeue();
+          }, 2000);
+      });
+      $(".alert").fadeOut(2000, 'linear');
 		});
 
 		jQuery('.scroll').on('click', function(e){		

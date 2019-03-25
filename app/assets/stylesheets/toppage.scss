@@ -6,6 +6,17 @@
 //  02 - Header
 ///////////////////////////////////////////////////////////////////////*/
 
+#flash {
+  width: 90%;
+  max-width: 500px;
+  opacity: 0.95;
+  margin: 0 auto;
+  position: fixed;
+  top: 120px;
+  right: 0;
+  left: 0;
+  z-index: 1080;
+}
 
 #header{  
   position: relative;     
