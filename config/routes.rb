@@ -22,6 +22,6 @@ Rails.application.routes.draw do
   
   resources :withdraws, only: [:new, :create]
   
-  resources :password_resets
+  resources :password_resets, only: [:create, :edit, :update]
 end
 
