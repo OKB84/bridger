@@ -21,5 +21,7 @@ Rails.application.routes.draw do
   end
   
   resources :withdraws, only: [:new, :create]
+  
+  resources :password_resets
 end
 
