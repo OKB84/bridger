@@ -96,4 +96,7 @@ Rails.application.configure do
     :password => ENV['GMAIL_KEY'],
     :password => ENV['GMAIL_APP_KEY']
   }
+  
+  host = 'https://desolate-taiga-73453.herokuapp.com'
+  Rails.application.routes.default_url_options[:host] = host
 end
