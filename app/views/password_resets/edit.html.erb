@@ -33,11 +33,11 @@
         </div>
         <div class="field form-group">
           <%= f.label :password, '新規パスワード', class: 'mini-title' %>
-          <%= f.password_field :password %>
+          <%= f.password_field :password, class: 'form-control' %>
         </div>
         <div class="field form-group">
           <%= f.label :password_confirmation, '新規パスワード（確認）', class: 'mini-title' %><br />
-          <%= f.password_field :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
         </div>
         <div class="actions text-center">
           <%= f.submit 'パスワードを再設定', class: 'btn btn-o' %>
