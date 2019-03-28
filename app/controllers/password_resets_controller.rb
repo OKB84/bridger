@@ -12,7 +12,8 @@ class PasswordResetsController < ApplicationController
         
     # Tell the user instructions have been sent whether or not email was found.
     # This is to not leak information to attackers about which emails exist in the system.
-    redirect_to(root_path, :notice => 'Instructions have been sent to your email.')
+    flash[:success] = 'パスワードの再設定メールが送信されました'
+    redirect_to root_url
   end
 
   def edit
@@ -25,7 +26,8 @@ class PasswordResetsController < ApplicationController
     @user.password_confirmation = params[:user][:password_confirmation]
  
     if @user.change_password!(params[:user][:password])
-      redirect_to(root_path, :notice => 'Password was successfully updated.')
+      flash[:success] = 'パスワードのリセットが完了しました'
+      redirect_to root_url
     else
       render :action => "edit"
     end
