@@ -28,9 +28,8 @@
           </div>
         <% end %>
        
-        <div class="field">
-          <%= f.label :email, 'メールアドレス' %><br />
-          <%= @user.email %>
+        <div class="email">
+          <i class="fa fa-envelope"></i>  <%= @user.email %>
         </div>
         <div class="field form-group">
           <%= f.label :password, '新規パスワード', class: 'mini-title' %>
