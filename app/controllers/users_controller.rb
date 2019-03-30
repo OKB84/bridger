@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    redirect_to current_user if current_user.lesson.blank?
     if params[:search].present?
       @search_form = Form::UserSearchForm.new(user_search_form_params)
       if @search_form.search == User.all
