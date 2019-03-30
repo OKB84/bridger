@@ -75,8 +75,8 @@
 				      <img class="img-circle circular-img" src="<%= gravatar_url(user, { size: 180 }) %>">
 						</div>
 						<ul>
-						  <li><strong>楽器：</strong><%= lesson.instruments.pluck(:ins_name_ja).join('、') %></li>
-						  <li><strong>分野：</strong><%= lesson.subjects.pluck(:subj_name_ja).join('、') %></li>
+						  <li><strong>楽器：</strong><%= user.instruments.pluck(:ins_name_ja).join('、') %></li>
+						  <li><strong>分野：</strong><%= user.subjects.pluck(:subj_name_ja).join('、') %></li>
 						</ul>
 					</div>
 				</div>
