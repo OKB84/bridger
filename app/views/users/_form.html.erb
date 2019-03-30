@@ -54,7 +54,7 @@
       </div>
     <% end %>
   </div>
-  <button type="button" class="btn btn-o btn-sm" data-toggle="collapse" data-target="#bank-account"><i class="fa fa-angle-down"></i>  ポイント出金先口座</button>
+  <button type="button" class="btn btn-info btn-sm button-bank" data-toggle="collapse" data-target="#bank-account"><i class="fa fa-angle-down"></i>  ポイント出金先口座</button>
   <div id="bank-account" class="collapse<%= ' in' if user.bank.present? || user.branch.present? || user.account_type.present? || user.account_number.present? || user.account_holder.present? %>">
     <div class="form-group">
       <%= f.label :bank, '金融機関名', class: 'mini-title' %>
@@ -78,7 +78,7 @@
     </div>
   </div>
   <div class="actions text-center">
-    <%= button_tag type: 'submit', class:'btn btn-info' do %>
+    <%= button_tag type: 'submit', class:'btn button-user' do %>
       <i class="fa fa-arrow-circle-right"></i>  <%= submit_name %>
     <% end %>
   </div>

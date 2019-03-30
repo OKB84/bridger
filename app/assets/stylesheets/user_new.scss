@@ -25,3 +25,35 @@
 .actions {
   margin: 30px 0 60px 0;
 }
+
+
+button.button-user {
+  display: inline-block;
+  padding: 10px 30px;
+  margin: 20px 0;
+  position: relative;
+  color: #ecf0f1;
+  background-color: #34495e;
+  overflow: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+button.button-user:hover{
+  color: #ecf0f1;
+  -webkit-box-shadow: 0px 0px 10px #34495e;
+  box-shadow: 0px 0px 10px #34495e;
+}
+
+button.button-bank {
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+button.button-bank:hover {
+  -webkit-box-shadow: 0px 0px 5px #34495e;
+  box-shadow: 0px 0px 5px #34495e;
+}
