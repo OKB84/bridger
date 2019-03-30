@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       else
         @users = User.find(@search_form.search.ids)
       end
-      unless @users.present?
+      if !(@users.present?) || @users == User.where(id: current_user.id)
         flash.now[:danger] = '条件に合うユーザーが見つかりませんでした'
       end
     else
