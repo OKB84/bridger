@@ -3,8 +3,6 @@ class Form::LessonSearchForm
   
   attr_accessor :name, :language_ids, :instrument_ids, :subject_ids, :location_broad
   
-  validates :name, presence: true #問題なければ消す
-  
   def search
     rel = Lesson.all
     rel = Lesson.joins(:instructor).where(users: { name: name }) if name.present?
