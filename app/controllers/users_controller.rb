@@ -7,7 +7,20 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if params[:search].present?
+      @search_form = Form::UserSearchForm.new(user_search_form_params)
+      if @search_form.search == User.all
+        @users = User.all
+      else
+        @users = User.find(@search_form.search.ids)
+      end
+      unless @users.present?
+        flash.now[:danger] = '条件に合うユーザーが見つかりませんでした'
+      end
+    else
+      @search_form = Form::LessonSearchForm.new
+      @users = User.all
+    end
   end
 
   # GET /users/1
@@ -100,5 +113,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :bank, :branch, :account_type, :account_number, :account_holder, instrument_ids: [], subject_ids: [], language_ids: [])
+    end
+    
+    def user_search_form_params
+      params.require(:search).permit(instrument_ids: [], subject_ids: [], language_ids: [])
     end
 end
