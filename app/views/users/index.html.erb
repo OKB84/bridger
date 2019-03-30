@@ -3,10 +3,10 @@
 <div id="title" class="user_index">
   <div class="slogans">
 		<div class="slogan">
-			Users
+			Advertisement
 		</div>
 		<div class="secondary-slogan">
-			ユーザー一覧
+			レッスン宣伝
 		</div>
 	</div>
 </div>
@@ -73,6 +73,7 @@
 					<div class="user">
 						<div class="text-center">
 				      <img class="img-circle circular-img" src="<%= gravatar_url(user, { size: 180 }) %>">
+							<h4 class="instructor-head"><%= link_to user.name, new_message_path(user_id: user.id, type: 'advertise') %></h4>
 						</div>
 						<ul>
 						  <li><strong>楽器：</strong><%= user.instruments.pluck(:ins_name_ja).join('、') %></li>

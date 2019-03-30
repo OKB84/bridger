@@ -14,6 +14,9 @@ class MessagesController < ApplicationController
     if params[:reply_message_id]
       @reply_message = Message.find(params[:reply_message_id])
       @default_message = "\r\r---------- original message ----------\rFrom: #{@reply_message.send_user.name}\rSent: #{@reply_message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[@reply_message.created_at.getlocal("+09:00").wday]}) %H:%M")}\r\r#{@reply_message.content}"
+    elsif params[:type] == 'advertise'
+      @default_message =
+      "はじめまして。\r#{current_user.name}と申します。\r\r以下を対象としたレッスンを実施しています。\r\r楽器：#{current_user.lesson.instruments.pluck(:ins_name_ja).join('、')}\r分野：#{current_user.lesson.subjects.pluck(:subj_name_ja).join('、')}"
     elsif !(@receive_user.lesson.present?) || @receive_user == current_user
       redirect_to messages_url
     end
@@ -40,7 +43,7 @@ class MessagesController < ApplicationController
   private
   
   def message_params
-    params.require(:message).permit(:content, :reply_message)
+    params.require(:message).permit(:content, :reply_message, :type)
   end
   
 end
