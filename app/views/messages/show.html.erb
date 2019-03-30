@@ -42,13 +42,18 @@
           <% end %>
         </div>
         <div class="apply text-center">
+          <% if !(@message.send_user == current_user) && @message.send_user.lesson.present? %>
+            <%= link_to @message.send_user.lesson, class:'btn btn-o' do %>
+              <i class="fa fa-address-book"></i>  講師詳細
+            <% end %>          
+          <% end %>
           <% if @message.send_user == current_user && @message.receive_user.lesson.present? %>
             <%= link_to new_point_history_path(to_user_id: @message.receive_user_id), class:'btn btn-o' do %>
-              <i class="fa fa-shopping-bag"></i>  レッスンポイント支払いへ
+              <i class="fa fa-shopping-bag"></i>  レッスンポイント支払い
             <% end %>
           <% elsif @message.receive_user == current_user && @message.send_user.lesson.present? %>
             <%= link_to new_point_history_path(to_user_id: @message.send_user_id), class:'btn btn-o' do %>
-              <i class="fa fa-shopping-bag"></i>  レッスンポイント支払いへ
+              <i class="fa fa-shopping-bag"></i>  レッスンポイント支払い
             <% end %>
           <% end %>
         </div>
