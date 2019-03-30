@@ -12,4 +12,4 @@ Rails.application.config.assets.version = '1.0'
 
 Rails.application.config.assets.precompile += %w( magister.css )
 
-Rails.application.config.assets.precompile += %w( bootstrap.min.css style.css toppage.css lesson_index.css lesson_show.css user_new.css session_new.css user_show.css user_edit.css message_index.css message_new message_show lesson_new.css lesson_edit.css point_new.css point_index.css withdraw_new.css password_resets_new.css password_resets_edit.css)
+Rails.application.config.assets.precompile += %w( bootstrap.min.css style.css toppage.css lesson_index.css lesson_show.css user_new.css session_new.css user_show.css user_edit.css message_index.css message_new message_show lesson_new.css lesson_edit.css point_new.css point_index.css withdraw_new.css password_resets_new.css password_resets_edit.css user_index.css)
