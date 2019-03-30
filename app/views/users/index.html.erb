@@ -1,28 +1,86 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag 'user_index', media: 'all' %>
 
-<h1>Users</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.name %></td>
-        <!--<td><%= link_to 'Show', user %></td>-->
-        <!--<td><%= link_to 'Edit', edit_user_path(user) %></td>-->
-        <!--<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to '戻る', :back %>
-<!--<%= link_to 'New User', new_user_path %>-->
+<div id="title" class="user_index">
+  <div class="slogans">
+		<div class="slogan">
+			Users
+		</div>
+		<div class="secondary-slogan">
+			ユーザー一覧
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="container">
+    <%= render 'layouts/flash_messages' %>
+		<div class="row">
+			<div class="col-xs-10 col-xs-offset-1">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="fa fa-plus"></i>  絞り込み</a>
+						</h4>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse<%= ' in' if params[:search].present? %>" >
+						<div class="panel-body">
+						<%= form_for @search_form, as: 'search', url: :users, html: {method: :get} do |f| %>
+							
+							<div class="form-group">
+								<%= f.label :instrument_ids, '楽器', class:'mini-title' %><br />
+						    <%= f.collection_check_boxes :instrument_ids, Instrument.all, :id, :ins_name_ja, checked: @search_form.instrument_ids, class:'checkbox', include_hidden: false do |b| %>
+						      <div class="each-checkbox">
+						        <%= b.check_box %>
+						        <%= b.label { b.text } %>&nbsp;&nbsp;
+						      </div>
+						  	<% end %>
+						  </div>
+							
+							<div class="form-group">
+						    <%= f.label :subject_ids, '分野', class:'mini-title' %><br />
+						    <%= f.collection_check_boxes :subject_ids, Subject.all, :id, :subj_name_ja, checked: @search_form.subject_ids, class:'checkbox', include_hidden: false do |b| %>
+						      <div class="each-checkbox">
+						        <%= b.check_box %>
+						        <%= b.label { b.text } %>&nbsp;&nbsp;
+						      </div>
+						    <% end %>
+						  </div>
+						  
+							<div class="form-group">
+								<%= f.label :language_ids, '言語', class:'mini-title necessary' %><br />
+							  <%= f.collection_check_boxes :language_ids, Language.all, :id, :lang_name, checked: @search_form.language_ids, class:'checkbox', include_hidden: false do |b| %>
+						      <div class="each-checkbox">
+						        <%= b.check_box %>
+						        <%= b.label { b.text } %>&nbsp;&nbsp;
+						      </div>
+						    <% end %>
+						  </div>
+					    
+					    <div class="action text-center">
+								<%= button_tag type: 'submit', class: 'btn btn-o' do %>
+									<i class="fa fa-search"></i>  検索
+								<% end %>
+							</div>
+						<% end %>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+		  <% @users.each do |user| %>
+				<div class="col-md-3 col-sm-6">
+					<div class="instructor">
+						<div class="text-center">
+				      <img class="img-circle circular-img" src="<%= gravatar_url(lesson.instructor, { size: 180 }) %>">
+						</div>
+						<ul>
+						  <li><strong>楽器：</strong><%= lesson.instruments.pluck(:ins_name_ja).join('、') %></li>
+						  <li><strong>分野：</strong><%= lesson.subjects.pluck(:subj_name_ja).join('、') %></li>
+						</ul>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
