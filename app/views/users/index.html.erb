@@ -69,18 +69,20 @@
 		
 		<div class="row row-eq-height">
 		  <% @users.each do |user| %>
-				<div class="col-md-3 col-sm-6">
-					<div class="user">
-						<div class="text-center">
-				      <img class="img-circle circular-img" src="<%= gravatar_url(user, { size: 180 }) %>">
-							<h4 class="instructor-head"><%= link_to user.name, new_message_path(user_id: user.id, type: 'advertise') %></h4>
-						</div>
-						<ul>
-						  <li><strong>楽器：</strong><%= user.instruments.pluck(:ins_name_ja).join('、') %></li>
-						  <li><strong>分野：</strong><%= user.subjects.pluck(:subj_name_ja).join('、') %></li>
-						</ul>
-					</div>
-				</div>
+		    <% unless user == current_user %>
+  				<div class="col-md-3 col-sm-6">
+  					<div class="user">
+  						<div class="text-center">
+  				      <img class="img-circle circular-img" src="<%= gravatar_url(user, { size: 180 }) %>">
+  							<h4 class="instructor-head"><%= link_to user.name, new_message_path(user_id: user.id, type: 'advertise') %></h4>
+  						</div>
+  						<ul>
+  						  <li><strong>楽器：</strong><%= user.instruments.pluck(:ins_name_ja).join('、') %></li>
+  						  <li><strong>分野：</strong><%= user.subjects.pluck(:subj_name_ja).join('、') %></li>
+  						</ul>
+  					</div>
+  				</div>
+  			<% end %>
 			<% end %>
 		</div>
 	</div>
