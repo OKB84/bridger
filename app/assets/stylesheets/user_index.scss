@@ -8,6 +8,11 @@
   background: #fcfcfc;
 }
 
+.row-eq-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .user img {
   box-shadow: 3px 3px 4px gray;
 }
