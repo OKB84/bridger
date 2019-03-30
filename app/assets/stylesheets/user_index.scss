@@ -1,0 +1,29 @@
+.user_index {
+  background: url("/images/user_index.jpg") center center fixed;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  padding-top: 60px;
+  background: #fcfcfc;
+}
+
+.user img {
+  box-shadow: 3px 3px 4px gray;
+}
+
+.user ul {
+  margin-bottom: 50px;
+  position: relative;
+  padding-inline-start: 0;
+  padding: 0 10%;
+}
+
+.user a:hover {
+  color: #5dc9f4;
+}
+
+.user p {
+  margin-bottom: 50px;
+}
+
