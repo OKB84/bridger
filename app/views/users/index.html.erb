@@ -72,7 +72,7 @@
 				<div class="col-md-3 col-sm-6">
 					<div class="instructor">
 						<div class="text-center">
-				      <img class="img-circle circular-img" src="<%= gravatar_url(lesson.instructor, { size: 180 }) %>">
+				      <img class="img-circle circular-img" src="<%= gravatar_url(user, { size: 180 }) %>">
 						</div>
 						<ul>
 						  <li><strong>楽器：</strong><%= lesson.instruments.pluck(:ins_name_ja).join('、') %></li>
