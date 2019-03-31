@@ -170,6 +170,9 @@
   						<div class="text-center">
   				      <img class="img-circle circular-img" src="<%= gravatar_url(instructor, { size: 180 }) %>">
   							<h4 class="instructor-head"><%= link_to instructor.name, instructor.lesson %></h4>
+  							<%= link_to new_review_path(instructor_id: instructor.id), class: 'btn' do %>
+  							  <i class="fa fa-pen"></i>  評価する
+  							<% end %>
   						</div>
   					</div>
   				</div>

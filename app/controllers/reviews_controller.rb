@@ -3,6 +3,8 @@ class ReviewsController < ApplicationController
   end
   
   def new
+    @instructor = User.find(params[:instructor_id])
+    @review = Review.new
   end
   
   def create

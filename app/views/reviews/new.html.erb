@@ -1,0 +1,48 @@
+<%= stylesheet_link_tag 'review_new', media: 'all' %>
+
+<div id="title" class="review_new">
+  <div class="slogans">
+		<div class="slogan">
+		  New Review
+		</div>
+		<div class="secondary-slogan">
+			新規レビュー
+		</div>
+	</div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <%= render 'layouts/flash_messages' %>
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <h3><%= @instructor.name %> さんへの評価</h3>
+        
+        <%= form_for @review do |f| %>
+          <%= f.hidden_field :from_user_id, value: current_user.id %>
+          <%= f.hidden_field :to_user_id, value: @instructor.id %>
+          <div class="col-md-6 col-md-offset-3">
+            <div class="field" id="star">
+              <%= f.label :rate, 'レッスンの満足度' %>
+              <%= f.hidden_field :rate, id: :review_star %>
+            </div>
+            <%= f.text_area :comment, :class => "form-control", :size => "50x20"  %><br>
+            <%= f.submit "レビュー評価", :class => "btn btn-primary" %>
+          </div>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+   $('textarea').focus();
+
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'review[star]' 
+  });
+</script>
