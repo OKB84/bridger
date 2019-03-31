@@ -22,24 +22,19 @@
             <img class="img-circle circular-img" src="<%= gravatar_url(@user, { size: 180 }) %>">
       	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
       	  </div>
-    	  	<ul>
-          <li>
-            <strong>メールアドレス：</strong>
-            <%= current_user.email %>
-          </li>
-          <li>
-            <strong>使用楽器：</strong>
-            <%= @instruments.pluck(:ins_name_ja).join('、') %>
-          </li>
-          <li>
-            <strong>気になる分野：</strong>
-            <%= @subjects.pluck(:subj_name_ja).join('、') %>
-          </li>
-          <li>
-            <strong>使用言語：</strong>
-            <%= @languages.pluck(:lang_name).join('、') %>
-          </li>
-        </ul>
+      	  <div class="profile">
+            <i class="fa fa-check"></i> <strong>メールアドレス</strong>
+            <p><%= current_user.email %></p>
+
+            <i class="fa fa-check"></i> <strong>使用楽器</strong>
+            <p><%= @instruments.pluck(:ins_name_ja).join('、') %></p>
+
+            <i class="fa fa-check"></i> <strong>気になる分野</strong>
+            <p><%= @subjects.pluck(:subj_name_ja).join('、') %></p>
+
+            <i class="fa fa-check"></i> <strong>使用言語</strong>
+            <p><%= @languages.pluck(:lang_name).join('、') %></p>
+          </div>
     	  </div>
     	  <div class="col-sm-4">
     	    <h4>保有ポイント：</h4>
@@ -114,15 +109,16 @@
       <% end %>
       
     </div>
-
-
+    
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>開催中のレッスン</h3>
+      </div>
+    </div>
     <% if @user.lesson %>
       <div class="row">
-        <div class="col-lg-12">
-          <h3>&nbsp;&nbsp;開催中のレッスン</h3>
-        </div>
         <% @user.lesson.lesson_plans.each.with_index(1) do |plan, index| %>
-          <div class="col-sm-4 col-md-3">
+          <div class="col-sm-4 col-md-3 plans">
             <div class="panel panel-default">
               <div class="panel-heading text-center">
                 <h4 class="panel-title">レッスンプラン <%= index %></h4>
@@ -151,8 +147,42 @@
         <% end %>
       </div>
     <% else %>
+    	<div class="no-info text-center">
+				<p><i class="fa fa-exclamation-circle"></i>  開催中のレッスンがありません</p>
+			</div>
       <div class="text-center lesson-button">
-        <%= link_to 'レッスンを開催する', new_lesson_path, class:'btn btn-default'  %>
+        <%= link_to new_lesson_path, class:'btn button-go button-hold' do %>
+          <i class="fa fa-plus-square"></i>  レッスンを開催する
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <h3>レッスンを申込んだ講師</h3>
+      </div>
+    </div>
+    <% if @user.point_receivers.present? %>
+      <div class="row">
+  		  <% @user.point_receivers.distinct.each do |instructor| %>
+  				<div class="col-md-3 col-sm-6">
+  					<div class="instructor">
+  						<div class="text-center">
+  				      <img class="img-circle circular-img" src="<%= gravatar_url(instructor, { size: 180 }) %>">
+  							<h4 class="instructor-head"><%= link_to instructor.name, instructor.lesson %></h4>
+  						</div>
+  					</div>
+  				</div>
+  			<% end %>
+      </div>
+    <% else %>
+    	<div class="no-info text-center">
+				<p><i class="fa fa-exclamation-circle"></i>  レッスンを申込んだ講師がいません</p>
+			</div>
+      <div class="text-center lesson-button">
+        <%= link_to lessons_path, class:'btn button-go button-find' do %>
+          <i class="fa fa-search"></i>  講師を探す
+        <% end %>
       </div>
     <% end %>
   </div>
