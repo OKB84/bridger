@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190327163027) do
+ActiveRecord::Schema.define(version: 20190331112628) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -116,6 +116,18 @@ ActiveRecord::Schema.define(version: 20190327163027) do
     t.index ["user_id"], name: "index_points_on_user_id", using: :btree
   end
 
+  create_table "reviews", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.integer  "rate"
+    t.text     "comment",      limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["from_user_id", "to_user_id"], name: "index_reviews_on_from_user_id_and_to_user_id", unique: true, using: :btree
+    t.index ["from_user_id"], name: "index_reviews_on_from_user_id", using: :btree
+    t.index ["to_user_id"], name: "index_reviews_on_to_user_id", using: :btree
+  end
+
   create_table "subjects", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "subj_name_ja"
     t.string   "subj_name_en"
@@ -172,6 +184,8 @@ ActiveRecord::Schema.define(version: 20190327163027) do
   add_foreign_key "point_histories", "users", column: "from_user_id"
   add_foreign_key "point_histories", "users", column: "to_user_id"
   add_foreign_key "points", "users"
+  add_foreign_key "reviews", "users", column: "from_user_id"
+  add_foreign_key "reviews", "users", column: "to_user_id"
   add_foreign_key "users_languages", "languages"
   add_foreign_key "users_languages", "users"
 end
