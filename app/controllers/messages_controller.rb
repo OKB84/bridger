@@ -36,6 +36,7 @@ class MessagesController < ApplicationController
       redirect_to messages_url
     else
       flash.now[:danger] = 'メッセージの送信に失敗しました'
+      @receive_user = receiver
       render :new
     end
   end

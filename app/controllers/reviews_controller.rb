@@ -8,12 +8,14 @@ class ReviewsController < ApplicationController
   end
   
   def create
-    @review = Review.new(from_user_id: current_user.id, to_user_id: params[:instructor_id], rate: review_params[:rate], comment: review_params[:comment])
+    @review = Review.new(review_params)
     if @review.save
       flash[:success] = 'レビューが完了しました'
       redirect_to current_user
     else
       flash.now[:danger] = 'レビューできませんでした'
+      @instructor = User.find(review_params[:to_user_id])
+      render :new
     end
   end
   
@@ -32,6 +34,6 @@ class ReviewsController < ApplicationController
   private
   
     def review_params
-      params.require(:review).permit(:rate, :comment)
+      params.require(:review).permit(:from_user_id, :to_user_id, :rate, :comment)
     end
 end

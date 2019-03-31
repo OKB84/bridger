@@ -19,10 +19,11 @@
         <h3><%= @instructor.name %> さんへの評価</h3>
         
         <%= form_for @review do |f| %>
+          <%= f.hidden_field :from_user_id, value: current_user.id %>
           <%= f.hidden_field :to_user_id, value: @instructor.id %>
-          <div class="field" id="star">
+          <div class="field" id="rate">
             <%= f.label :rate, 'レッスンの満足度' %><br />
-            <%= f.hidden_field :rate, id: :review_star %>
+            <%= f.hidden_field :rate, id: :review_rate %>
           </div>
           <div class="comment-title">
             <%= f.label :comment, 'レッスンを受けた感想、講師への要望等' %>
@@ -43,10 +44,10 @@
 <script>
    $('textarea').focus();
 
-  $('#star').raty({
+  $('#rate').raty({
     size     : 36,
     starOff:  '<%= asset_path('star-off.png') %>',
     starOn : '<%= asset_path('star-on.png') %>',
-    scoreName: 'review[star]' 
+    scoreName: 'review[rate]' 
   });
 </script>

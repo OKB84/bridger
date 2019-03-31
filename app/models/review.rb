@@ -5,5 +5,4 @@ class Review < ApplicationRecord
   validates :from_user_id, presence: true
   validates :to_user_id, presence: true
   validates :rate, presence: true
-  validates :comment, presence: true
 end
