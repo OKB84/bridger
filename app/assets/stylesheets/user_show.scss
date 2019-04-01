@@ -132,6 +132,16 @@ h3 {
   color: #545454;
 }
 
+.button-star {
+  color: #ecf0f1;
+  background-color: #34495e;
+  margin: 0 0 60px 0;
+}
+
+.button-star:hover {
+  color: #ecf0f1;
+}
+
 .plans {
   padding-left: 20px;
   padding-right: 20px;
@@ -171,11 +181,8 @@ h3 {
 
 .instructor h4.instructor-head{
   font-family: 'Raleway', sans-serif;
-  margin: 20px 0;
+  margin: 15px 0;
   font-weight: 500;
   font-size: 22px;
 }
 
-.instructor a:hover {
-  color: #5dc9f4;
-}
