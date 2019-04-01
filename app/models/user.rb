@@ -50,6 +50,10 @@ class User < ApplicationRecord
   has_many :rates, through: :reverse_of_reviews, source: :rate, dependent: :destroy
   has_many :comments, through: :reverse_of_reviews, source: :comment, dependent: :destroy
   
+  def taught_by?(instructor)
+    self.point_receivers.include?(instructor)
+  end
+  
   def reviewed?(instructor)
     self.reviewed_instructors.include?(instructor)
   end

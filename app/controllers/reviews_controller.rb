@@ -4,7 +4,11 @@ class ReviewsController < ApplicationController
   
   def new
     @instructor = User.find(params[:instructor_id])
-    @review = Review.new
+    if current_user.taught_by?(@instructor)
+      @review = Review.new
+    else
+      redirect_to current_user
+    end
   end
   
   def create
