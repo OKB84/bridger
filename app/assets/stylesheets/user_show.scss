@@ -159,6 +159,16 @@ h3 {
   box-shadow: 3px 3px 4px gray;
 }
 
+.imgWrap {
+	overflow: hidden;	/*拡大時にはみ出た部分を隠す*/
+  transition: 0.3s;	/*変化に掛かる時間*/
+}
+
+.imgWrap:hover {
+	transform: scale(1.07);	/*画像の拡大率*/
+	transition-duration: 0.3s;	/*変化に掛かる時間*/
+}
+
 .instructor h4.instructor-head{
   font-family: 'Raleway', sans-serif;
   margin: 20px 0;
