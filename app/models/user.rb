@@ -45,7 +45,12 @@ class User < ApplicationRecord
   has_many :point_senders, through: :reverse_of_point_histories, source: :from_user, dependent: :destroy
   
   has_many :reviews, foreign_key: 'from_user_id', dependent: :destroy
-  has_many :reverse_of_reviews, through: :reviews, source: :to_user, dependent: :destroy
+  has_many :reviewed_instructors, through: :reviews, source: :to_user, dependent: :destroy
+  has_many :reverse_of_reviews, class_name: 'Review', foreign_key: 'to_user_id', dependent: :destroy
   has_many :rates, through: :reverse_of_reviews, source: :rate, dependent: :destroy
   has_many :comments, through: :reverse_of_reviews, source: :comment, dependent: :destroy
+  
+  def reviewed?(instructor)
+    self.reviewed_instructors.include?(instructor)
+  end
 end

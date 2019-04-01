@@ -171,7 +171,7 @@
 				        <%= link_to image_tag(gravatar_url(instructor, { size: 180 }), class: 'img-circle circular-img imgWrap'), instructor.lesson %>
   							<h4 class="instructor-head"><%= link_to instructor.name, instructor.lesson %></h4>
   							<%= link_to new_review_path(instructor_id: instructor.id), class: 'btn button-go button-star' do %>
-  							  <i class="fa fa-star"></i>  評価する
+  							  <i class="fa fa-star"></i>  レビュー作成
   							<% end %>
   						</div>
   					</div>
