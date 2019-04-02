@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   
   def new
     @instructor = User.find(params[:instructor_id])
+    #以下のリダイレクト処理はbefore actionとした方が良いかも
     if current_user.taught_by?(@instructor)
       @review = Review.new
     else
