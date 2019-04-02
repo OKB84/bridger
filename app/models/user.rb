@@ -50,11 +50,20 @@ class User < ApplicationRecord
   has_many :rates, through: :reverse_of_reviews, source: :rate, dependent: :destroy
   has_many :comments, through: :reverse_of_reviews, source: :comment, dependent: :destroy
   
+  has_many :favorites, foreign_key: 'from_user_id', dependent: :destroy
+  has_many :favorite_instructors, through: :favorites, source: :to_user, dependent: :destroy
+  has_many :reverse_of_favorites, class_name: 'Favorite', foreign_key: :to_user_id, dependent: :destroy
+  has_many :favorited_users, through: :reverse_of_favorites, source: :from_user, dependent: :destroy
+  
   def taught_by?(instructor)
     self.point_receivers.include?(instructor)
   end
   
   def reviewed?(instructor)
     self.reviewed_instructors.include?(instructor)
+  end
+  
+  def favorite?(instructor)
+    self.favorite_instructors.include?(instructor)
   end
 end
