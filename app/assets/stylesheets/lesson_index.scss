@@ -8,39 +8,72 @@
   background: #fcfcfc;
 }
 
-.imgWrap {
-	overflow: hidden;	/*拡大時にはみ出た部分を隠す*/
-  transition: 0.3s;	/*変化に掛かる時間*/
+.card {
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px #ccc;
+}
+.card-img {
+  border-radius: 5px 5px 0 0;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-content {
+  padding: 15px 15px 30px 15px;
+  height: 210px;
+}
+.card-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+  color: #333;
+}
+.card-text {
+  color: #777;
+  font-size: 12px;
 }
 
-.imgWrap:hover {
-	transform: scale(1.07);	/*画像の拡大率*/
-	transition-duration: 0.3s;	/*変化に掛かる時間*/
+.profile p {
+  margin-bottom: 0;
+  margin-left: 17px;
 }
 
-.instructor img {
-  box-shadow: 3px 3px 4px gray;
+td {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.instructor ul {
-  margin-bottom: 50px;
+.td1 {
+  -webkit-line-clamp: 3;
+}
+
+.td2 {
+  -webkit-line-clamp: 3;
+}
+
+.td3 {
+  -webkit-line-clamp: 1;
+}
+
+.example {
   position: relative;
-  padding-inline-start: 0;
-  padding: 0 10%;
-}
+  }
 
-.instructor h4.instructor-head{
-  font-family: 'Raleway', sans-serif;
-  margin: 20px 0;
-  font-weight: 500;
-  font-size: 22px;
-}
-
-.instructor a:hover {
-  color: #5dc9f4;
-}
-
-.instructor p {
-  margin-bottom: 50px;
-}
-
+.example a {/*aタグを画像の真ん中に*/
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  /*以下装飾*/
+  margin:0;/*余計な隙間を除く*/
+  font-size: 20px;/*文字サイズ*/
+  border: solid white 2px; /*線で囲う*/
+  padding: 7px;/*文字と線の間の余白*/
+  color: white;/*文字色*/
+  text-decoration: none;/*下線を表示させない*/
+  }
