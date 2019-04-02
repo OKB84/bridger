@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190331112628) do
+ActiveRecord::Schema.define(version: 20190402154728) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20190331112628) do
     t.index ["lesson_id", "subject_id"], name: "index_available_subjects_on_lesson_id_and_subject_id", unique: true, using: :btree
     t.index ["lesson_id"], name: "index_available_subjects_on_lesson_id", using: :btree
     t.index ["subject_id"], name: "index_available_subjects_on_subject_id", using: :btree
+  end
+
+  create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["from_user_id", "to_user_id"], name: "index_favorites_on_from_user_id_and_to_user_id", unique: true, using: :btree
+    t.index ["from_user_id"], name: "index_favorites_on_from_user_id", using: :btree
+    t.index ["to_user_id"], name: "index_favorites_on_to_user_id", using: :btree
   end
 
   create_table "instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -173,6 +183,8 @@ ActiveRecord::Schema.define(version: 20190331112628) do
   add_foreign_key "available_instruments", "lessons"
   add_foreign_key "available_subjects", "lessons"
   add_foreign_key "available_subjects", "subjects"
+  add_foreign_key "favorites", "users", column: "from_user_id"
+  add_foreign_key "favorites", "users", column: "to_user_id"
   add_foreign_key "interested_instruments", "instruments"
   add_foreign_key "interested_instruments", "users"
   add_foreign_key "interested_subjects", "subjects"
