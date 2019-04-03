@@ -87,7 +87,13 @@
 					<section class="card">
 						<div class="example">
 					  	<img class="card-img" src="<%= gravatar_url(lesson.instructor, { size: 360 }) %>" alt="">
-					  	<a href"#">講師詳細へ</a>
+					  	<% if logged_in? %>
+					  		<%= render 'favorites/favorite_button', instructor: lesson.instructor %>
+					  	<% else %>
+					  		<%= link_to login_path do %>
+					  			<i class="fa fa-heart-o"></i>
+					  		<% end %>
+					  	<% end %>
 					  </div>
 					  <div class="card-content">
 					    <h4 class="card-title"><%= link_to lesson.instructor.name, lesson %></h4>

@@ -1,0 +1,1 @@
+$("#instructor-<%= @instructor.id %> .like").html("<%= escape_javascript(render "favorites/favorite_button", instructor: @instructor) %>");
