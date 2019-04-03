@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get :activate
+      get :favorite_instructors
+      get :favorited_users
     end
   end
   
@@ -25,5 +27,6 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   
   resources :reviews
+  resources :favorites, only: [:create, :destroy]
 end
 
