@@ -1,0 +1,17 @@
+<% unless current_user == instructor %>
+  <% if current_user.favorite?(instructor) %>
+    <%= form_for(current_user.favorites.find_by(to_user_id: instructor.id), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :to_user_id, instructor.id %>
+      <%= button_tag type: 'submit', class:'unfavorite' do %>
+        <i class="fa fa-heart-empty"></i>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.favorites.build) do |f| %>
+      <%= hidden_field_tag :to_user_id, instructor.id %>
+      <%= button_tag type: 'submit', class:'unfavorite' do %>
+        <i class="fa fa-heart"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
