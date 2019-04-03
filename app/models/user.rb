@@ -63,6 +63,17 @@ class User < ApplicationRecord
     self.reviewed_instructors.include?(instructor)
   end
   
+  def favorite(instructor)
+    unless self == instructor
+      self.favorites.find_or_create_by(from_user_id: self.id, to_user_id: instructor.id)
+    end
+  end
+  
+  def unfavorite(instructor)
+    favorite = self.favorites.find_by(to_user_id: instructor.id)
+    favorite.destroy if favorite
+  end
+  
   def favorite?(instructor)
     self.favorite_instructors.include?(instructor)
   end
