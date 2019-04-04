@@ -1,17 +1,11 @@
 <% unless current_user == instructor %>
   <% if current_user.favorite?(instructor) %>
-    <%= form_for(current_user.favorites.find_by(to_user_id: instructor.id), html: { method: :delete, remote: true }) do |f| %>
-      <%= hidden_field_tag :favorite_id, instructor.id %>
-      <%= button_tag type: 'submit', class:'favorite' do %>
-        <i class="fa fa-heart"></i>
-      <% end %>
+    <%= link_to favorite_path(id: current_user.favorites.find_by(to_user_id: instructor.id).id, favorite_id: instructor.id), method: :delete, remote: true do %>
+      <i class="fa fa-heart"></i>
     <% end %>
   <% else %>
-    <%= form_for(current_user.favorites.build, remote: true) do |f| %>
-      <%= hidden_field_tag :favorite_id, instructor.id %>
-      <%= button_tag type: 'submit', class:'unfavorite' do %>
-        <i class="fa fa-heart-o"></i>
-      <% end %>
+    <%= link_to favorites_path(favorite_id: instructor.id), method: :post, remote: true do %>
+      <i class="fa fa-heart-o"></i>
     <% end %>
   <% end %>
 <% end %>

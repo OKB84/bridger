@@ -88,7 +88,9 @@
 						<div class="example">
 					  	<img class="card-img" src="<%= gravatar_url(lesson.instructor, { size: 360 }) %>" alt="">
 					  	<% if logged_in? %>
-					  		<%= render 'favorites/favorite_button', instructor: lesson.instructor %>
+					  		<div id="instructor-<%= lesson.instructor.id %>">
+					  			<%= render 'favorites/favorite_button', instructor: lesson.instructor %>
+					  		</div>
 					  	<% else %>
 					  		<%= link_to login_path do %>
 					  			<i class="fa fa-heart-o"></i>
