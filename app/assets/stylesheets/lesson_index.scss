@@ -64,29 +64,14 @@ td {
 
 .example a {/*aタグを画像の真ん中に*/
   position: absolute;
-  top: 90%;
-  left: 90%;
+  top: 89%;
+  left: 91%;
   -ms-transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
   /*以下装飾*/
   margin:0;/*余計な隙間を除く*/
-  font-size: 20px;/*文字サイズ*/
-  text-decoration: none;/*下線を表示させない*/
-  border-style: none;
-  background-color: rgba(0,0,0,0);
-}
-
-.example button {/*aタグを画像の真ん中に*/
-  position: absolute;
-  top: 90%;
-  left: 90%;
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-  /*以下装飾*/
-  margin:0;/*余計な隙間を除く*/
-  font-size: 20px;/*文字サイズ*/
+  font-size: 23px;/*文字サイズ*/
   text-decoration: none;/*下線を表示させない*/
   border-style: none;
   background-color: rgba(0,0,0,0);
