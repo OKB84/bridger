@@ -1,11 +1,11 @@
 <% unless current_user == instructor %>
   <% if current_user.favorite?(instructor) %>
     <%= link_to favorite_path(id: current_user.favorites.find_by(to_user_id: instructor.id).id, favorite_id: instructor.id), method: :delete, remote: true do %>
-      <i class="fa fa-heart"></i>
+      <i class="fa fa-heart favorite"></i>
     <% end %>
   <% else %>
     <%= link_to favorites_path(favorite_id: instructor.id), method: :post, remote: true do %>
-      <i class="fa fa-heart-o"></i>
+      <i class="fa fa-heart unfavorite"></i>
     <% end %>
   <% end %>
 <% end %>
