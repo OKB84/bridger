@@ -1,3 +1,3 @@
-	jQuery(function($){
-$("#instructor-<%= @instructor.id %>").html("<%= escape_javascript(render "favorites/favorite_button", instructor: @instructor) %>");
-	});
+jQuery(function($){
+  $("#instructor-<%= @instructor.id %>").html("<%= escape_javascript(render "favorites/favorite_button", instructor: @instructor) %>");
+});
