@@ -85,6 +85,17 @@ h3 {
   position: relative;
   padding-inline-start: 0;
   padding: 0 10%;
+  border-top: solid #1e366a 1px;/*上のボーダー*/
+  border-bottom: solid #1e366a 1px;/*下のボーダー*/
+}
+
+th {
+  padding-top: 10px;
+}
+
+td {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .panel {
