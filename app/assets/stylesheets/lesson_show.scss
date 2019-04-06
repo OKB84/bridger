@@ -80,13 +80,16 @@ h3 {
   box-shadow: 3px 3px 4px gray;
 }
 
-.instructor table {
+.profile {
   margin: 0 40px 50px 40px;
+  border-top: solid #1e366a 1px;/*上のボーダー*/
+  border-bottom: solid #1e366a 1px;/*下のボーダー*/ 
+}
+
+.instructor table {
   position: relative;
   padding-inline-start: 0;
   padding: 0 10%;
-  border-top: solid #1e366a 1px;/*上のボーダー*/
-  border-bottom: solid #1e366a 1px;/*下のボーダー*/
 }
 
 th {

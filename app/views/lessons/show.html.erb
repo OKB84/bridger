@@ -55,20 +55,22 @@
 					  	<% end %>
       			<h4 class="instructor-head"><%= @lesson.instructor.name %></h4>
       		</div>
-    	  	<table>
-    	  		<tr>
-      	  		<th width="53" valign="top"><i class="fa fa-check"></i> 楽器</th>
-      	  		<td class="td1" valign="top"><%= @lesson.instruments.pluck(:ins_name_ja).join('、') %></td>
-    	  		</tr>
-    	  		<tr>
-    	  			<th valign="top"><i class="fa fa-check"></i> 分野</th>
-    	  			<td class="td2" valign="top"><%= @lesson.subjects.pluck(:subj_name_ja).join('、') %></td>
-    	  		</tr>
-    	  		<tr>
-    	  			<th valign="top"><i class="fa fa-check"></i> 言語</th>
-    	  			<td class="td3" valign="top"><%= @lesson.instructor.languages.pluck(:lang_name).join('、') %></td>
-    	  		</tr>
-    	  	</table>
+      		<div class="profile">
+      	  	<table>
+      	  		<tr>
+        	  		<th width="53" valign="top"><i class="fa fa-check"></i> 楽器</th>
+        	  		<td class="td1" valign="top"><%= @lesson.instruments.pluck(:ins_name_ja).join('、') %></td>
+      	  		</tr>
+      	  		<tr>
+      	  			<th valign="top"><i class="fa fa-check"></i> 分野</th>
+      	  			<td class="td2" valign="top"><%= @lesson.subjects.pluck(:subj_name_ja).join('、') %></td>
+      	  		</tr>
+      	  		<tr>
+      	  			<th valign="top"><i class="fa fa-check"></i> 言語</th>
+      	  			<td class="td3" valign="top"><%= @lesson.instructor.languages.pluck(:lang_name).join('、') %></td>
+      	  		</tr>
+      	  	</table>
+      	  </div>
         </div>
         
         <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
