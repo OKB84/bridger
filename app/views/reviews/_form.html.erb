@@ -2,7 +2,7 @@
   <%= f.hidden_field :from_user_id, value: current_user.id %>
   <%= f.hidden_field :to_user_id, value: @instructor.id %>
   <div class="field" id="rate">
-    <%= f.label :rate, 'レッスンの満足度' %><br />
+    <%= f.label :rate, 'レッスンの満足度', class: 'title1 necessary' %><br />
     <%= f.hidden_field :rate, id: :review_rate %>
   </div>
   <div class="comment-title">
@@ -11,7 +11,9 @@
   <div class="comment-form">
     <%= f.text_area :comment, :class => "form-control", :size => "10x10"  %><br>
   </div>
-  <div class="action">
-    <%= f.submit "レビュー評価", :class => "btn btn-primary" %>
+  <div class="actions text-center">
+    <%= button_tag type: 'submit', class:'btn button-review' do %>
+      <i class="fa fa-arrow-circle-right"></i>  <%= submit_name %>
+    <% end %>
   </div>
 <% end %>
