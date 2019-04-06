@@ -83,6 +83,8 @@
   </div>
 
   <div class="actions text-center">
-    <%= f.submit submit_name, class: 'btn btn-o' %>
+    <%= button_tag type: 'submit', class:'btn btn-o btn-register' do %>
+      <i class="fa fa-clipboard"></i>  <%= submit_name %>
+    <% end %>
   </div>
 <% end %>
