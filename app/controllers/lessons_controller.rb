@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
       if @search_form.search == Lesson.all
         @lessons = Lesson.all.order(created_at: :desc).page(params[:page]).per(24)
       else
-        @lessons = Lesson.find(@search_form.search.ids).order(created_at: :desc).page(params[:page]).per(24)
+        @lessons = Lesson.where(id: @search_form.search.ids).order(created_at: :desc).page(params[:page]).per(24)
       end
       unless @lessons.present?
         flash.now[:danger] = '条件に合う講師が見つかりませんでした'

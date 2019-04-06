@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       if @search_form.search == User.all.order(created_at: :desc).page(params[:page]).per(24)
         @users = User.all
       else
-        @users = User.find(@search_form.search.ids).order(created_at: :desc).page(params[:page]).per(24)
+        @users = User.where(id: @search_form.search.ids).order(created_at: :desc).page(params[:page]).per(24)
       end
       if !(@users.present?) || @users == User.where(id: current_user.id)
         flash.now[:danger] = '条件に合うユーザーが見つかりませんでした'
