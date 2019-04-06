@@ -4,7 +4,7 @@
 }
 
 .content {
-  padding: 60px 0 80px 0;
+  padding-top: 60px;
   background: white;
 }
 
@@ -30,6 +30,13 @@ h3 span::before, h3 span::after{
  
 h3 span::before {left: 100%;}
 h3 span::after { right: 100%;}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  word-break: break-all;
+  word-wrap: break-all;
+}
 
 td {
   word-break: normal;
@@ -58,5 +65,9 @@ td {
 }
 
 .no-info {
-  margin: 40px 15px 0;
+  margin-bottom: 84px;
+}
+
+.mailbox {
+  margin-bottom: 50px;
 }
