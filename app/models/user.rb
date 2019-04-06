@@ -75,4 +75,9 @@ class User < ApplicationRecord
   def favorite?(instructor)
     self.favorite_instructors.include?(instructor)
   end
+  
+  def show_rate
+    reviews = Review.where(to_user_id: self.id)
+    reviews.average(:rate).to_f.round(1) if reviews
+  end
 end
