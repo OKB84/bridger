@@ -159,6 +159,35 @@
 
     <div class="row">
       <div class="col-lg-12">
+        <h3>お気に入りに追加した講師</h3>
+      </div>
+    </div>
+    <% if @favorites.present? %>
+      <div class="row">
+  		  <% @favorites.each do |favorite| %>
+  				<div class="col-md-3 col-sm-6 favorites">
+  					<div class="instructor">
+  						<div class="text-center">
+				        <%= link_to image_tag(gravatar_url(favorite.to_user, { size: 180 }), class: 'img-circle circular-img imgWrap'), favorite.to_user.lesson %>
+  							<h4 class="instructor-head"><%= link_to favorite.to_user.name, favorite.to_user.lesson %></h4>
+  						</div>
+  					</div>
+  				</div>
+  			<% end %>
+      </div>
+    <% else %>
+    	<div class="no-info text-center favorites">
+				<p><i class="fa fa-exclamation-circle"></i>  お気に入りに追加した講師がいません</p>
+			</div>
+      <div class="text-center lesson-button">
+        <%= link_to lessons_path, class:'btn button-go button-find' do %>
+          <i class="fa fa-search"></i>  講師を探す
+        <% end %>
+      </div>
+    <% end %>
+    
+    <div class="row">
+      <div class="col-lg-12">
         <h3>レッスンを申込んだ講師</h3>
       </div>
     </div>

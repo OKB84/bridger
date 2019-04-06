@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     @languages = @user.languages
     
     @point = Point.where(user_id: @user.id).last
-    @reviews = Review.find_by(from_user_id: current_user.id)
+    @favorites = Favorite.where(from_user_id: current_user.id)
   end
 
   # GET /users/new
