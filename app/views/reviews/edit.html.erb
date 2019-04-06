@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'review_edit', media: 'all' %>
+
+<div id="title" class="review_edit">
+  <div class="slogans">
+		<div class="slogan">
+		  Review Details
+		</div>
+		<div class="secondary-slogan">
+			レビュー詳細
+		</div>
+	</div>
+</div>
+
+<div class="content">
+  <div class="container">
+    <%= render 'layouts/flash_messages' %>
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <h3><i class="fa fa-pencil"></i>  <%= @instructor.name %> さんへの評価</h3>
+        <%= render 'form', review: @review, submit_name: '編集を完了' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+   $('textarea').focus();
+
+  $('#rate').raty({
+    size     : 36,
+    score: <%= @review.rate %>,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'review[rate]' 
+  });
+</script>

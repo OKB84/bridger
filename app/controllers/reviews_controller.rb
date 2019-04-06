@@ -28,9 +28,19 @@ class ReviewsController < ApplicationController
   end
   
   def edit
+    @instructor = User.find(params[:instructor_id])
+    @review = Review.find_by(to_user_id: @instructor.id)
   end
   
   def update
+    @review = Review.find(params[:id])
+    if @review.update(review_params)
+      flash[:success] = 'レビューを更新しました'
+      redirect_to current_user
+    else
+      flaxh.now[:danger] = 'レビューの更新に失敗しました'
+      render :edit
+    end
   end
   
   def destroy
