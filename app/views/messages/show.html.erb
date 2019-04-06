@@ -17,13 +17,25 @@
       <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
         <div class="message-info">
           <% if @message.send_user == current_user %>
-            <h4>送信元：<%= @message.send_user.name %></h4>
-            <h4 class="notme">宛　先：<%= link_to @message.receive_user.name, new_message_path(user_id: @message.receive_user_id, reply_message_id: @message.id) %></h4>
-            <p class="time">送信日時：<%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
+            <h4>送信元： <%= @message.send_user.name %></h4>
+            <h4 class="notme">宛　先：
+              <% if @message.receive_user.lesson %>
+                <%= link_to @message.receive_user.name, @message.receive_user.lesson %>
+              <% else %>
+                <%= @message.receive_user.name %>
+              <% end %>
+            </h4>
+            <p class="time">送信日時： <%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
           <% else %>
-            <h4 class="notme">送信元：<%= link_to @message.send_user.name, new_message_path(user_id: @message.send_user_id, reply_message_id: @message.id) %></h4>
-            <h4>宛　先：<%= @message.receive_user.name %></h4>
-            <p class="time">受信日時：<%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
+            <h4 class="notme">送信元：
+            <% if @message.send_user.lesson %>
+              <%= link_to @message.send_user.name, @message.send_user.lesson %>
+            <% else %>
+              <%= @message.send_user.name %>
+            <% end %>
+            </h4>
+            <h4>宛　先： <%= @message.receive_user.name %></h4>
+            <p class="time">受信日時： <%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
           <% end %>
         </div>
         <div class="message-box">
@@ -32,10 +44,8 @@
           </div>
         </div>
         <div class="action">
-          <% if @message.receive_user == current_user %>
-            <%= link_to new_message_path(user_id: @message.send_user_id, reply_message_id: @message.id), class: 'btn btn-info' do %>
-              <i class="fa fa-reply"></i>  返信
-            <% end %>
+          <%= link_to new_message_path(receive_user_id: @message.send_user_id, reply_message_id: @message.id), class: 'btn btn-info' do %>
+            <i class="fa fa-reply"></i>  返信
           <% end %>
           <%= link_to :back, class:'btn btn-default' do %>
             <i class="fa fa-undo"></i>  戻る

@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
 
   def new
     @message = Message.new
-    @receive_user = User.find(params[:user_id])
+    @receive_user = User.find(params[:receive_user_id])
     if params[:reply_message_id]
       @reply_message = Message.find(params[:reply_message_id])
       @default_message = "\r\r---------- original message ----------\rFrom: #{@reply_message.send_user.name}\rSent: #{@reply_message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[@reply_message.created_at.getlocal("+09:00").wday]}) %H:%M")}\r\r#{@reply_message.content}"
