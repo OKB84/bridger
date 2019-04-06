@@ -41,6 +41,33 @@ h3 {
   margin-left: 3%;
 }
 
+.example {
+  position: relative;
+}
+
+.example a {/*aタグを画像の真ん中に*/
+  position: absolute;
+  top: 80%;
+  left: 75%;
+  -ms-transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  /*以下装飾*/
+  margin:0;/*余計な隙間を除く*/
+  font-size: 23px;/*文字サイズ*/
+  text-decoration: none;/*下線を表示させない*/
+  border-style: none;
+  background-color: rgba(0,0,0,0);
+}
+
+.favorite {
+  color: red;
+}
+
+.unfavorite {
+  color: grey;
+}
+
 
 .instructor h4.instructor-head{
   font-family: 'Raleway', sans-serif;
@@ -53,8 +80,9 @@ h3 {
   box-shadow: 3px 3px 4px gray;
 }
 
-.instructor ul {
+.instructor table {
   margin-bottom: 50px;
+  margin-left: 40px;
   position: relative;
   padding-inline-start: 0;
   padding: 0 10%;
@@ -72,3 +100,4 @@ h3 {
 .panel a {
   font-size: 12px;
 }
+

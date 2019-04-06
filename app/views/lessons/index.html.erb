@@ -91,10 +91,6 @@
 					  		<div id="instructor-<%= lesson.instructor.id %>">
 					  			<%= render 'favorites/favorite_button', instructor: lesson.instructor %>
 					  		</div>
-					  	<% else %>
-					  		<%= link_to login_path do %>
-					  			<i class="fa fa-heart-o"></i>
-					  		<% end %>
 					  	<% end %>
 					  </div>
 					  <div class="card-content">

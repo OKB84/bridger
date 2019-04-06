@@ -46,15 +46,29 @@
       </div>
       <div class="col-md-4 col-sm-12">
         <div class="instructor">
-          <div class="text-center">
+          <div class="text-center example">
             <img class="img-circle circular-img" src="<%= gravatar_url(@lesson.instructor, { size: 180 }) %>">
+            	<% if logged_in? %>
+					  		<div id="instructor-<%= @lesson.instructor.id %>">
+					  			<%= render 'favorites/favorite_button', instructor: @lesson.instructor %>
+					  		</div>
+					  	<% end %>
       			<h4 class="instructor-head"><%= @lesson.instructor.name %></h4>
       		</div>
-          <ul>
-            <li><strong>楽器：</strong><%= @instruments.pluck(:ins_name_ja).join('、') %></li>
-            <li><strong>分野：</strong><%= @subjects.pluck(:subj_name_ja).join('、') %></li>
-            <li><strong>言語：</strong><%= @languages.pluck(:lang_name).join('、') %></li>
-          </ul>
+    	  	<table>
+    	  		<tr>
+      	  		<th width="53" valign="top"><i class="fa fa-check"></i> 楽器</th>
+      	  		<td class="td1" valign="top"><%= @lesson.instruments.pluck(:ins_name_ja).join('、') %></td>
+    	  		</tr>
+    	  		<tr>
+    	  			<th valign="top"><i class="fa fa-check"></i> 分野</th>
+    	  			<td class="td2" valign="top"><%= @lesson.subjects.pluck(:subj_name_ja).join('、') %></td>
+    	  		</tr>
+    	  		<tr>
+    	  			<th valign="top"><i class="fa fa-check"></i> 言語</th>
+    	  			<td class="td3" valign="top"><%= @lesson.instructor.languages.pluck(:lang_name).join('、') %></td>
+    	  		</tr>
+    	  	</table>
         </div>
         
         <% @lesson.lesson_plans.each.with_index(1) do |plan, index| %>
