@@ -68,6 +68,8 @@ gem 'payjp'
 
 gem 'rails_12factor', group: :production
 
+gem 'kaminari'
+
 group :production do
   gem 'pg', '0.21.0'
 end
