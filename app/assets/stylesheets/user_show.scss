@@ -13,10 +13,29 @@
 
 .myinfo h4.myinfo-head {
   font-family: 'Raleway', sans-serif;
-  margin: 15px 0 15px 0;
+  margin: 15px 0 10px 0;
   font-weight: 500;
   font-size: 22px;
   word-break: break-all
+}
+
+.myinfo .stars {
+  margin-bottom: 15px;
+  font-size: 23px;/*文字サイズ*/
+  text-decoration: none;/*下線を表示させない*/
+  border-style: none;
+  background-color: rgba(0,0,0,0);
+}
+
+.myinfo .stars i {
+  color: #FFA500;
+  -webkit-text-stroke: 0.5px #000;
+}
+
+.myinfo .rate {
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-text-stroke: 0.5px white;
 }
 
 .myinfo ul {
@@ -209,7 +228,7 @@ h3 {
   margin-bottom: 15px;
 }
 
-.stars {
+.instructor .stars {
   color: #FFA500;
   -webkit-text-stroke: 0.5px #000;
 }

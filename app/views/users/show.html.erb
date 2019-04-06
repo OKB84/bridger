@@ -21,6 +21,9 @@
           <div class="text-center">
             <img class="img-circle circular-img" src="<%= gravatar_url(@user, { size: 180 }) %>">
       	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
+  	  	    <div class="stars">
+				  		<i class="fa fa-star"></i> <span class="rate"><%= @user.show_rate %></span>
+				  	</div>        	
       	  </div>
       	  <div class="profile">
             <i class="fa fa-check"></i> <strong>メールアドレス</strong>
@@ -206,7 +209,7 @@
     							   <i class="fa fa-star stars"></i>
     							  <% end %>
     							  <% ( 5 - Review.find_by(from_user_id: current_user.id, to_user_id: instructor.id).rate).times do %>
-    							   <i class="fa fa-star-o stars"></i>
+    							   <i class="fa fa-star-o"></i>
     							  <% end %>
     							</div>
     							<%= link_to edit_review_path(instructor_id: instructor.id), class: 'btn button-go button-star-edit' do %>
