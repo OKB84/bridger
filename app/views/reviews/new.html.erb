@@ -18,23 +18,7 @@
       <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
         <h3><%= @instructor.name %> さんへの評価</h3>
         
-        <%= form_for @review do |f| %>
-          <%= f.hidden_field :from_user_id, value: current_user.id %>
-          <%= f.hidden_field :to_user_id, value: @instructor.id %>
-          <div class="field" id="rate">
-            <%= f.label :rate, 'レッスンの満足度' %><br />
-            <%= f.hidden_field :rate, id: :review_rate %>
-          </div>
-          <div class="comment-title">
-            <%= f.label :comment, 'レッスンを受けた感想、講師への要望等' %>
-          </div>
-          <div class="comment-form">
-            <%= f.text_area :comment, :class => "form-control", :size => "10x10"  %><br>
-          </div>
-          <div class="action">
-            <%= f.submit "レビュー評価", :class => "btn btn-primary" %>
-          </div>
-        <% end %>
+        <%= render 'form', review: @review %>
         
       </div>
     </div>
