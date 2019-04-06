@@ -28,7 +28,7 @@
           <tbody>
             <% @received_messages.each do |message| %>
               <tr>
-                <td><%= link_to message.send_user.name, new_message_path(user_id: message.send_user_id, reply_message_id: message.id) %></td>
+                <td><%= link_to message.send_user.name, new_message_path(user_id: message.send_user_id, reply_message_id: message.id), class: 'sender' %></td>
                 <td><%= link_to message.content, message, class: 'message-content' %></td>
                 <td><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
               </tr>
@@ -49,7 +49,7 @@
           <tbody>
             <% @sended_messages.each do |message| %>
               <tr>
-                <td><%= link_to message.receive_user.name, new_message_path(user_id: message.receive_user_id, reply_message_id: message.id) %></td>
+                <td><%= link_to message.receive_user.name, new_message_path(user_id: message.receive_user_id, reply_message_id: message.id), class: 'receiver' %></td>
                 <td><%= link_to message.content, message, class: 'message-content' %></td>
                 <td><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
               </tr>

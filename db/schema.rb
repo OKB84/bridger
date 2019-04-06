@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190402154728) do
+ActiveRecord::Schema.define(version: 20190406123713) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -101,9 +101,9 @@ ActiveRecord::Schema.define(version: 20190402154728) do
   create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "send_user_id"
     t.integer  "receive_user_id"
-    t.string   "content"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.text     "content",         limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.index ["receive_user_id"], name: "index_messages_on_receive_user_id", using: :btree
     t.index ["send_user_id"], name: "index_messages_on_send_user_id", using: :btree
   end
