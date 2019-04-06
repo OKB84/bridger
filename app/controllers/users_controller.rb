@@ -10,17 +10,17 @@ class UsersController < ApplicationController
     redirect_to current_user if current_user.lesson.blank?
     if params[:search].present?
       @search_form = Form::UserSearchForm.new(user_search_form_params)
-      if @search_form.search == User.all
+      if @search_form.search == User.all.order(created_at: :desc).page(params[:page]).per(12)
         @users = User.all
       else
-        @users = User.find(@search_form.search.ids)
+        @users = User.find(@search_form.search.ids).order(created_at: :desc).page(params[:page]).per(12)
       end
       if !(@users.present?) || @users == User.where(id: current_user.id)
         flash.now[:danger] = '条件に合うユーザーが見つかりませんでした'
       end
     else
       @search_form = Form::LessonSearchForm.new
-      @users = User.all
+      @users = User.all.order(created_at: :desc).page(params[:page]).per(12)
     end
   end
 
