@@ -6,16 +6,16 @@ class LessonsController < ApplicationController
     if params[:search].present?
       @search_form = Form::LessonSearchForm.new(lesson_search_form_params)
       if @search_form.search == Lesson.all
-        @lessons = Lesson.all.page(params[:page]).per(24)
+        @lessons = Lesson.all.order(created_at: :desc).page(params[:page]).per(24)
       else
-        @lessons = Lesson.find(@search_form.search.ids).page(params[:page]).per(24)
+        @lessons = Lesson.find(@search_form.search.ids).order(created_at: :desc).page(params[:page]).per(24)
       end
       unless @lessons.present?
         flash.now[:danger] = '条件に合う講師が見つかりませんでした'
       end
     else
       @search_form = Form::LessonSearchForm.new
-      @lessons = Lesson.all.page(params[:page]).per(24)
+      @lessons = Lesson.all.order(created_at: :desc).page(params[:page]).per(24)
     end
   end
 
