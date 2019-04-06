@@ -85,8 +85,11 @@
 		  <% @lessons.each do |lesson| %>
 				<div class="col-md-3 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
 					<section class="card">
-						<div class="example">
+						<div class="information">
 					  	<img class="card-img" src="<%= gravatar_url(lesson.instructor, { size: 360 }) %>" alt="">
+					  	<div class="stars">
+					  		<i class="fa fa-star"></i> <span class="rate"><%= lesson.instructor.show_rate %></span>
+					  	</div>
 					  	<% if logged_in? %>
 					  		<div id="instructor-<%= lesson.instructor.id %>">
 					  			<%= render 'favorites/favorite_button', instructor: lesson.instructor %>
