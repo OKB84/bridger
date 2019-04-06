@@ -23,8 +23,10 @@
           <div class="form-group">  
             <%= f.text_area :content, value: @default_message , size: '10x13',class: "form-control" %>
           </div>
-          <div class="text-right">
-            <%= f.submit '送信', class: 'btn btn-default' %>
+          <div class="text-center">
+            <%= button_tag type: 'submit', class:'btn btn-o btn-send' do %>
+              <i class="fa fa-paper-plane"></i>  送信&nbsp;
+            <% end %>
           </div>
           <%= hidden_field_tag :receive_user_id, @receive_user.id %>
         <% end %>

@@ -96,13 +96,13 @@
                     <i class="fa fa-edit"></i>  レッスン情報編集
                   <% end %>
                 <% else %>
-                  <%= link_to new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' do %>
-                    <i class="fa fa-envelope"></i>  レッスン申し込みへ
+                  <%= link_to new_message_path(receive_user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' do %>
+                    <i class="fa fa-envelope"></i>  レッスン申し込み
                   <% end %>
                 <% end %>
               <% else %>
-                <%= link_to new_message_path(user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' do %>
-                  <i class="fa fa-envelope"></i>  レッスン申し込みへ
+                <%= link_to new_message_path(receive_user_id: plan.lesson.instructor_id, plan_id: plan.id), class:'btn btn-default' do %>
+                  <i class="fa fa-envelope"></i>  レッスン申し込み
                 <% end %>
               <% end %>
             </div>
