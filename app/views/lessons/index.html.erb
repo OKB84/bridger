@@ -94,6 +94,10 @@
 					  		<div id="instructor-<%= lesson.instructor.id %>">
 					  			<%= render 'favorites/favorite_button', instructor: lesson.instructor %>
 					  		</div>
+					  	<% else %>
+					  		<div class="favorites">
+					  			<i class="fa fa-heart"></i> <span class="favorited"><%= lesson.instructor.favorited_users.count %></span>
+					  		</div>
 					  	<% end %>
 					  </div>
 					  <div class="card-content">
