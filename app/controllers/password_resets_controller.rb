@@ -27,7 +27,7 @@ class PasswordResetsController < ApplicationController
  
     if @user.change_password!(params[:user][:password])
       flash[:success] = 'パスワードのリセットが完了しました'
-      redirect_to root_url
+      redirect_to login_url
     else
       render :action => "edit"
     end
