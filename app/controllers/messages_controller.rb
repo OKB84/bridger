@@ -6,6 +6,9 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find(params[:id])
+    unless @message.send_user == current_user || @message.receive_user == current_user
+      redirect_to messages_path
+    end
   end
 
   def new
