@@ -30,7 +30,7 @@
               <tr>
                 <td><% if message.send_user.lesson %><%= link_to message.send_user.name, message.send_user.lesson, class: 'sender' %><% else %><%= message.send_user.name %><% end %></td>
                 <td><%= link_to message.content, message, class: 'message-content' %></td>
-                <td><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+                <td><%= message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[message.created_at.getlocal("+09:00").wday]}) %H:%M") %></td>
               </tr>
             <% end %>
           </tbody>
@@ -51,7 +51,7 @@
               <tr>
                 <td><% if message.receive_user.lesson %><%= link_to message.receive_user.name, message.receive_user.lesson, class: 'receiver' %><% else %><%= message.receive_user.name %><% end %></td>
                 <td><%= link_to message.content, message, class: 'message-content' %></td>
-                <td><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
+                <td><%= message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[message.created_at.getlocal("+09:00").wday]}) %H:%M") %></td>
               </tr>
             <% end %>
           </tbody>

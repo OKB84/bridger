@@ -17,7 +17,7 @@
       <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
         <div class="message-info">
           <% if @message.send_user == current_user %>
-            <h4>送信元： <%= @message.send_user.name %></h4>
+            <h4>差出人： <%= @message.send_user.name %></h4>
             <h4 class="notme">宛　先：
               <% if @message.receive_user.lesson %>
                 <%= link_to @message.receive_user.name, @message.receive_user.lesson %>
@@ -25,7 +25,7 @@
                 <%= @message.receive_user.name %>
               <% end %>
             </h4>
-            <p class="time">送信日時： <%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
+            <p class="time">送信日時： <%= @message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[@message.created_at.getlocal("+09:00").wday]}) %H:%M") %></p>
           <% else %>
             <h4 class="notme">送信元：
             <% if @message.send_user.lesson %>
@@ -35,7 +35,7 @@
             <% end %>
             </h4>
             <h4>宛　先： <%= @message.receive_user.name %></h4>
-            <p class="time">受信日時： <%= @message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></p>
+            <p class="time">受信日時： <%= @message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[@message.created_at.getlocal("+09:00").wday]}) %H:%M") %></p>
           <% end %>
         </div>
         <div class="message-box">
