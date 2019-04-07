@@ -19,7 +19,7 @@ class UserMailer < ApplicationMailer
   #
   def activation_success_email(user)
     @user = user
-    @url  = "https://desolate-taiga-73453.herokuapp.com/login"
+    @url  = "https://desolate-taiga-73453.herokuapp.com/lessons/new"
     mail(:to => user.email,
          :subject => "【Bridger】アカウント登録完了")
   end
