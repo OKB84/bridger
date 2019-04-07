@@ -76,6 +76,6 @@ class LessonsController < ApplicationController
   end
   
   def lesson_search_form_params
-    params.require(:search).permit(:name, :location_broad, instrument_ids: [], subject_ids: [], language_ids: [])
+    params.require(:search).permit(:name, :location_broad, :average_rate, instrument_ids: [], subject_ids: [], language_ids: [])
   end
 end
