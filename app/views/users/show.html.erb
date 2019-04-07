@@ -21,9 +21,22 @@
           <div class="text-center">
             <img class="img-circle circular-img" src="<%= gravatar_url(@user, { size: 180 }) %>">
       	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
-  	  	    <div class="stars">
-				  		<i class="fa fa-star"></i> <span class="rate"><%= @user.show_rate %></span>
-				  	</div>        	
+
+            <% if @user.lesson %>
+        			<div class="row information">
+        			  <div class="col-xs-4 col-xs-offset-2">
+        	  	    <div class="stars">
+      				  		<i class="fa fa-star"></i> <span class="rate"><%= @user.show_rate %></span>
+      				  	</div>        	
+        			  </div>
+        			  <div class="col-xs-4">
+      			  		<div class="favorites">
+      			  			<i class="fa fa-heart"></i> <span class="favorited"><%= @user.favorited_users.count %></span>
+      			  		</div>      			    
+        			  </div>
+        			</div>
+        		<% end %>
+
       	  </div>
       	  <div class="profile">
             <i class="fa fa-check"></i> <strong>メールアドレス</strong>

@@ -19,6 +19,29 @@
   word-break: break-all
 }
 
+.information {
+  margin: 15px 0;
+}
+
+.information .favorites {
+  margin: 0;/*余計な隙間を除く*/
+  font-size: 23px;/*文字サイズ*/
+  text-decoration: none;/*下線を表示させない*/
+  border-style: none;
+  background-color: rgba(0,0,0,0);
+}
+
+.information .favorites i {
+  color: red;
+  -webkit-text-stroke: 0.5px #000;
+}
+
+.information .favorited {
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-text-stroke: 0.5px white;
+}
+
 .myinfo .stars {
   margin-bottom: 15px;
   font-size: 23px;/*文字サイズ*/
