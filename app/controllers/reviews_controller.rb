@@ -14,12 +14,14 @@ class ReviewsController < ApplicationController
   
   def create
     @review = Review.new(review_params)
+    @instructor = User.find(review_params[:to_user_id])
     if @review.save
+      average_rate = @instructor.show_rate
+      @instructor.lesson.update(average_rate: average_rate)
       flash[:success] = 'レビューが完了しました'
       redirect_to current_user
     else
       flash.now[:danger] = 'レビューできませんでした'
-      @instructor = User.find(review_params[:to_user_id])
       render :new
     end
   end
@@ -29,12 +31,15 @@ class ReviewsController < ApplicationController
   
   def edit
     @instructor = User.find(params[:instructor_id])
-    @review = Review.find_by(to_user_id: @instructor.id)
+    @review = Review.find_by(from_user_id: current_user.id, to_user_id: @instructor.id)
   end
   
   def update
     @review = Review.find(params[:id])
-    if @review.update(review_params)
+    @instructor = User.find(review_params[:to_user_id])
+    if @review.update(rate: review_params[:rate], comment: review_params[:comment])
+      average_rate = @instructor.show_rate
+      @instructor.lesson.update(average_rate: average_rate)
       flash[:success] = 'レビューを更新しました'
       redirect_to current_user
     else
