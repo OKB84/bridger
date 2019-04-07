@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190406123713) do
+ActiveRecord::Schema.define(version: 20190407063157) do
 
   create_table "available_instruments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "lesson_id"
@@ -164,9 +164,13 @@ ActiveRecord::Schema.define(version: 20190406123713) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer  "access_count_to_reset_password_page", default: 0
+    t.integer  "failed_logins_count",                 default: 0
+    t.datetime "lock_expires_at"
+    t.string   "unlock_token"
     t.index ["activation_token"], name: "index_users_on_activation_token", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
+    t.index ["unlock_token"], name: "index_users_on_unlock_token", using: :btree
   end
 
   create_table "users_languages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
