@@ -29,4 +29,12 @@ class UserMailer < ApplicationMailer
     @url = edit_password_reset_url(@user.reset_password_token)
     mail(:to => user.email,  :subject => "Your password has been reset")
   end
+  
+  def get_message_email(send_user, receive_user)
+    @send_user = send_user
+    @receive_user = receive_user
+    @url = "https://desolate-taiga-73453.herokuapp.com/messages"
+    mail(:to => receive_user.email,
+         :subject => "#{@send_user.name}さんからメッセージが届いています")
+  end
 end
