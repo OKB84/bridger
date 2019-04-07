@@ -21,7 +21,6 @@
           <div class="text-center">
             <img class="img-circle circular-img" src="<%= gravatar_url(@user, { size: 180 }) %>">
       	  	<h4 class="myinfo-head"><%= current_user.name %></h4>
-
             <% if @user.lesson %>
         			<div class="row information">
         			  <div class="col-xs-4 col-xs-offset-2">
@@ -36,17 +35,16 @@
         			  </div>
         			</div>
         		<% end %>
-
       	  </div>
       	  <div class="profile">
             <i class="fa fa-check"></i> <strong>メールアドレス</strong>
             <p><%= current_user.email %></p>
 
             <i class="fa fa-check"></i> <strong>使用楽器</strong>
-            <p><%= @instruments.pluck(:ins_name_ja).join('、') %></p>
+            <p><% if @instruments.present? %><%= @instruments.pluck(:ins_name_ja).join('、') %><% else %>（登録されていません）<% end %></p>
 
             <i class="fa fa-check"></i> <strong>気になる分野</strong>
-            <p><%= @subjects.pluck(:subj_name_ja).join('、') %></p>
+            <p><% if @subjects.present? %><%= @subjects.pluck(:subj_name_ja).join('、') %><% else %>（登録されていません）<% end %></p>
 
             <i class="fa fa-check"></i> <strong>使用言語</strong>
             <p><%= @languages.pluck(:lang_name).join('、') %></p>
