@@ -37,7 +37,7 @@ class MessagesController < ApplicationController
     if @message.save
       flash[:success] = 'メッセージを送信しました'
       redirect_to messages_url
-      UserMailer.get_message_email(send_user: current_user, receive_user: @message.receive_user).deliver
+      UserMailer.get_message_email(current_user, receiver).deliver
     else
       flash.now[:danger] = 'メッセージの送信に失敗しました'
       @receive_user = receiver
