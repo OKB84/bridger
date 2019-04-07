@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @url  = "https://desolate-taiga-73453.herokuapp.com/users/#{user.activation_token}/activate"
     mail(:to => user.email,
-         :subject => "Welcome to Bridger")
+         :subject => "【Bridger】アカウント登録確認")
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -21,13 +21,13 @@ class UserMailer < ApplicationMailer
     @user = user
     @url  = "https://desolate-taiga-73453.herokuapp.com/login"
     mail(:to => user.email,
-         :subject => "Your account is now activated")
+         :subject => "【Bridger】アカウント登録完了")
   end
   
   def reset_password_email(user)
     @user = User.find user.id
     @url = edit_password_reset_url(@user.reset_password_token)
-    mail(:to => user.email,  :subject => "Your password has been reset")
+    mail(:to => user.email,  :subject => "【Bridger】パスワード再設定メール")
   end
   
   def get_message_email(send_user, receive_user)
@@ -35,6 +35,6 @@ class UserMailer < ApplicationMailer
     @receive_user = receive_user
     @url = "https://desolate-taiga-73453.herokuapp.com/messages"
     mail(:to => receive_user.email,
-         :subject => "#{@send_user.name}さんからメッセージが届いています")
+         :subject => "【Bridger】 #{@send_user.name}さんからメッセージが届いています")
   end
 end
