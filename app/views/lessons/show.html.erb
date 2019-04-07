@@ -20,11 +20,11 @@
         </div>
         <div class="explanation">
           <h3>略歴</h3>
-          <p><%= @lesson.biography %></p>
+          <p><%= simple_format(@lesson.biography) %></p>
         </div>
         <div class="explanation">
           <h3>レッスンで学べること</h3>
-          <p><%= @lesson.advantage %></p>
+          <p><%= simple_format(@lesson.advantage) %></p>
         </div>
         <% unless @url2.blank? && @url3.blank? %>
           <h3>参考演奏</h3>
@@ -124,7 +124,6 @@
           </div>
         <% end %>
       </div>
-  
     </div>
   </div>
 </div>
