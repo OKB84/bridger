@@ -16,7 +16,7 @@ class MessagesController < ApplicationController
       @default_message = "\r\r---------- original message ----------\rFrom: #{@reply_message.send_user.name}\rSent: #{@reply_message.created_at.getlocal("+09:00").strftime("%-m/%-d(#{%w(日 月 火 水 木 金 土)[@reply_message.created_at.getlocal("+09:00").wday]}) %H:%M")}\r\r#{@reply_message.content}"
     elsif params[:type] == 'advertise'
       @default_message =
-      "はじめまして。\r#{current_user.name}と申します。\r\r以下を対象としたレッスンを実施しています。\r\r楽器：#{current_user.lesson.instruments.pluck(:ins_name_ja).join('、')}\r分野：#{current_user.lesson.subjects.pluck(:subj_name_ja).join('、')}"
+      "はじめまして。\r#{current_user.name}と申します。\r\r#{@receive_user.name}さんの使用楽器や興味を持たれている分野を拝見し、是非一度レッスン受講を検討していただきたくご連絡いたしました。\r\r以下を対象としたレッスンを実施していますので、差出人欄のリンクからレッスン情報をご覧いただけたらと思います。\r\r楽器：#{current_user.lesson.instruments.pluck(:ins_name_ja).join('、')}\r分野：#{current_user.lesson.subjects.pluck(:subj_name_ja).join('、')}\r\r\rどうぞよろしくお願いいたします。"
     elsif !(@receive_user.lesson.present?) || @receive_user == current_user
       redirect_to messages_url
     end

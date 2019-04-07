@@ -49,7 +49,7 @@
           <tbody>
             <% @sended_messages.each do |message| %>
               <tr>
-                <td><% if message.receive_user.lesson %><%= link_to message.receive_user.name, message.receive_user.lesson, class: 'receiver' %><% else %><%= lesson.receive_user.name %><% end %></td>
+                <td><% if message.receive_user.lesson %><%= link_to message.receive_user.name, message.receive_user.lesson, class: 'receiver' %><% else %><%= message.receive_user.name %><% end %></td>
                 <td><%= link_to message.content, message, class: 'message-content' %></td>
                 <td><%= message.created_at.getlocal("+09:00").strftime("%m/%d %H:%M") %></td>
               </tr>
