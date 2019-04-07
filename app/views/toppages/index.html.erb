@@ -70,38 +70,13 @@
 		</header>
 		<section class="block-body">
 			<div class="row">
-				<div class="col-sm-4">
-					<a href="" class="instructor" style="background-image:url(/images/eval_instructor1.jpg)">
-						<span class="btn btn-o-white">講師詳細へ</span>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="" class="instructor" style="background-image:url(/images/eval_instructor2.jpg)">
-						<span class="btn btn-o-white">講師詳細へ</span>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="" class="instructor" style="background-image:url(/images/eval_instructor3.jpg)">
-						<span class="btn btn-o-white">講師詳細へ</span>
-					</a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<a href="" class="instructor" style="background-image:url(/images/eval_instructor4.jpg)">
-						<span class="btn btn-o-white">講師詳細へ</span>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="" class="instructor" style="background-image:url(/images/eval_instructor5.jpg)">
-						<span class="btn btn-o-white">講師詳細へ</span>
-					</a>
-				</div>
-				<div class="col-sm-4">
-					<a href="" class="instructor" style="background-image:url(/images/eval_instructor6.jpg)">
-						<span class="btn btn-o-white">講師詳細へ</span>
-					</a>
-				</div>
+				<% @top_rated_lessons.each do |lesson| %>
+					<div class="col-sm-4">
+						<%= link_to lesson, style: "background-image:url(#{gravatar_url(lesson.instructor, { size: 360 })})", class: 'instructor' do %>
+							<span class="btn btn-o-white">講師詳細へ</span>
+						<% end %>
+					</div>
+				<% end %>
 			</div>
 		</section>
 	</div>
