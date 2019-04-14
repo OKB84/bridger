@@ -67,7 +67,7 @@ h3 {
   transform: translate(-50%,-50%);
   /*以下装飾*/
   margin:0;/*余計な隙間を除く*/
-  font-size: 23px;/*文字サイズ*/
+  font-size: 22px;/*文字サイズ*/
   text-decoration: none;/*下線を表示させない*/
   border-style: none;
   background-color: rgba(0,0,0,0);
@@ -75,8 +75,24 @@ h3 {
 }
 
 
-.favorite {
+.heart {
   color: red;
+  margin: 0;/*余計な隙間を除く*/
+  font-size: 22px;/*文字サイズ*/
+  text-decoration: none;/*下線を表示させない*/
+  border-style: none;
+  background-color: rgba(0,0,0,0);
+}
+
+.favorites i {
+  color: red;
+  -webkit-text-stroke: 0.5px #000;
+}
+
+.favorited {
+  font-size: 20px;
+  font-weight: bold;
+  -webkit-text-stroke: 0.5px white;
 }
 
 .unfavorite {

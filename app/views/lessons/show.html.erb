@@ -60,11 +60,15 @@
       				  		<i class="fa fa-star"></i> <span class="rate"><%= @lesson.instructor.show_rate %></span>
       				  	</div>      			    
         			  </div>
-        			  <div class="col-xs-2 col-xs-offset-1">
+        			  <div class="col-xs-4">
       				  	<% if logged_in? %>
       				  		<div id="instructor-<%= @lesson.instructor.id %>">
       				  			<%= render 'favorites/favorite_button', instructor: @lesson.instructor %>
       				  		</div>
+      				  	<% else %>
+    					  		<div class="favorites">
+    					  			<i class="fa fa-heart heart"></i> <span class="favorited"><%= @lesson.instructor.favorited_users.count %></span>
+    					  		</div>
       				  	<% end %>      			    
         			  </div>
         		  <% end %>
